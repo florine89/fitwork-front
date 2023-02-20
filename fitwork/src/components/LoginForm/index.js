@@ -1,4 +1,5 @@
 import './style.scss';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
 import Field from './Field';
 
