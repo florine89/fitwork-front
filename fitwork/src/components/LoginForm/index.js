@@ -1,4 +1,5 @@
 import './style.scss';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
 import Field from './Field';
 
@@ -6,8 +7,14 @@ import Field from './Field';
 function LoginForm({
   email,
   password,
+  handleLogin,
 
 }) {
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    handleLogin();
+  };
+
   return (
 
   // Création du form et des champs du formulaire pour la connnexion de l'utilisateur
@@ -18,7 +25,7 @@ function LoginForm({
       <form
         autoComplete="off"
         className="login-form-element"
-
+        onSubmit={handleSubmit}
       >
         <Field
           name="email"
@@ -45,6 +52,7 @@ function LoginForm({
 LoginForm.propTypes = {
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
+  handleLogin: PropTypes.func.isRequired,
 };
 
 export default LoginForm;
