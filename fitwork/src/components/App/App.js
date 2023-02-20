@@ -1,5 +1,7 @@
-import './App.scss';
 import { Button } from 'react-bootstrap';
+
+import './App.scss';
+import LoginForm from '../LoginForm';
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
       <Button as="a" variant="success">
         Button as link
       </Button>
+
+      <LoginForm />
 
     </div>
   );
