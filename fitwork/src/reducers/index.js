@@ -1,5 +1,10 @@
-// import { combineReducers } from 'redux';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { combineReducers } from 'redux';
 
-// const rootReducer;
+import userReducer from './user';
 
-// export default rootReducer;
+const rootReducer = combineReducers({
+  user: userReducer,
+});
+
+export default rootReducer;

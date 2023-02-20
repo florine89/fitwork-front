@@ -1,4 +1,4 @@
-import {LOGIN} from '../actions/user';
+import { LOGIN } from '../actions/user';
 
 export const initialState = {
   logged: false,
