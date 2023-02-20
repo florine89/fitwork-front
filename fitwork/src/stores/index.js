@@ -1,14 +1,7 @@
-// import { createStore, compose } from 'redux';
+import { createStore } from 'redux';
 
-// // import reducer from 'src/reducers';
-// // import recipesAPI from 'src/middlewares/recipesAPI';
+import reducer from '../reducers';
 
-// const composeEnhancers = window.REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose;
+const store = createStore(reducer);
 
-// // const enhancers = composeEnhancers(
-// //   applyMiddleware(recipesAPI),
-// // );
-
-// const store = createStore(reducer, enhancers);
-
-// export default store;
+export default store;

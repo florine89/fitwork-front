@@ -1,7 +1,11 @@
 import './style.scss';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+
 import Field from './Field';
+
+import { login } from '../../actions/user';
 
 // Création du formulaire de connexion avec les props email et password
 function LoginForm({
@@ -9,6 +13,13 @@ function LoginForm({
   password,
 
 }) {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    dispatch(login());
+  };
+
   return (
 
   // Création du form et des champs du formulaire pour la connnexion de l'utilisateur
@@ -19,7 +30,7 @@ function LoginForm({
       <form
         autoComplete="off"
         className="login-form-element"
-
+        onSubmit={handleSubmit}
       >
         <Field
           name="email"
