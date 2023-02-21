@@ -23,7 +23,7 @@ function LoginForm({
   const handleSubmit = (evt) => {
     evt.preventDefault();
     dispatch(login());
-    console.log('handleSubmit');
+    // console.log('handleSubmit');
   };
 
   // Modale (utilisation des states)
@@ -48,7 +48,7 @@ function LoginForm({
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Connexion</Modal.Title>
+            <Modal.Title>Connecte toi ici!</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form onSubmit={handleSubmit}>
@@ -57,12 +57,14 @@ function LoginForm({
                 name="email"
                 placeholder="Adresse Email"
                 value={email}
+                require
               />
               <Field
                 name="password"
                 type="password"
                 placeholder="Mot de passe"
                 value={password}
+                require
               />
               <Button variant="primary" type="submit">
                 Envoi
