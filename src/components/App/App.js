@@ -1,15 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 
-
-import LoginForm from '../LoginForm';
-import Inscription from '../Inscription/index';
-
 import Footer from '../Footer';
 
 import Header from '../AppHeader';
-
-
 
 import './App.scss';
 // import Inscription from '../Inscription/Inscription';
@@ -22,7 +16,9 @@ function App() {
 
   return (
     <div className="App">
+
       <Header />
+
       <Routes>
         <Route path="/" element={<LoginForm />} />
         <Route path="/inscription" element={<Inscription change={change} setChange={setChange} />} />

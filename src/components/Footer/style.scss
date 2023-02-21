@@ -1,0 +1,11 @@
+.footer {
+    position: fixed;
+    bottom: 0px;
+    margin-right: auto;
+    margin-left: auto;
+
+    &-links{
+        display: inline-flex;
+        flex-wrap: wrap;
+    }
+}
