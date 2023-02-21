@@ -16,13 +16,14 @@ function Header() {
           <Link to="/">
             <img src={logo} className="header-logo" alt="Logo FitWork" />
           </Link>
-          <Navbar.Brand href="#home">Accueil</Navbar.Brand>
+          <Navbar.Brand href="/">Accueil</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">Profil</Nav.Link>
-              <Nav.Link href="#link">Programme</Nav.Link>
-              <Nav.Link href="#link">favoris</Nav.Link>
+              <Nav.Link href="/inscription">S'incrire</Nav.Link>
+              <Nav.Link href="/profil">Profil</Nav.Link>
+              <Nav.Link href="/programme">Programme</Nav.Link>
+              <Nav.Link href="/favoris">favoris</Nav.Link>
               <NavDropdown title="Catégories" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Alimentation</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
