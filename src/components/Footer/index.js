@@ -1,15 +1,22 @@
 import './style.scss';
 
 import Nav from 'react-bootstrap/Nav';
+import Image from 'react-bootstrap/Image';
+
+import logo from '../../assets/logo.png';
 
 function Footer() {
   return (
     <div className="footer">
-      <h1>Footer</h1>
 
       <Nav defaultActiveKey="/home" as="ul">
         <Nav.Item as="li">
-          <Nav.Link href="/home">Accueil</Nav.Link>
+          <Nav.Link href="/">
+            <Image src={logo} className="footer-logo" alt="Logo FitWork" roundedCircle fluid />
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item as="li">
+          <Nav.Link href="/">Accueil</Nav.Link>
         </Nav.Item>
         <Nav.Item as="li">
           <Nav.Link eventKey="link-1" href="/profil">Profil</Nav.Link>

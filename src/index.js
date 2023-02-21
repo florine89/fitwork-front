@@ -1,10 +1,8 @@
 import { BrowserRouter } from 'react-router-dom';
 // import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
 import store from './stores';
 import App from './components/App/App';
 
