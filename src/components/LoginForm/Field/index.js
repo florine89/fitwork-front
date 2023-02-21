@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
 
+import Form from 'react-bootstrap/Form';
+
 import { changeInputValue } from '../../../actions/user';
 
 // création des champs
@@ -25,21 +27,20 @@ function Field({
 
   return (
     <div>
-      <input
+      <Form.Group
+        className="mb-3"
+        controlId={inputId}
         value={value}
         onChange={handleChange}
         id={inputId}
         type={type}
-        className="field-input"
         placeholder={placeholder}
         name={name}
-      />
-      <label
-        htmlFor={inputId}
-        className="field-label"
       >
-        {placeholder}
-      </label>
+        <Form.Label>{placeholder}</Form.Label>
+        <Form.Control type={type} placeholder={placeholder} />
+      </Form.Group>
+
     </div>
   );
 }

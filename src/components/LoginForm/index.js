@@ -3,6 +3,9 @@ import './style.scss';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
 import Field from './Field';
 
 import { login } from '../../actions/user';
@@ -25,14 +28,10 @@ function LoginForm({
 
   // Création du form et des champs du formulaire pour la connnexion de l'utilisateur
   // Soumission du form avec un bouton
-
     <div className="login-form">
 
-      <form
-        autoComplete="off"
-        className="login-form-element"
-        onSubmit={handleSubmit}
-      >
+      <Form onSubmit={handleSubmit}>
+
         <Field
           name="email"
           placeholder="Adresse Email"
@@ -44,20 +43,22 @@ function LoginForm({
           placeholder="Mot de passe"
           value={password}
         />
-        <button
-          type="submit"
-          className="login-form-button"
-        >
-          OK
-        </button>
-      </form>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
     </div>
   );
 }
 
 LoginForm.propTypes = {
-  email: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
+  email: PropTypes.string,
+  password: PropTypes.string,
+};
+
+LoginForm.defaultProps = {
+  email: '',
+  password: '',
 };
 
 export default LoginForm;
