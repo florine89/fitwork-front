@@ -18,6 +18,7 @@ function LoginForm({
   const handleSubmit = (evt) => {
     evt.preventDefault();
     dispatch(login());
+    console.log('handleSubmit');
   };
 
   return (
