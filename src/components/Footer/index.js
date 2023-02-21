@@ -4,7 +4,8 @@ import Nav from 'react-bootstrap/Nav';
 
 function Footer() {
   return (
-    <div className="Footer">Footer
+    <div className="footer">
+      <h1>Footer</h1>
 
       <Nav defaultActiveKey="/home" as="ul">
         <Nav.Item as="li">
@@ -26,6 +27,13 @@ function Footer() {
           <Nav.Link eventKey="link-5" href="/contact">Contact</Nav.Link>
         </Nav.Item>
       </Nav>
+
+      <div className="footer-links">
+        <img href="#" alt="logo_instagram" />
+        <img href="#" alt="logo_facebook" />
+        <img href="#" alt="logo_whatsapp" />
+
+      </div>
 
     </div>
   );
