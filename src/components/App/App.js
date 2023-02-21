@@ -1,22 +1,31 @@
 import { Route, Routes } from 'react-router-dom';
-import Inscription from '../Inscription/Inscription';
-import LoginForm from '../LoginForm';
+import { useState } from 'react';
 
+
+import LoginForm from '../LoginForm';
+import Inscription from '../Inscription/index';
 
 import Footer from '../Footer';
 
 import Header from '../AppHeader';
 
 
+
 import './App.scss';
+// import Inscription from '../Inscription/Inscription';
+// import Button from 'react-bootstrap/Button';
+
+// import LoginForm from '../LoginForm';
 
 function App() {
+  const [change, setChange] = useState('');
+
   return (
     <div className="App">
       <Header />
       <Routes>
         <Route path="/" element={<LoginForm />} />
-        <Route path="/inscription" element={<Inscription />} />
+        <Route path="/inscription" element={<Inscription change={change} setChange={setChange} />} />
         <Route path="/contact" element={<h1>Contact</h1>} />
         <Route path="/profil" element={<h1>Profil</h1>} />
         <Route path="/categorie" element={<h1>Catégorie</h1>} />
