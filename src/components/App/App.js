@@ -1,7 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
 import Inscription from '../Inscription/Inscription';
 import LoginForm from '../LoginForm';
+
+
+import Footer from '../Footer';
+
 import Header from '../AppHeader';
+
 
 import './App.scss';
 
@@ -21,6 +26,9 @@ function App() {
         <Route path="/administrateur" element={<h1>Administrateur</h1>} />
         <Route path="*" element={<h1>Page d'erreur</h1>} />
       </Routes>
+
+      <Footer />
+
     </div>
   );
 }
