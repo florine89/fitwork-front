@@ -20,7 +20,7 @@ function Field({
 
   const handleChange = (evt) => {
     dispatch(changeInputValue(name, evt.target.value));
-    console.log(value);
+    // console.log(value);
   };
 
   const inputId = `field-${name}`;
