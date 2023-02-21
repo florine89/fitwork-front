@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import logo from '../../assets/fonts/logo.png';
+import logo from '../../assets/logo.png';
 
 function Header() {
   return (

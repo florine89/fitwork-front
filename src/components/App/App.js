@@ -4,12 +4,10 @@ import { useState } from 'react';
 import Footer from '../Footer';
 
 import Header from '../AppHeader';
+import Inscription from '../Inscription';
+import LoginForm from '../LoginForm';
 
 import './App.scss';
-// import Inscription from '../Inscription/Inscription';
-// import Button from 'react-bootstrap/Button';
-
-// import LoginForm from '../LoginForm';
 
 function App() {
   const [change, setChange] = useState('');
