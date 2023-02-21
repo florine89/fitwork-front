@@ -1,12 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
 import Inscription from '../Inscription/Inscription';
 import LoginForm from '../LoginForm';
+import Header from '../AppHeader';
 
 import './App.scss';
 
 function App() {
   return (
     <div className="App">
+      <Header />
       <Routes>
         <Route path="/" element={<LoginForm />} />
         <Route path="/inscription" element={<Inscription />} />
