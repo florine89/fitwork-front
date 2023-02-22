@@ -17,3 +17,12 @@ export function changeInputValue(key, value) {
     },
   };
 }
+
+export const USER_SAVE = 'USER_SAVE';
+
+export function saveUser(user) {
+  return {
+    type: USER_SAVE,
+    payload: { user },
+  };
+}
