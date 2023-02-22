@@ -10,6 +10,9 @@ import Row from 'react-bootstrap/Row';
 
 function Profil() {
   const [validated, setValidated] = useState(false);
+  // change c'est la valeur initial
+  // handlechange va appeler setchange pour changer la veleur
+  // usestate c'est linitialisation du state
   const [change, setChange] = useState('');
 
   function handleChange(evt) {
@@ -25,6 +28,7 @@ function Profil() {
     }
 
     setValidated(true);
+    console.log('handlesubmit');
   };
 
   return (
