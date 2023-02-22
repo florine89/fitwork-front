@@ -1,5 +1,6 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import Footer from '../Footer';
 
@@ -7,11 +8,19 @@ import Header from '../AppHeader';
 import Inscription from '../Inscription';
 import LoginForm from '../LoginForm';
 import Profil from '../Profil';
+import Loading from './Loading';
 
 import './App.scss';
 import Contact from '../Contact';
 
 function App() {
+  const loading = useSelector((state) => state.recipes.loading);
+  const isLogged = useSelector((state) => state.user.logged);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   const [change, setChange] = useState('');
 
   return (
@@ -23,7 +32,14 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginForm />} />
         <Route path="/inscription" element={<Inscription change={change} setChange={setChange} />} />
-        <Route path="/profil" element={<Profil />} />
+        <Route
+          path="/profil"
+          element={
+            isLogged
+              ? <Profil />
+              : <Navigate to="/inscription" replace />
+          }
+        />
         <Route path="/contact" element={<Contact />} />
         <Route path="/categorie" element={<h1>Catégorie</h1>} />
         <Route path="/categorie/:id" element={<h1>Articles</h1>} />
