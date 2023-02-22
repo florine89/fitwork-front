@@ -1,8 +1,14 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 
 import reducer from '../reducers';
+import getAPI from '../middleware/getAPI';
 
-const store = createStore(reducer);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const enhancers = composeEnhancers(
+  applyMiddleware(getAPI),
+);
+
+const store = createStore(reducer, enhancers);
 
 export default store;
