@@ -38,9 +38,14 @@ function LoginForm({
   // Création du form et des champs du formulaire pour la connnexion de l'utilisateur
   // Soumission du form avec un bouton
 
-    <>
+    <div className="login">
 
-      <Button variant="primary" onClick={handleShow}>
+      <Button
+        className="login-button"
+        onClick={handleShow}
+        variant="outline-dark"
+        size="lg"
+      >
         Se connecter
       </Button>
 
@@ -75,7 +80,7 @@ function LoginForm({
 
       </div>
 
-    </>
+    </div>
   );
 }
 

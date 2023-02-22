@@ -1,1 +1,10 @@
+@use '../../styles/vars';
+
 @import "~bootstrap/scss/bootstrap";
+
+
+
+body {
+  background-color: vars.$color-third;
+}
+

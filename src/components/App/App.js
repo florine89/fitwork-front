@@ -1,15 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 
-import Footer from '../Footer';
-
 import Header from '../AppHeader';
 import Inscription from '../Inscription';
-import LoginForm from '../LoginForm';
 import Profil from '../Profil';
+import Footer from '../Footer';
 
 import './App.scss';
 import Contact from '../Contact';
+import Home from '../Accueil';
 
 function App() {
   const [change, setChange] = useState('');
@@ -18,9 +17,9 @@ function App() {
     <div className="App">
 
       <Header />
-
+      <Home />
       <Routes>
-        <Route path="/" element={<LoginForm />} />
+        <Route path="/" element={<h1>Bonjour</h1>} />
         <Route path="/inscription" element={<Inscription change={change} setChange={setChange} />} />
         <Route path="/profil" element={<Profil />} />
         <Route path="/contact" element={<Contact />} />
@@ -31,7 +30,6 @@ function App() {
         <Route path="/administrateur" element={<h1>Administrateur</h1>} />
         <Route path="*" element={<h1>Page d'erreur</h1>} />
       </Routes>
-
       <Footer />
 
     </div>
