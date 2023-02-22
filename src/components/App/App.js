@@ -8,18 +8,12 @@ import Header from '../AppHeader';
 import Inscription from '../Inscription';
 import LoginForm from '../LoginForm';
 import Profil from '../Profil';
-import Loading from './Loading';
 
 import './App.scss';
 import Contact from '../Contact';
 
 function App() {
-  const loading = useSelector((state) => state.recipes.loading);
   const isLogged = useSelector((state) => state.user.logged);
-
-  if (loading) {
-    return <Loading />;
-  }
 
   const [change, setChange] = useState('');
 
