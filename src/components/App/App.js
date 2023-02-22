@@ -18,6 +18,7 @@ function App() {
     <div className="App">
 
       <Header />
+      <Footer />
 
       <Routes>
         <Route path="/" element={<LoginForm />} />
@@ -31,8 +32,6 @@ function App() {
         <Route path="/administrateur" element={<h1>Administrateur</h1>} />
         <Route path="*" element={<h1>Page d'erreur</h1>} />
       </Routes>
-
-      <Footer />
 
     </div>
   );
