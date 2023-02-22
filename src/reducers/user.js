@@ -4,7 +4,6 @@ export const initialState = {
   logged: false,
   email: '',
   password: '',
-  loading: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -20,7 +19,6 @@ const reducer = (state = initialState, action = {}) => {
       if (!state.logged) {
         return {
           ...state,
-          loading: true,
         };
       }
       return state;
@@ -32,7 +30,6 @@ const reducer = (state = initialState, action = {}) => {
         ...action.payload.user,
         email: '',
         password: '',
-        loading: false,
       };
 
     default:

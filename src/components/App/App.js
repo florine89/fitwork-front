@@ -35,10 +35,12 @@ function App() {
           }
         />
         <Route path="/contact" element={<Contact />} />
+
         <Route path="/categorie" element={<h1>Catégorie</h1>} />
         <Route path="/categorie/:id" element={<h1>Articles</h1>} />
         <Route path="/programme" element={<h1>Programme</h1>} />
         <Route path="/favoris" element={<h1>favoris</h1>} />
+
         <Route path="/administrateur" element={<h1>Administrateur</h1>} />
         <Route path="*" element={<h1>Page d'erreur</h1>} />
       </Routes>
