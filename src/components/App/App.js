@@ -8,6 +8,7 @@ import Inscription from '../Inscription';
 import LoginForm from '../LoginForm';
 
 import './App.scss';
+import Contact from '../Contact';
 
 function App() {
   const [change, setChange] = useState('');
@@ -20,7 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginForm />} />
         <Route path="/inscription" element={<Inscription change={change} setChange={setChange} />} />
-        <Route path="/contact" element={<h1>Contact</h1>} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/profil" element={<h1>Profil</h1>} />
         <Route path="/categorie" element={<h1>Catégorie</h1>} />
         <Route path="/categorie/:id" element={<h1>Articles</h1>} />
