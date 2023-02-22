@@ -9,13 +9,13 @@ import './Style.scss';
 export default function Inscription({ change, setChange }) {
   // const value = useSelector((state) => state.value);
   function handleChange(evt) {
-    console.log(evt.target.value);
+    // console.log(evt.target.value);
     setChange(evt.target.value);
   }
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    console.log('submit');
+    // console.log('submit');
   }
 
   return (
