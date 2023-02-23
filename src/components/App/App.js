@@ -1,6 +1,6 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Header from '../AppHeader';
 import Inscription from '../Inscription';
@@ -10,12 +10,20 @@ import Contact from '../Contact';
 import Home from '../Accueil';
 import Articles from '../Articles';
 
+import { fetchArticles } from '../../actions/articles';
+
 import './App.scss';
 
 function App() {
   const isLogged = useSelector((state) => state.user.logged);
 
   const [change, setChange] = useState('');
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchArticles());
+  }, []);
 
   return (
     <div className="App">

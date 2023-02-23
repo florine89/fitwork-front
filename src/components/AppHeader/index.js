@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+
 import './style.scss';
 
 import Container from 'react-bootstrap/Container';
@@ -8,7 +10,11 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import logo from '../../assets/logo.png';
 import LoginForm from '../LoginForm';
 
+import { getArticlesList } from '../../selectors/articles';
+
 function Header() {
+  const articles = useSelector(getArticlesList);
+
   return (
     <header>
 
@@ -27,8 +33,19 @@ function Header() {
               <NavLink to="/programme">Programme</NavLink>
               <NavLink to="/favoris">Favoris</NavLink>
               <NavLink to="/contact">Contact</NavLink>
+
+              {articles.map((article) => (
+                <NavLink
+                  key={article.id}
+                  to={`/categorie/${article.id}`}
+                >
+                  {article.id}
+                </NavLink>
+              ))}
+
               <NavDropdown title="Catégories" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/categorie/1">Alimentation</NavDropdown.Item>
+
                 <NavDropdown.Item href="/categorie/2">
                   Exercices au bureau
                 </NavDropdown.Item>
