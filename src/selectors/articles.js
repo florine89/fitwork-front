@@ -2,6 +2,7 @@
 
 export function findArticle(articles, searchedId) {
   const article = articles.find((testedRecipe) => testedRecipe.id === searchedId);
+  console.log(article);
   return article;
 }
 
