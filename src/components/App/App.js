@@ -6,10 +6,11 @@ import Header from '../AppHeader';
 import Inscription from '../Inscription';
 import Profil from '../Profil';
 import Footer from '../Footer';
-
-import './App.scss';
 import Contact from '../Contact';
 import Home from '../Accueil';
+import Articles from '../Articles';
+
+import './App.scss';
 
 function App() {
   const isLogged = useSelector((state) => state.user.logged);
@@ -34,7 +35,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
 
         <Route path="/categorie" element={<h1>Catégorie</h1>} />
-        <Route path="/categorie/:id" element={<h1>Articles</h1>} />
+        <Route path="/categorie/:id" element={<Articles />} />
         <Route path="/programme" element={<h1>Programme</h1>} />
         <Route path="/favoris" element={<h1>favoris</h1>} />
 

@@ -28,13 +28,13 @@ function Header() {
               <NavLink to="/favoris">Favoris</NavLink>
               <NavLink to="/contact">Contact</NavLink>
               <NavDropdown title="Catégories" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Alimentation</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
+                <NavDropdown.Item href="/categorie/1">Alimentation</NavDropdown.Item>
+                <NavDropdown.Item href="/categorie/2">
                   Exercices au bureau
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Moment de relaxation</NavDropdown.Item>
+                <NavDropdown.Item href="/categorie/3">Moment de relaxation</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
+                <NavDropdown.Item href="/categorie/4">
                   Separated link
                 </NavDropdown.Item>
               </NavDropdown>
