@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import Header from '../AppHeader';
 import Inscription from '../Inscription';
-// import Profil from '../Profil';
+import Profil from '../Profil';
 import Footer from '../Footer';
 import Contact from '../Contact';
 import Home from '../Accueil';
@@ -34,6 +34,7 @@ function App() {
         <Route path="/inscription" element={<Inscription change={change} setChange={setChange} />} />
         <Route
           path="/profil"
+          element=<Profil />
         />
         <Route path="/contact" element={<Contact />} />
 
