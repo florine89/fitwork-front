@@ -1,7 +1,8 @@
-.footer {
-    display: flex;
-}
+@use '../../styles/vars';
 
-.header-logo {
+.header{
+
+    &-logo {
     width: 10rem;
+}
 }
