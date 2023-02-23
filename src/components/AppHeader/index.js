@@ -2,7 +2,7 @@ import './style.scss';
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import logo from '../../assets/logo.png';
@@ -17,14 +17,16 @@ function Header() {
           <Link to="/">
             <img src={logo} className="header-logo" alt="Logo FitWork" />
           </Link>
-          <Navbar.Brand href="/">Accueil</Navbar.Brand>
+          <Navbar.Brand>Menu</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/inscription">S'incrire</Nav.Link>
-              <Nav.Link href="/profil">Profil</Nav.Link>
-              <Nav.Link href="/programme">Programme</Nav.Link>
-              <Nav.Link href="/favoris">favoris</Nav.Link>
+              <NavLink to="/">Accueil</NavLink>
+              <NavLink to="/inscription">S'inscrire</NavLink>
+              <NavLink to="/profil">Profil</NavLink>
+              <NavLink to="/programme">Programme</NavLink>
+              <NavLink to="/favoris">Favoris</NavLink>
+              <NavLink to="/contact">Contact</NavLink>
               <NavDropdown title="Catégories" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Alimentation</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
