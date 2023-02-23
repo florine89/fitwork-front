@@ -10,7 +10,7 @@ import Modal from 'react-bootstrap/Modal';
 
 import Field from './Field';
 
-import { login } from '../../actions/user';
+import { login, logout } from '../../actions/user';
 
 // Création du formulaire de connexion avec les props email et password
 function LoginForm({
@@ -30,7 +30,9 @@ function LoginForm({
     dispatch(login());
     // console.log('handleSubmit');
   };
-
+  const handleLogOut = () => {
+    dispatch(logout());
+  };
   // Modale (utilisation des states)
 
   const [show, setShow] = useState(false);
@@ -44,15 +46,6 @@ function LoginForm({
   // Soumission du form avec un bouton
 
     <div className="login">
-      <Button
-        className="login-button"
-        onClick={handleShow}
-        variant="outline-dark"
-        size="lg"
-      >
-        Se connecter
-      </Button>
-
       <div className="login-form">
 
         {/* Chargement en cours */}
@@ -69,42 +62,60 @@ function LoginForm({
               <p className="login-form-message">
                 {`Bienvenue ${pseudo}`}
               </p>
+              <Button
+                className="login-button"
+                onClick={handleLogOut}
+                variant="outline-dark"
+                size="lg"
+              >
+                Se déconnecter
+              </Button>
             </div>
           )}
 
           {/* utilisateur anonyme */}
           {!isLogged && (
 
-          <div className="login-form">
+            <>
+              <Button
+                className="login-button"
+                onClick={handleShow}
+                variant="outline-dark"
+                size="lg"
+              >
+                Se connecter
+              </Button>
+              <div className="login-form">
 
-            <Modal show={show} onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Connecte toi ici!</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <Form onSubmit={handleSubmit}>
+                <Modal show={show} onHide={handleClose}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Connecte toi ici!</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <Form onSubmit={handleSubmit}>
 
-                  <Field
-                    name="email"
-                    placeholder="Adresse Email"
-                    value={email}
-                    require
-                  />
-                  <Field
-                    name="password"
-                    type="password"
-                    placeholder="Mot de passe"
-                    value={password}
-                    require
-                  />
-                  <Button variant="primary" type="submit">
-                    Envoi
-                  </Button>
-                </Form>
-              </Modal.Body>
-            </Modal>
+                      <Field
+                        name="email"
+                        placeholder="Adresse Email"
+                        value={email}
+                        require
+                      />
+                      <Field
+                        name="password"
+                        type="password"
+                        placeholder="Mot de passe"
+                        value={password}
+                        require
+                      />
+                      <Button variant="primary" type="submit">
+                        Envoi
+                      </Button>
+                    </Form>
+                  </Modal.Body>
+                </Modal>
 
-          </div>
+              </div>
+            </>
           )}
         </>
         )}
