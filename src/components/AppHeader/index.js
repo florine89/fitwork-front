@@ -17,7 +17,7 @@ function Header() {
   const isLogged = useSelector((state) => state.user.logged);
 
   return (
-    <header>
+    <header className="header">
 
       <Navbar bg="light" expand="lg">
         <Container>
