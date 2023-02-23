@@ -1,10 +1,11 @@
 import './style.scss';
-import Image from 'react-bootstrap/Image';
 import logo from '../../assets/femmebureau.jpg';
 
 function Home() {
   return (
-    <Image className="image" src={logo} />
+    <div className="home">
+      <img src={logo} className="home-logo" alt="Logo FitWork" />
+    </div>
   );
 }
 

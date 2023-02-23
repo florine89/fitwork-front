@@ -1,6 +1,14 @@
+.footer {
+display: flex;
+flex-wrap: wrap;
+flex-direction: column;
 
-.footer-logo {
 
-width: 7rem;
+    &-logo {
+        width: 10rem;
+        
 
+    }
 };
+
+
