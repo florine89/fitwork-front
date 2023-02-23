@@ -1,10 +1,9 @@
-import { CHANGE_INPUT_VALUE, LOGIN } from '../actions/user';
+import { CHANGE_INPUT_VALUE, LOGIN, USER_SAVE } from '../actions/user';
 
 export const initialState = {
   logged: false,
   email: '',
   password: '',
-  loading: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -16,8 +15,22 @@ const reducer = (state = initialState, action = {}) => {
       };
 
     case LOGIN: {
+      // ajout du state "logged"
+      if (!state.logged) {
+        return {
+          ...state,
+        };
+      }
       return state;
     }
+
+    case USER_SAVE:
+      return {
+        ...state,
+        ...action.payload.user,
+        email: '',
+        password: '',
+      };
 
     default:
       return state;
