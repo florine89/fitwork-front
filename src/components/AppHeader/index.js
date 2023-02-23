@@ -1,5 +1,3 @@
-import { useSelector } from 'react-redux';
-
 import './style.scss';
 
 import Container from 'react-bootstrap/Container';
@@ -15,7 +13,6 @@ import LoginForm from '../LoginForm';
 import { getArticlesList } from '../../selectors/articles';
 
 function Header() {
-
   const articles = useSelector(getArticlesList);
   const isLogged = useSelector((state) => state.user.logged);
 
@@ -44,13 +41,13 @@ function Header() {
                   <NavLink to="/favoris">Favoris</NavLink>
                   <NavLink to="/contact">Contact</NavLink>
                   {articles.map((article) => (
-                <NavLink
-                  key={article.id}
-                  to={`/categorie/${article.id}`}
-                >
-                  {article.id}
-                </NavLink>
-              ))}
+                    <NavLink
+                      key={article.id}
+                      to={`/categorie/${article.id}`}
+                    >
+                      {article.id}
+                    </NavLink>
+                  ))}
                 </div>
               )}
               {/* quand on est connecté ça affiche s'inscrire seulement */}

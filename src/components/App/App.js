@@ -1,10 +1,10 @@
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import Header from '../AppHeader';
 import Inscription from '../Inscription';
-import Profil from '../Profil';
+// import Profil from '../Profil';
 import Footer from '../Footer';
 import Contact from '../Contact';
 import Home from '../Accueil';
@@ -15,7 +15,7 @@ import { fetchArticles } from '../../actions/articles';
 import './App.scss';
 
 function App() {
-  const isLogged = useSelector((state) => state.user.logged);
+  // const isLogged = useSelector((state) => state.user.logged);
 
   const [change, setChange] = useState('');
 
@@ -34,11 +34,6 @@ function App() {
         <Route path="/inscription" element={<Inscription change={change} setChange={setChange} />} />
         <Route
           path="/profil"
-          element={
-            isLogged
-              ? <Profil />
-              : <Navigate to="/inscription" replace />
-          }
         />
         <Route path="/contact" element={<Contact />} />
 
