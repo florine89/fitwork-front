@@ -16,7 +16,7 @@ function Profil() {
   const [change, setChange] = useState('');
 
   function handleChange(evt) {
-    console.log(evt.target.value);
+    // console.log(evt.target.value);
     setChange(evt.target.value);
   }
 
@@ -28,7 +28,7 @@ function Profil() {
     }
 
     setValidated(true);
-    console.log('handlesubmit');
+    // console.log('handlesubmit');
   };
 
   return (

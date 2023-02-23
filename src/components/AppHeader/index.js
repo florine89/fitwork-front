@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+
 import './style.scss';
 
 import Container from 'react-bootstrap/Container';
@@ -10,8 +12,13 @@ import logo from '../../assets/logo.png';
 import LoginForm from '../LoginForm';
 // import Profil from '../Profil';
 
+import { getArticlesList } from '../../selectors/articles';
+
 function Header() {
+
+  const articles = useSelector(getArticlesList);
   const isLogged = useSelector((state) => state.user.logged);
+
   return (
     <header>
 
@@ -24,6 +31,7 @@ function Header() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
+
               <NavLink
                 to="/"
               >Accueil
@@ -35,6 +43,14 @@ function Header() {
                   <NavLink to="/programme">Programme</NavLink>
                   <NavLink to="/favoris">Favoris</NavLink>
                   <NavLink to="/contact">Contact</NavLink>
+                  {articles.map((article) => (
+                <NavLink
+                  key={article.id}
+                  to={`/categorie/${article.id}`}
+                >
+                  {article.id}
+                </NavLink>
+              ))}
                 </div>
               )}
               {/* quand on est connecté ça affiche s'inscrire seulement */}
@@ -45,13 +61,14 @@ function Header() {
               )}
 
               <NavDropdown title="Catégories" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Alimentation</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
+                <NavDropdown.Item href="/categorie/1">Alimentation</NavDropdown.Item>
+
+                <NavDropdown.Item href="/categorie/2">
                   Exercices au bureau
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Moment de relaxation</NavDropdown.Item>
+                <NavDropdown.Item href="/categorie/3">Moment de relaxation</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
+                <NavDropdown.Item href="/categorie/4">
                   Separated link
                 </NavDropdown.Item>
               </NavDropdown>
