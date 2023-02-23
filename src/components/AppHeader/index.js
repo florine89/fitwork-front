@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import logo from '../../assets/logo.png';
+import LoginForm from '../LoginForm';
 
 function Header() {
   return (
@@ -38,6 +39,7 @@ function Header() {
             </Nav>
           </Navbar.Collapse>
         </Container>
+        <LoginForm />
       </Navbar>
     </header>
   );

@@ -1,15 +1,14 @@
 .footer {
-    position: fixed;
-    bottom: 0px;
-    margin-right: auto;
-    margin-left: auto;
+display: flex;
+flex-wrap: wrap;
+flex-direction: column;
 
-    &-links{
-        display: inline-flex;
-        flex-wrap: wrap;
+
+    &-logo {
+        width: 10rem;
+        
+
     }
-    &-logo{
-        width: 7em;
-        height: auto;
-    }
-}
+};
+
+

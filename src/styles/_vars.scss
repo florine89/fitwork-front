@@ -1,8 +1,6 @@
-@use 'sass:math';
+$color-first: #5D848C;
+$color-second: #bfd4d9;
+$color-third: #CFDADD;
 
-$menuWidth: 250px;
-$smallMenuWidth: 150px;
-$small: 700px;
-$gutter: 1.5rem;
-$halfGutter: math.div($gutter, 2);
-$color: #209CEE;
+$color-darkbrown: #A67A60;
+$color-lightbrown: #BF9B8E;

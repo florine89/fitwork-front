@@ -2,15 +2,14 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import Footer from '../Footer';
-
 import Header from '../AppHeader';
 import Inscription from '../Inscription';
-import LoginForm from '../LoginForm';
 import Profil from '../Profil';
+import Footer from '../Footer';
 
 import './App.scss';
 import Contact from '../Contact';
+import Home from '../Accueil';
 
 function App() {
   const isLogged = useSelector((state) => state.user.logged);
@@ -21,10 +20,8 @@ function App() {
     <div className="App">
 
       <Header />
-      <Footer />
-
       <Routes>
-        <Route path="/" element={<LoginForm />} />
+        <Route path="/" element={<Home />} />
         <Route path="/inscription" element={<Inscription change={change} setChange={setChange} />} />
         <Route
           path="/profil"
@@ -44,6 +41,9 @@ function App() {
         <Route path="/administrateur" element={<h1>Administrateur</h1>} />
         <Route path="*" element={<h1>Page d'erreur</h1>} />
       </Routes>
+
+      <Footer />
+
 
     </div>
   );
