@@ -5,10 +5,13 @@ import Nav from 'react-bootstrap/Nav';
 import { Link, NavLink } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useSelector } from 'react-redux';
 import logo from '../../assets/logo.png';
 import LoginForm from '../LoginForm';
+// import Profil from '../Profil';
 
 function Header() {
+  const isLogged = useSelector((state) => state.user.logged);
   return (
     <header>
 
@@ -21,12 +24,26 @@ function Header() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <NavLink to="/">Accueil</NavLink>
-              <NavLink to="/inscription">S'inscrire</NavLink>
-              <NavLink to="/profil">Profil</NavLink>
-              <NavLink to="/programme">Programme</NavLink>
-              <NavLink to="/favoris">Favoris</NavLink>
-              <NavLink to="/contact">Contact</NavLink>
+              <NavLink
+                to="/"
+              >Accueil
+              </NavLink>
+              {/* quand on est connecté ça affiche profil, programme, favoris, contact */}
+              {isLogged && (
+                <div>
+                  <NavLink to="/profil">Profil</NavLink>
+                  <NavLink to="/programme">Programme</NavLink>
+                  <NavLink to="/favoris">Favoris</NavLink>
+                  <NavLink to="/contact">Contact</NavLink>
+                </div>
+              )}
+              {/* quand on est connecté ça affiche s'inscrire seulement */}
+              {!isLogged && (
+              <div>
+                <NavLink to="/inscription">S'inscrire</NavLink>
+              </div>
+              )}
+
               <NavDropdown title="Catégories" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Alimentation</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
