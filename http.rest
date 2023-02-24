@@ -1,2 +1,0 @@
-POST  http://barrealexandre-server.eddi.cloud:8080/api/user HTTP/1.1
-

@@ -13,6 +13,9 @@ export default function Inscription() {
 
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [birthday, setBirthday] = useState('');
 
   // const value = useSelector((state) => state.value);
   function handleChange(evt) {
@@ -22,6 +25,15 @@ export default function Inscription() {
     }
     if (evt.target.name === 'lastname') {
       setLastname(evt.target.value);
+    }
+    if (evt.target.name === 'email') {
+      setEmail(evt.target.value);
+    }
+    if (evt.target.name === 'password') {
+      setPassword(evt.target.value);
+    }
+    if (evt.target.name === 'birthday') {
+      setBirthday(evt.target.value);
     }
     // setChange(evt.target.value);
   }
@@ -46,10 +58,17 @@ export default function Inscription() {
   function createUser() {
     console.log('firstname', firstname);
     console.log('lastname', lastname);
+    console.log('email', email);
+    console.log('password', password);
+    console.log('birthday', birthday);
+
     axios
       .post(`${baseURL}/user`, {
         firstname,
         lastname,
+        email,
+        password,
+        birth_date: birthday,
       })
       .then((response) => {
         setPost(response.data);
@@ -72,39 +91,24 @@ export default function Inscription() {
         <Form.Control type="text" placeholder="Entrez votre prenom" name="firstname" />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicEmail" onChange={handleChange}>
+      <Form.Group className="mb-3" controlId="formBasicEmail" value={email} onChange={handleChange}>
         <Form.Label>Email :</Form.Label>
-        <Form.Control type="email" placeholder="Entrez votre email" />
+        <Form.Control type="email" placeholder="Entrez votre email" name="email" />
       </Form.Group>
 
       <Form.Group
         className="mb-3"
         controlId="formBasicPassword"
         onChange={handleChange}
+        value={password}
       >
         <Form.Label>Mot de passe :</Form.Label>
-        <Form.Control type="password" placeholder="Mot de passe" />
+        <Form.Control type="password" placeholder="Mot de passe" name="password" />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBirthday" onChange={handleChange}>
+      <Form.Group className="mb-3" controlId="formBirthday" value={birthday} onChange={handleChange}>
         <Form.Label>Date de naissance :</Form.Label>
-        <Form.Control type="date" placeholder="Date de naissance" />
-      </Form.Group>
-
-      <Form.Group
-        className="mb-3"
-        controlId="formMaleCheckbox"
-        onChange={handleChange}
-      >
-        <Form.Check type="checkbox" label="Masculin" value="Masculin" />
-      </Form.Group>
-
-      <Form.Group
-        className="mb-3"
-        controlId="formFemaleCheckbox"
-        onChange={handleChange}
-      >
-        <Form.Check type="checkbox" label="Féminin" value="Feminin" />
+        <Form.Control type="date" placeholder="Date de naissance" name="birthday" />
       </Form.Group>
 
       <Button variant="primary" type="submit" onClick={createUser}>
