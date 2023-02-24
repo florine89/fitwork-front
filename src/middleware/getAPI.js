@@ -4,7 +4,7 @@ import axios from 'axios';
 import { LOGIN, saveUser } from '../actions/user';
 import { ARTICLES_FETCH, saveArticles } from '../actions/articles';
 
-const API_BASE_URL = 'http://localhost:3001';
+const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
 
 const instance = axios.create({
   baseURL: API_BASE_URL,
@@ -12,7 +12,7 @@ const instance = axios.create({
 
 const getAPI = (store) => (next) => async (action) => {
   switch (action.type) {
-    case ARTICLES_FETCH:
+  /*     case ARTICLES_FETCH:
       try {
         const response = await instance.get('/recipes'); // test route avec API externe
         console.log(response);
@@ -23,7 +23,7 @@ const getAPI = (store) => (next) => async (action) => {
       }
 
       next(action);
-      break;
+      break; */
 
     case LOGIN: {
       try {
