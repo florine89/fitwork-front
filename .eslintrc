@@ -4,6 +4,7 @@
       "browser": true
     },
     "rules": {
+      "no-unused-vars": "off",
       "brace-style": ["error", "stroustrup"],
       "no-param-reassign": [
         "error",

@@ -18,8 +18,6 @@ import './App.scss';
 function App() {
   // const isLogged = useSelector((state) => state.user.logged);
 
-  const [change, setChange] = useState('');
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,7 +30,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/inscription" element={<Inscription change={change} setChange={setChange} />} />
+        <Route path="/inscription" element={<Inscription />} />
         <Route
           path="/profil"
           element=<Profil />
