@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import './style.scss';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -75,6 +75,9 @@ function Profil() {
         console.log(response.data);
       });
   }
+  useEffect(() => {
+    getProfil();
+  }, []);
   return (
 
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
@@ -91,7 +94,7 @@ function Profil() {
             required
             type="text"
             placeholder="First name"
-            defaultValue={firstname}
+            defaultValue={data.lastname}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
@@ -107,7 +110,7 @@ function Profil() {
             required
             type="text"
             placeholder="Last name"
-            defaultValue="Otto"
+            defaultValue={data.firstname}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
@@ -125,6 +128,7 @@ function Profil() {
               type="text"
               placeholder="Username"
               aria-describedby="inputGroupPrepend"
+              defaultValue={data.email}
               required
             />
             <Form.Control.Feedback type="invalid">
@@ -142,7 +146,12 @@ function Profil() {
           controlId="validationCustom03"
         >
           <Form.Label>Date de naissance</Form.Label>
-          <Form.Control type="text" placeholder="date de naissance" required />
+          <Form.Control
+            type="text"
+            placeholder="date de naissance"
+            defaultValue={data.birth_date}
+            required
+          />
           <Form.Control.Feedback type="invalid">
             Please provide a valid city.
           </Form.Control.Feedback>
