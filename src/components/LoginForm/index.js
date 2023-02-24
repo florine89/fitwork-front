@@ -24,21 +24,21 @@ function LoginForm({
   const isLoading = useSelector((state) => state.user.loading);
 
   const dispatch = useDispatch();
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     dispatch(login());
+    handleClose();
     // console.log('handleSubmit');
   };
   const handleLogOut = () => {
     dispatch(logout());
   };
   // Modale (utilisation des states)
-
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   return (
 
@@ -107,7 +107,7 @@ function LoginForm({
                     value={password}
                     require
                   />
-                  <Button variant="primary" type="submit" onHide={handleClose}>
+                  <Button variant="primary" type="submit">
                     Envoi
                   </Button>
                 </Form>

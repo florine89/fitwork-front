@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
+import axios from 'axios';
 
 function Profil() {
   const [validated, setValidated] = useState(false);
@@ -14,11 +15,6 @@ function Profil() {
   // handlechange va appeler setchange pour changer la veleur
   // usestate c'est linitialisation du state
   const [change, setChange] = useState('');
-
-  function handleChange(evt) {
-    // console.log(evt.target.value);
-    setChange(evt.target.value);
-  }
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -30,7 +26,55 @@ function Profil() {
     setValidated(true);
     // console.log('handlesubmit');
   };
+    // const [change, setChange] = useState('');
 
+  const [firstname, setFirstname] = useState('');
+  const [lastname, setLastname] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [birthday, setBirthday] = useState('');
+
+  // const value = useSelector((state) => state.value);
+  function handleChange(evt) {
+    // console.log(evt.target.name);
+    if (evt.target.name === 'firstname') {
+      setFirstname(evt.target.value);
+    }
+    if (evt.target.name === 'lastname') {
+      setLastname(evt.target.value);
+    }
+    if (evt.target.name === 'email') {
+      setEmail(evt.target.value);
+    }
+    if (evt.target.name === 'password') {
+      setPassword(evt.target.value);
+    }
+    if (evt.target.name === 'birthday') {
+      setBirthday(evt.target.value);
+    }
+    // setChange(evt.target.value);
+  }
+
+  // appel API
+
+  const baseURL = 'http://barrealexandre-server.eddi.cloud:8080/api';
+
+  const [data, setData] = useState([]);
+
+  // useEffect(() => {
+  //   axios.get(`${baseURL}/user`).then((response) => {
+  //     setPost(response.data);
+  //   });
+  // }, []);
+
+  function getProfil() {
+    axios
+      .get(`${baseURL}/user/6`)
+      .then((response) => {
+        setData(response.data);
+        console.log(response.data);
+      });
+  }
   return (
 
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
@@ -47,7 +91,7 @@ function Profil() {
             required
             type="text"
             placeholder="First name"
-            defaultValue="Mark"
+            defaultValue={firstname}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
