@@ -9,6 +9,7 @@ import Footer from '../Footer';
 import Contact from '../Contact';
 import Home from '../Accueil';
 import Articles from '../Articles';
+import NotFound from '../404';
 
 import { fetchArticles } from '../../actions/articles';
 
@@ -44,7 +45,7 @@ function App() {
         <Route path="/favoris" element={<h1>favoris</h1>} />
 
         <Route path="/administrateur" element={<h1>Administrateur</h1>} />
-        <Route path="*" element={<h1>Page d'erreur</h1>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <Footer />
