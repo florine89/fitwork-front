@@ -75,50 +75,49 @@ function LoginForm({
 
           {/* utilisateur anonyme */}
           {!isLogged && (
-
-            <>
-              <Button
-                className="login-button"
-                onClick={handleShow}
-                variant="outline-dark"
-                size="lg"
-              >
-                Se connecter
-              </Button>
-              <div className="login-form">
-
-                <Modal show={show} onHide={handleClose}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Connecte toi ici!</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <Form onSubmit={handleSubmit}>
-
-                      <Field
-                        name="email"
-                        placeholder="Adresse Email"
-                        value={email}
-                        require
-                      />
-                      <Field
-                        name="password"
-                        type="password"
-                        placeholder="Mot de passe"
-                        value={password}
-                        require
-                      />
-                      <Button variant="primary" type="submit">
-                        Envoi
-                      </Button>
-                    </Form>
-                  </Modal.Body>
-                </Modal>
-
-              </div>
-            </>
+          <Button
+            className="login-button"
+            onClick={handleShow}
+            variant="outline-dark"
+            size="lg"
+          >
+            Se connecter
+          </Button>
           )}
+
+          <div className="login-form">
+
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Connecte toi ici!</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form onSubmit={handleSubmit}>
+
+                  <Field
+                    name="email"
+                    placeholder="Adresse Email"
+                    value={email}
+                    require
+                  />
+                  <Field
+                    name="password"
+                    type="password"
+                    placeholder="Mot de passe"
+                    value={password}
+                    require
+                  />
+                  <Button variant="primary" type="submit" onHide={handleClose}>
+                    Envoi
+                  </Button>
+                </Form>
+              </Modal.Body>
+            </Modal>
+
+          </div>
         </>
         )}
+        {/* )} */}
       </div>
 
     </div>

@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import axios from 'axios';
 
-import { LOGIN, saveUser } from '../actions/user';
+import { LOGIN, LOGOUT, saveUser } from '../actions/user';
 import { ARTICLES_FETCH, saveArticles } from '../actions/articles';
 
 const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
@@ -19,7 +19,10 @@ const getAPI = (store) => (next) => async (action) => {
         store.dispatch(saveArticles(response.data));
       }
       catch (error) {
-        console.error(error);
+        console.error(ecase LOGOUT:
+      delete instance.defaults.headers.common.Authorization;
+      next(action);
+      break;ror);
       }
 
       next(action);
@@ -52,6 +55,10 @@ const getAPI = (store) => (next) => async (action) => {
       next(action);
       break;
     }
+    case LOGOUT:
+      delete instance.defaults.headers.common.Authorization;
+      next(action);
+      break;
 
     default:
       next(action);
