@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Header from '../AppHeader';
 import Inscription from '../Inscription';
@@ -17,9 +17,8 @@ import { fetchArticles } from '../../actions/articles';
 import './App.scss';
 
 function App() {
-  // const isLogged = useSelector((state) => state.user.logged);
-
   const dispatch = useDispatch();
+  const isLogged = useSelector((state) => state.user.logged);
 
   useEffect(() => {
     dispatch(fetchArticles());
@@ -31,7 +30,13 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/inscription" element={<Inscription />} />
+        <Route
+          path="/inscription"
+          element={(
+          isLogged
+            ? <Home />
+            : <Inscription to="/" replace />)}
+        />
         <Route
           path="/profil"
           element=<Profil />
