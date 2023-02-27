@@ -29,46 +29,42 @@ function Header() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
 
-              <NavLink
+              <Nav.Link
+                as={NavLink}
                 to="/"
               >Accueil
-              </NavLink>
+              </Nav.Link>
               {/* quand on est connecté ça affiche profil, programme, favoris, contact */}
               {isLogged && (
                 <div>
-                  <NavLink to="/profil">Profil</NavLink>
-                  <NavLink to="/programme">Programme</NavLink>
-                  <NavLink to="/favoris">Favoris</NavLink>
-                  <NavLink to="/contact">Contact</NavLink>
-                  {/*                   {articles.map((article) => (
-                    <NavLink
-                      key={article.id}
-                      to={`/categorie/${article.id}`}
-                    >
-                      {article.id}
-                    </NavLink>
-                  ))} */}
+                  <Nav.Link as={NavLink} to="/profil">Profil</Nav.Link>
+                  <Nav.Link as={NavLink} to="/programme">Programme</Nav.Link>
+                  <Nav.Link as={NavLink} to="/favoris">Favoris</Nav.Link>
+                  <Nav.Link as={NavLink} to="/contact">Contact</Nav.Link>
+
+                  <NavDropdown title="Catégories" id="basic-nav-dropdown">
+                    {articles.map((article) => (
+                      <NavDropdown.Item
+                        as={NavLink}
+                        key={article.id}
+                        to={`/categorie/${article.id}`}
+                      >
+                        {article.id}
+                      </NavDropdown.Item>
+                    ))}
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="/categorie/4">
+                      Separated link
+                    </NavDropdown.Item>
+                  </NavDropdown>
                 </div>
               )}
               {/* quand on est connecté ça affiche s'inscrire seulement */}
               {!isLogged && (
               <div>
-                <NavLink to="/inscription">S'inscrire</NavLink>
+                <Nav.Link as={NavLink} to="/inscription">S'inscrire</Nav.Link>
               </div>
               )}
-
-              <NavDropdown title="Catégories" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/categorie/1">Alimentation</NavDropdown.Item>
-
-                <NavDropdown.Item href="/categorie/2">
-                  Exercices au bureau
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/categorie/3">Moment de relaxation</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="/categorie/4">
-                  Separated link
-                </NavDropdown.Item>
-              </NavDropdown>
             </Nav>
           </Navbar.Collapse>
         </Container>

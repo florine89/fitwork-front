@@ -12,21 +12,18 @@ const instance = axios.create({
 
 const getAPI = (store) => (next) => async (action) => {
   switch (action.type) {
-  /*     case ARTICLES_FETCH:
+    case ARTICLES_FETCH:
       try {
-        const response = await instance.get('/recipes'); // test route avec API externe
+        const response = await axios.get('http://localhost:3001/recipes');
         console.log(response);
         store.dispatch(saveArticles(response.data));
       }
       catch (error) {
-        console.error(ecase LOGOUT:
-      delete instance.defaults.headers.common.Authorization;
-      next(action);
-      break;ror);
+        console.error(error);
       }
 
       next(action);
-      break; */
+      break;
 
     case LOGIN: {
       try {
@@ -43,6 +40,8 @@ const getAPI = (store) => (next) => async (action) => {
         instance.defaults.headers.common.Authorization = (
           `Bearer ${response.data.token}`
         );
+
+        localStorage.setItem('token', response.data.token);
 
         // Mémorisation du token
 

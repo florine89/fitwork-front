@@ -7,6 +7,6 @@ export function findArticle(articles, searchedId) {
 }
 
 export function getArticlesList(state) {
-  // console.log(state.articles.list);
+  console.log(state.articles.list);
   return state.articles.list;
 }
