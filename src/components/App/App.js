@@ -10,6 +10,7 @@ import Contact from '../Contact';
 import Home from '../Accueil';
 import Articles from '../Articles';
 import NotFound from '../404';
+import Program from '../Program';
 
 import { fetchArticles } from '../../actions/articles';
 
@@ -44,7 +45,7 @@ function App() {
 
         <Route path="/categorie" element={<h1>Catégorie</h1>} />
         <Route path="/categorie/:id" element={<Articles />} />
-        <Route path="/programme" element={<h1>Programme</h1>} />
+        <Route path="/programme" element={<Program />} />
         <Route path="/favoris" element={<h1>favoris</h1>} />
 
         <Route path="/administrateur" element={<h1>Administrateur</h1>} />

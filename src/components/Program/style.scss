@@ -1,0 +1,15 @@
+@use 'src/styles/vars';
+
+.program {
+
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    
+    &-title {
+        color: vars.$primary;
+    }
+
+}

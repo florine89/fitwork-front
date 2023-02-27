@@ -10,7 +10,7 @@ const reducer = (state = initialState, action = {}) => {
     case ARTICLES_SAVE:
       return {
         ...state,
-        // list: action.payload.articles,
+        list: action.payload.articles,
         loading: false,
       };
 

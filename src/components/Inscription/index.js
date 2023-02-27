@@ -1,6 +1,8 @@
 // import { useSelector } from 'react-redux';
+
 import { useState, useEffect } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
+
 import axios from 'axios';
 
 import Alert from 'react-bootstrap/Alert';
@@ -50,7 +52,7 @@ export default function Inscription() {
 
   const baseURL = 'http://barrealexandre-server.eddi.cloud:8080/api';
 
-  const [post, setPost] = useState(null);
+  // const [post, setPost] = useState(null);
 
   const [success, setSuccess] = useState(false);
 
@@ -76,8 +78,9 @@ export default function Inscription() {
         birth_date: birthday,
       })
       .then((response) => {
-        setPost(response.data);
         setSuccess(true);
+        console.log((response.data));
+        // setPost(response.data);
       });
   }
 
