@@ -121,10 +121,10 @@ export default function Inscription() {
           <Form.Control type="date" placeholder="Date de naissance" name="birthday" />
         </Form.Group>
 
-        <Button variant="primary" type="submit" onClick={createUser}>
+        <Button variant="primary" type="submit" onClick={createUser} disabled={success}>
           Enregistrer
         </Button>
-        <Button variant="primary" type="reset">
+        <Button variant="primary" type="reset" disabled={success}>
           Annuler
         </Button>
       </Form>
@@ -132,7 +132,7 @@ export default function Inscription() {
         && (
         <Alert variant="dark">
           Votre compte a bien été crée !
-          <Alert.Link href="/">Veuillez vous connecter içi</Alert.Link>
+          <Alert.Link href="/"> Cliquez ici pour revenir sur la page d'accueil et vous connecter</Alert.Link>
         </Alert>
         )}
     </>
