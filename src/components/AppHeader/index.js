@@ -40,14 +40,14 @@ function Header() {
                   <NavLink to="/programme">Programme</NavLink>
                   <NavLink to="/favoris">Favoris</NavLink>
                   <NavLink to="/contact">Contact</NavLink>
-                  {articles.map((article) => (
+                  {/*                   {articles.map((article) => (
                     <NavLink
                       key={article.id}
                       to={`/categorie/${article.id}`}
                     >
                       {article.id}
                     </NavLink>
-                  ))}
+                  ))} */}
                 </div>
               )}
               {/* quand on est connecté ça affiche s'inscrire seulement */}

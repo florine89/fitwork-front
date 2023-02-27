@@ -1,5 +1,5 @@
 // import { useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
 /* eslint-disable react/jsx-no-bind */
@@ -47,7 +47,7 @@ export default function Inscription() {
 
   const baseURL = 'http://barrealexandre-server.eddi.cloud:8080/api';
 
-  const [post, setPost] = useState(null);
+  // const [post, setPost] = useState(null);
 
   // useEffect(() => {
   //   axios.get(`${baseURL}/user`).then((response) => {
@@ -71,7 +71,8 @@ export default function Inscription() {
         birth_date: birthday,
       })
       .then((response) => {
-        setPost(response.data);
+        console.log((response.data));
+        // setPost(response.data);
       });
   }
 

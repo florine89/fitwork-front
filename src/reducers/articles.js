@@ -7,12 +7,12 @@ export const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case ARTICLES_SAVE:
+    /* case ARTICLES_SAVE:
       return {
         ...state,
         // list: action.payload.articles,
         loading: false,
-      };
+      }; */
 
     default:
       return state;
