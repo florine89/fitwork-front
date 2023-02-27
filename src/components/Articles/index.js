@@ -7,10 +7,10 @@ import './style.scss';
 
 function Articles() {
   const { id } = useParams();
-  // console.log(id);
+  console.log(id);
 
-  // const article = useSelector((state) => findArticle(state.articles.list, id));
-  console.log(useSelector((state) => findArticle(state.articles.list, id)));
+  const article = useSelector((state) => findArticle(state.articles.list, id));
+  console.log(article);
 
   return (
     <div className="Articles">
