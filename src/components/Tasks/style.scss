@@ -1,0 +1,22 @@
+.tasks {
+  font-size: 1.3rem;
+  list-style: none;
+  padding: 0;
+
+  &-item {
+    background: #eee;
+    border-radius: 3px;
+    display: block;
+    margin: 0.5rem 0;
+    padding: 1rem;
+
+    &--done {
+      opacity: 0.5;
+      text-decoration: line-through;
+    }
+  }
+
+  &-checkbox {
+    margin-right: 0.5rem;
+  }
+}
