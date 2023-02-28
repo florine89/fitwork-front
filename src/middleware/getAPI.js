@@ -55,6 +55,8 @@ const getAPI = (store) => (next) => async (action) => {
       break;
     }
     case LOGOUT:
+      localStorage.removeItem('token');
+
       delete instance.defaults.headers.common.Authorization;
       next(action);
       break;

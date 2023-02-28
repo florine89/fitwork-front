@@ -21,6 +21,7 @@ function Profil() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -34,7 +35,6 @@ function Profil() {
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [birthday, setBirthday] = useState('');
 
   function handleChange(event) {
@@ -46,9 +46,6 @@ function Profil() {
     }
     if (event.target.name === 'email') {
       setEmail(event.target.value);
-    }
-    if (event.target.name === 'password') {
-      setPassword(event.target.value);
     }
     if (event.target.name === 'birthday') {
       setBirthday(event.target.value);
@@ -67,6 +64,10 @@ function Profil() {
       .then((response) => {
         setData(response.data);
         console.log(response.data);
+        setLastname(response.data.lastname);
+        setFirstname(response.data.firstname);
+        setEmail(response.data.email);
+        setBirthday(response.data.birthday);
       });
   }
   useEffect(() => {
@@ -81,11 +82,10 @@ function Profil() {
         firstname,
         lastname,
         email,
-        password,
         birth_date: birthday,
       })
       .then((response) => {
-        console.log(response.data);
+        console.log(response);
       });
   }
 
@@ -96,14 +96,14 @@ function Profil() {
         <Form.Group
           as={Col}
           md="4"
-          onChange={handleChange}
           value={lastname}
+          onChange={handleChange}
           controlId="validationCustom01"
         >
           <Form.Label>Nom</Form.Label>
           <Form.Control
             type="text"
-            placeholder="First name"
+            placeholder="Nom"
             name="lastname"
             defaultValue={data.lastname}
           />
@@ -112,14 +112,14 @@ function Profil() {
         <Form.Group
           as={Col}
           md="4"
-          onChange={handleChange}
           value={firstname}
+          onChange={handleChange}
           controlId="validationCustom02"
         >
           <Form.Label>Prénom</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Last name"
+            placeholder="Prénom"
             name="firstname"
             defaultValue={data.firstname}
           />
@@ -128,8 +128,8 @@ function Profil() {
         <Form.Group
           as={Col}
           md="4"
-          onChange={handleChange}
           value={email}
+          onChange={handleChange}
           controlId="validationCustomUsername"
         >
           <Form.Label>Email</Form.Label>
@@ -152,13 +152,13 @@ function Profil() {
         <Form.Group
           as={Col}
           md="4"
-          onChange={handleChange}
           value={birthday}
+          onChange={handleChange}
           controlId="validationCustom03"
         >
           <Form.Label>Date de naissance</Form.Label>
           <Form.Control
-            type="text"
+            type="date"
             placeholder="date de naissance"
             name="birthday"
             defaultValue={data.birth_date}
