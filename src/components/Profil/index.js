@@ -75,8 +75,17 @@ function Profil() {
         console.log(response.data);
       });
   }
+  function modifyProfil() {
+    axios
+      .patch(`${baseURL}/user/6`)
+      .then((response) => {
+        setData(response.data);
+        console.log(response.data);
+      });
+  }
   useEffect(() => {
     getProfil();
+    modifyProfil();
   }, []);
   return (
 
