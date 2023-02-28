@@ -137,7 +137,7 @@ function Profil() {
               required
             />
             <Form.Control.Feedback type="invalid">
-              Please choose a username.
+              Please choose an email.
             </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
@@ -158,7 +158,7 @@ function Profil() {
             required
           />
           <Form.Control.Feedback type="invalid">
-            Please provide a valid city.
+            Please provide a valid date.
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
