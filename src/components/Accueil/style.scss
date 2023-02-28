@@ -1,9 +1,28 @@
+@use 'src/styles/vars';
+
 .home {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+    &-logo {
+        margin-top: 3rem;
+        padding-top: 7rem;
+        padding-bottom: 7rem;
+        width: 50rem;
+    }
+
+    &-quote {
+        margin-top: 20rem;
+        color: vars.$dark;
+    }
+
+    &-small {
+        display: flex;
+        font-size: 2rem;
+    }
 }
 
-.home-logo {
-   padding-top: 7rem;
-   padding-bottom: 7rem;
-}

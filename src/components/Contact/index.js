@@ -74,7 +74,7 @@ function Contact() {
           <Form.Control as="textarea" rows={5} name="message" />
         </Form.Group>
 
-        <Button variant="primary" type="submit" value="Send">
+        <Button className="Contact-button" variant="primary" type="submit" value="Send">
           Envoi
         </Button>
       </Form>

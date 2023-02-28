@@ -1,6 +1,6 @@
 .footer {
 display: flex;
-flex-wrap: wrap;
+//flex-wrap: wrap;
 flex-direction: column;
 
 
@@ -9,5 +9,17 @@ flex-direction: column;
     }
 
 };
+
+.footer-link {
+display: flex;
+justify-content:flex-start;
+align-items: flex-end;
+    &-logo {
+        width: 3rem;
+        align-self: center;
+        margin: 2rem;
+    }
+
+}
 
 
