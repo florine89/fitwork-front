@@ -1,10 +1,11 @@
 import './style.scss';
-import logo from '../../assets/femmebureau.jpg';
+
+import ArticleContainer from './Article';
 
 function Home() {
   return (
     <div className="home">
-      <img src={logo} className="home-logo" alt="Logo FitWork" />
+      <ArticleContainer />
     </div>
   );
 }
