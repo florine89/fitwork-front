@@ -24,7 +24,6 @@ function Header() {
           <Link to="/">
             <img src={logo} className="header-logo" alt="Logo FitWork" />
           </Link>
-          <Navbar.Brand>Menu</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
