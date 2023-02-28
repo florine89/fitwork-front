@@ -10,4 +10,17 @@ margin-left: 44rem;
      margin-bottom: 3rem;
 
     };
+};
+
+.form {
+    margin: 10rem;
+    padding-top: 5rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    &-button {
+        width: 10rem;
+        margin: 1rem;
+    }
 }
