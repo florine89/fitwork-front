@@ -29,18 +29,13 @@ function Header() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
 
-              <Nav.Link
-                as={NavLink}
-                to="/"
-              >Accueil
-              </Nav.Link>
+              <Nav.Link as={NavLink} to="/">Accueil</Nav.Link>
               {/* quand on est connecté ça affiche profil, programme, favoris, contact */}
               {isLogged && (
                 <div>
                   <Nav.Link as={NavLink} to="/profil">Profil</Nav.Link>
                   <Nav.Link as={NavLink} to="/programme">Programme</Nav.Link>
                   <Nav.Link as={NavLink} to="/favoris">Favoris</Nav.Link>
-                  <Nav.Link as={NavLink} to="/contact">Contact</Nav.Link>
 
                   <NavDropdown title="Catégories" id="basic-nav-dropdown">
                     {articles.map((article) => (
@@ -63,6 +58,7 @@ function Header() {
               {!isLogged && (
               <div>
                 <Nav.Link as={NavLink} to="/inscription">S'inscrire</Nav.Link>
+                <Nav.Link as={NavLink} to="/contact">Contact</Nav.Link>
               </div>
               )}
             </Nav>
