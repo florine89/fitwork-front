@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form';
 
 import './style.scss';
 
-// https://www.emailjs.com/
+// package ajouté https://www.emailjs.com/
 
 function Contact() {
   console.log(process.env);
