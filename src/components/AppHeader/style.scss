@@ -1,7 +1,7 @@
 @use '../../styles/vars';
 
 .header{
-
+background-color: vars.$primary;
     &-logo {
     width: 10rem;
 }

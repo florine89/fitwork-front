@@ -6,7 +6,7 @@ import { Link, NavLink } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useSelector } from 'react-redux';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/fitworkblu.png';
 import LoginForm from '../LoginForm';
 // import Profil from '../Profil';
 
@@ -19,7 +19,7 @@ function Header() {
   return (
     <header className="header">
 
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="info" expand="lg">
         <Container>
           <Link to="/">
             <img src={logo} className="header-logo" alt="Logo FitWork" />
