@@ -14,8 +14,8 @@ const getAPI = (store) => (next) => async (action) => {
   switch (action.type) {
     case ARTICLES_FETCH:
       try {
-        const response = await axios.get('http://localhost:3001/recipes');
-        console.log(response);
+        const response = await axios.get(`${API_BASE_URL}/categories`);
+        // console.log(response);
         store.dispatch(saveArticles(response.data));
       }
       catch (error) {

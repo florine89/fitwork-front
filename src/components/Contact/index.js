@@ -11,7 +11,7 @@ import './style.scss';
 // package ajouté https://www.emailjs.com/
 
 function Contact() {
-  console.log(process.env);
+  // console.log(process.env);
 
   const form = useRef();
 
