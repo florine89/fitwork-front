@@ -41,10 +41,10 @@ function Header() {
                     {articles.map((article) => (
                       <NavDropdown.Item
                         as={NavLink}
-                        key={article.id}
-                        to={`/categorie/${article.id}`}
+                        key={article.name}
+                        to={`/categorie/${article.name}`}
                       >
-                        {article.id}
+                        {article.name}
                       </NavDropdown.Item>
                     ))}
                     <NavDropdown.Divider />
