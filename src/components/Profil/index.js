@@ -18,9 +18,9 @@ function Profil() {
   // change c'est la valeur initial
   // handlechange va appeler setchange pour changer la veleur
   // usestate c'est linitialisation du state
-  const [change, setChange] = useState('');
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -30,7 +30,6 @@ function Profil() {
     setValidated(true);
     // console.log('handlesubmit');
   };
-    // const [change, setChange] = useState('');
 
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
@@ -38,25 +37,22 @@ function Profil() {
   const [password, setPassword] = useState('');
   const [birthday, setBirthday] = useState('');
 
-  // const value = useSelector((state) => state.value);
-  function handleChange(evt) {
-    // console.log(evt.target.name);
-    if (evt.target.name === 'firstname') {
-      setFirstname(evt.target.value);
+  function handleChange(event) {
+    if (event.target.name === 'firstname') {
+      setFirstname(event.target.value);
     }
-    if (evt.target.name === 'lastname') {
-      setLastname(evt.target.value);
+    if (event.target.name === 'lastname') {
+      setLastname(event.target.value);
     }
-    if (evt.target.name === 'email') {
-      setEmail(evt.target.value);
+    if (event.target.name === 'email') {
+      setEmail(event.target.value);
     }
-    if (evt.target.name === 'password') {
-      setPassword(evt.target.value);
+    if (event.target.name === 'password') {
+      setPassword(event.target.value);
     }
-    if (evt.target.name === 'birthday') {
-      setBirthday(evt.target.value);
+    if (event.target.name === 'birthday') {
+      setBirthday(event.target.value);
     }
-    // setChange(evt.target.value);
   }
 
   // appel API
@@ -64,12 +60,6 @@ function Profil() {
   const baseURL = 'http://barrealexandre-server.eddi.cloud:8080/api';
 
   const [data, setData] = useState([]);
-
-  // useEffect(() => {
-  //   axios.get(`${baseURL}/user`).then((response) => {
-  //     setPost(response.data);
-  //   });
-  // }, []);
 
   function getProfil() {
     axios
@@ -83,6 +73,22 @@ function Profil() {
     getProfil();
   }, []);
 
+  // fonction pour modifier les informations de profil
+
+  function updateProfil() {
+    axios
+      .patch(`${baseURL}/user/${id}`, {
+        firstname,
+        lastname,
+        email,
+        password,
+        birth_date: birthday,
+      })
+      .then((response) => {
+        console.log(response.data);
+      });
+  }
+
   return (
 
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
@@ -90,15 +96,15 @@ function Profil() {
         <Form.Group
           as={Col}
           md="4"
-          value={change}
           onChange={handleChange}
+          value={lastname}
           controlId="validationCustom01"
         >
           <Form.Label>Nom</Form.Label>
           <Form.Control
-            required
             type="text"
             placeholder="First name"
+            name="lastname"
             defaultValue={data.lastname}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -106,15 +112,15 @@ function Profil() {
         <Form.Group
           as={Col}
           md="4"
-          value={change}
           onChange={handleChange}
+          value={firstname}
           controlId="validationCustom02"
         >
           <Form.Label>Prénom</Form.Label>
           <Form.Control
-            required
             type="text"
             placeholder="Last name"
+            name="firstname"
             defaultValue={data.firstname}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -122,8 +128,8 @@ function Profil() {
         <Form.Group
           as={Col}
           md="4"
-          value={change}
           onChange={handleChange}
+          value={email}
           controlId="validationCustomUsername"
         >
           <Form.Label>Email</Form.Label>
@@ -133,8 +139,8 @@ function Profil() {
               type="text"
               placeholder="Username"
               aria-describedby="inputGroupPrepend"
+              name="email"
               defaultValue={data.email}
-              required
             />
             <Form.Control.Feedback type="invalid">
               Please choose an email.
@@ -146,23 +152,23 @@ function Profil() {
         <Form.Group
           as={Col}
           md="4"
-          value={change}
           onChange={handleChange}
+          value={birthday}
           controlId="validationCustom03"
         >
           <Form.Label>Date de naissance</Form.Label>
           <Form.Control
             type="text"
             placeholder="date de naissance"
+            name="birthday"
             defaultValue={data.birth_date}
-            required
           />
           <Form.Control.Feedback type="invalid">
             Please provide a valid date.
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
-      <Button type="submit">Modifier mes informations</Button>
+      <Button type="submit" onClick={updateProfil}>Modifier mes informations</Button>
     </Form>
   );
 }
