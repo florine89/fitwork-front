@@ -16,10 +16,10 @@ import { login, logout } from '../../actions/user';
 function LoginForm({
   email,
   password,
-
 }) {
   // gestion de la connection, des différents états
   const pseudo = useSelector((state) => state.user.firstname);
+
   const isLogged = useSelector((state) => state.user.logged);
   const isLoading = useSelector((state) => state.user.loading);
 
@@ -117,7 +117,6 @@ function LoginForm({
           </div>
         </>
         )}
-        {/* )} */}
       </div>
 
     </div>

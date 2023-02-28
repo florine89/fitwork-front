@@ -2,6 +2,8 @@
 import './style.scss';
 
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -10,6 +12,8 @@ import Row from 'react-bootstrap/Row';
 import axios from 'axios';
 
 function Profil() {
+  const id = useSelector((state) => state.user.id);
+
   const [validated, setValidated] = useState(false);
   // change c'est la valeur initial
   // handlechange va appeler setchange pour changer la veleur
@@ -69,7 +73,7 @@ function Profil() {
 
   function getProfil() {
     axios
-      .get(`${baseURL}/user/6`)
+      .get(`${baseURL}/user/${id}`)
       .then((response) => {
         setData(response.data);
         console.log(response.data);
@@ -78,6 +82,7 @@ function Profil() {
   useEffect(() => {
     getProfil();
   }, []);
+
   return (
 
     <Form noValidate validated={validated} onSubmit={handleSubmit}>

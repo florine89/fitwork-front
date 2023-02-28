@@ -34,7 +34,7 @@ const getAPI = (store) => (next) => async (action) => {
           password,
         });
         // console.log(response.data.token);
-        // console.log(response.data.pseudo);
+        // console.log(response.data.id);
 
         // ajout d'une instance avec la doc axios
         instance.defaults.headers.common.Authorization = (
