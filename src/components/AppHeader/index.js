@@ -36,6 +36,7 @@ function Header() {
                   <Nav.Link as={NavLink} to="/profil">Profil</Nav.Link>
                   <Nav.Link as={NavLink} to="/programme">Programme</Nav.Link>
                   <Nav.Link as={NavLink} to="/favoris">Favoris</Nav.Link>
+                  <Nav.Link as={NavLink} to="/administrateur">Administrateur</Nav.Link>
 
                   <NavDropdown title="Catégories" id="basic-nav-dropdown">
                     {categories.map((category) => (

@@ -11,6 +11,7 @@ import Home from '../Accueil';
 import Categories from '../Articles';
 import NotFound from '../404';
 import Program from '../Program';
+import Admin from '../Admin';
 
 import { fetchCategories } from '../../actions/articles';
 
@@ -42,7 +43,7 @@ function App() {
           element=<Profil />
         />
         <Route path="/contact" element={<Contact />} />
-
+        <Route path="/administrateur" element={<Admin />} />
         <Route path="/categorie" element={<h1>Catégorie</h1>} />
         <Route path="/categorie/:id" element={<Categories />} />
         <Route path="/programme" element={<Program />} />
