@@ -8,10 +8,18 @@ import Profil from '../Profil';
 import Footer from '../Footer';
 import Contact from '../Contact';
 import Home from '../Accueil';
+<<<<<<< HEAD
+import NotFound from '../404';
+import Program from '../Program';
+import Articles from '../Articles';
+
+// import Categories from '../Categories';
+=======
 import Categories from '../Categories';
 import NotFound from '../404';
 import Program from '../Program';
 import Admin from '../Admin';
+>>>>>>> f305140071ef4604c87e1d9b41f2665404fac617
 
 import { fetchCategories } from '../../actions/categories';
 
@@ -43,13 +51,14 @@ function App() {
           element=<Profil />
         />
         <Route path="/contact" element={<Contact />} />
+        {/* <Route path="/categorie" element={<Categories /><h1>Catégorie</h1>} /> */}
+        <Route path="/categorie/:id" element={<Articles />} />
         <Route path="/administrateur" element={<Admin />} />
         <Route path="/categorie" element={<h1>Catégorie</h1>} />
         <Route path="/categorie/:id" element={<Categories />} />
         <Route path="/programme" element={<Program />} />
         <Route path="/favoris" element={<h1>favoris</h1>} />
 
-        <Route path="/administrateur" element={<h1>Administrateur</h1>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 

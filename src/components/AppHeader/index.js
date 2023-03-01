@@ -42,8 +42,8 @@ function Header() {
                     {categories.map((category) => (
                       <NavDropdown.Item
                         as={NavLink}
-                        key={category.name}
-                        to={`/categorie/${category.name}`}
+                        key={category.id}
+                        to={`/categorie/${category.id}`}
                       >
                         {category.name}
                       </NavDropdown.Item>
