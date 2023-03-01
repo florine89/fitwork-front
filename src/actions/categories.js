@@ -5,7 +5,6 @@ export function fetchCategories() {
     type: CATEGORIES_FETCH,
   };
 }
-
 export const CATEGORIES_SAVE = 'CATEGORIES_SAVE';
 
 export function saveCategories(name) {
