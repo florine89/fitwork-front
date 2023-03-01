@@ -15,9 +15,9 @@ function Profil() {
   const id = useSelector((state) => state.user.id);
 
   const [validated, setValidated] = useState(false);
-  // change c'est la valeur initial
-  // handlechange va appeler setchange pour changer la veleur
-  // usestate c'est linitialisation du state
+  // change c'est la valeur initiale
+  // handlechange va appeler setchange pour changer la valeur
+  // usestate c'est l'initialisation du state
 
   const handleSubmit = (event) => {
     event.preventDefault();

@@ -1,0 +1,13 @@
+.card{
+    
+    &-container{
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0.5rem;
+    }
+
+    &-article{
+        margin: 0.5rem;
+    }
+}
