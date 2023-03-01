@@ -13,7 +13,7 @@ import NotFound from '../404';
 import Program from '../Program';
 import Admin from '../Admin';
 
-import { fetchCategories } from '../../actions/articles';
+import { fetchCategories } from '../../actions/categories';
 
 import './App.scss';
 

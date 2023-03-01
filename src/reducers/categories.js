@@ -1,4 +1,4 @@
-import { CATEGORIES_SAVE } from '../actions/articles';
+import { CATEGORIES_SAVE } from '../actions/categories';
 
 export const initialState = {
   list: [],
