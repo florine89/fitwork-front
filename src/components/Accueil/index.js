@@ -12,12 +12,12 @@ function Home() {
 
       <h1 className="home-quote">
         Un esprit sain, dans un corps sain !
-        <span className="home-small">
+        <h2 className="home-small">
           Pour travailler sainement.
-        </span>
+        </h2>
       </h1>
-      <Nav.Link variant="" href="/inscription">Pour commencer inscrivez-vous içi</Nav.Link>
-      <img src={logo} className="home-logo" alt="Logo FitWork" />
+      <Nav.Link variant="" href="/inscription">Pour commencer inscrivez-vous ici</Nav.Link>
+
       <ArticleContainer />
 
     </div>
