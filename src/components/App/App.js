@@ -8,11 +8,11 @@ import Profil from '../Profil';
 import Footer from '../Footer';
 import Contact from '../Contact';
 import Home from '../Accueil';
-import Articles from '../Articles';
+import Categories from '../Articles';
 import NotFound from '../404';
 import Program from '../Program';
 
-import { fetchArticles } from '../../actions/articles';
+import { fetchCategories } from '../../actions/articles';
 
 import './App.scss';
 
@@ -21,7 +21,7 @@ function App() {
   const isLogged = useSelector((state) => state.user.logged);
 
   useEffect(() => {
-    dispatch(fetchArticles());
+    dispatch(fetchCategories());
   }, []);
 
   return (
@@ -44,7 +44,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
 
         <Route path="/categorie" element={<h1>Catégorie</h1>} />
-        <Route path="/categorie/:id" element={<Articles />} />
+        <Route path="/categorie/:id" element={<Categories />} />
         <Route path="/programme" element={<Program />} />
         <Route path="/favoris" element={<h1>favoris</h1>} />
 
