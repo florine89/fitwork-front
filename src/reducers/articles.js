@@ -1,4 +1,4 @@
-import { ARTICLES_SAVE } from '../actions/articles';
+import { CATEGORIES_SAVE } from '../actions/articles';
 
 export const initialState = {
   list: [],
@@ -7,10 +7,10 @@ export const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case ARTICLES_SAVE:
+    case CATEGORIES_SAVE:
       return {
         ...state,
-        list: action.payload.articles,
+        list: action.payload.name,
         loading: false,
       };
 

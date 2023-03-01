@@ -11,10 +11,11 @@ import logo from '../../assets/fitworkblu.png';
 import LoginForm from '../LoginForm';
 // import Profil from '../Profil';
 
-import { getArticlesList } from '../../selectors/articles';
+// la modif en getCategoriesList fait beuguer
+import { getCategoriesList } from '../../selectors/articles';
 
 function Header() {
-  const articles = useSelector(getArticlesList);
+  const categories = useSelector(getCategoriesList);
   const isLogged = useSelector((state) => state.user.logged);
 
   return (
@@ -37,13 +38,13 @@ function Header() {
                   <Nav.Link as={NavLink} to="/favoris">Favoris</Nav.Link>
 
                   <NavDropdown title="Catégories" id="basic-nav-dropdown">
-                    {articles.map((article) => (
+                    {categories.map((category) => (
                       <NavDropdown.Item
                         as={NavLink}
-                        key={article.id}
-                        to={`/categorie/${article.id}`}
+                        key={category.name}
+                        to={`/categorie/${category.name}`}
                       >
-                        {article.id}
+                        {category.name}
                       </NavDropdown.Item>
                     ))}
                     <NavDropdown.Divider />

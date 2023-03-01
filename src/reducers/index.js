@@ -1,11 +1,11 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { combineReducers } from 'redux';
 
-import articlesReducer from './articles';
+import categoriesReducer from './articles';
 import userReducer from './user';
 
 const rootReducer = combineReducers({
-  articles: articlesReducer,
+  categories: categoriesReducer,
   user: userReducer,
 });
 

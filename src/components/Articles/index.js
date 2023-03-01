@@ -1,16 +1,16 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { findArticle } from '../../selectors/articles';
+import { findCategories } from '../../selectors/articles';
 
 import './style.scss';
 
-function Articles() {
+function Categories() {
   const { id } = useParams();
   console.log(id);
 
-  const article = useSelector((state) => findArticle(state.articles.list, id));
-  console.log(article);
+  const category = useSelector((state) => findCategories(state.categories.list, id));
+  console.log(category);
 
   return (
     <div className="Articles">
@@ -19,4 +19,4 @@ function Articles() {
   );
 }
 
-export default Articles;
+export default Categories;
