@@ -8,6 +8,6 @@ export function findCategories(categories, searchedId) {
 }
 
 export function getCategoriesList(state) {
-  console.log(state.categories.list);
+  // console.log(state.categories.list);
   return state.categories.list;
 }
