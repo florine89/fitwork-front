@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Header from '../AppHeader';
@@ -11,12 +11,12 @@ import Home from '../Accueil';
 import NotFound from '../404';
 import Program from '../Program';
 import Articles from '../Articles';
-
-// import Categories from '../Categories';
-import Categories from '../Categories';
 import Admin from '../Admin';
 
+// import Categories from '../Categories';
+
 import { fetchCategories } from '../../actions/categories';
+import { fetchArticles } from '../../actions/articles';
 
 import './App.scss';
 
@@ -26,6 +26,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchCategories());
+    dispatch(fetchArticles());
   }, []);
 
   return (
@@ -47,10 +48,8 @@ function App() {
         />
         <Route path="/contact" element={<Contact />} />
         {/* <Route path="/categorie" element={<Categories /><h1>Catégorie</h1>} /> */}
-        <Route path="/categorie/:id" element={<Articles />} />
         <Route path="/administrateur" element={<Admin />} />
-        <Route path="/categorie" element={<h1>Catégorie</h1>} />
-        <Route path="/categorie/:id" element={<Categories />} />
+        <Route path="/categorie/:id" element={<Articles />} />
         <Route path="/programme" element={<Program />} />
         <Route path="/favoris" element={<h1>favoris</h1>} />
 

@@ -11,18 +11,22 @@ function Articles() {
   console.log('id de la catégorie', id);
 
   const articles = useSelector(getArticlesList);
-  console.log(articles);
+  console.log('articles', articles);
+
+  /*   const articlee = useSelector((state) => findArticle(state.articles.list, id));
+  console.log('articlee', articlee); */
 
   return (
     <div className="articles">
-      <h1>articles</h1>
+      <h1>Articles disponibles pour la categorie</h1>
 
       {articles.map((article) => (
-        <div
+        <ul
           key={article.id}
         >
-          {article.title}
-        </div>
+          <li>Titre: {article.title}</li>
+          <li>Description: {article.description}</li>
+        </ul>
       ))}
 
     </div>

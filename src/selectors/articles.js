@@ -1,13 +1,16 @@
 /* eslint-disable import/prefer-default-export */
 
-export function findCategories(articles, searchedId) {
-  // testedarticles.name ou id
-  const article = articles.find((testedarticles) => testedarticles.articles === searchedId);
-  console.log(article.articles);
+/* export function findArticle(articles, searchedId) {
+  const article = articles.find((testedArticle) => {
+    console.log('testedArticle.id', testedArticle.id);
+    console.log('searchedId', searchedId);
+    return testedArticle.id === searchedId;
+  });
+  console.log('article', article);
   return article;
-}
+} */
 
 export function getArticlesList(state) {
-  console.log(state.articles.list);
+  console.log('getArticlesList', state.articles.list);
   return state.articles.list;
 }
