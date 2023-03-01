@@ -14,7 +14,7 @@ import LoginForm from '../LoginForm';
 import { getCategoriesList } from '../../selectors/articles';
 
 function Header() {
-  const articles = useSelector(getCategoriesList);
+  const categories = useSelector(getCategoriesList);
   const isLogged = useSelector((state) => state.user.logged);
 
   return (
@@ -39,13 +39,13 @@ function Header() {
                   <Nav.Link as={NavLink} to="/favoris">Favoris</Nav.Link>
 
                   <NavDropdown title="Catégories" id="basic-nav-dropdown">
-                    {articles.map((article) => (
+                    {categories.map((category) => (
                       <NavDropdown.Item
                         as={NavLink}
-                        key={article.name}
-                        to={`/categorie/${article.name}`}
+                        key={category.name}
+                        to={`/categorie/${category.name}`}
                       >
-                        {article.name}
+                        {category.name}
                       </NavDropdown.Item>
                     ))}
                     <NavDropdown.Divider />
