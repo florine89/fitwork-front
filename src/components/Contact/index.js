@@ -9,7 +9,7 @@ import Alert from 'react-bootstrap/Alert';
 import logo from '../../assets/inscriptionok.jpg';
 
 import './style.scss';
-
+//
 // package ajouté https://www.emailjs.com/
 
 function Contact() {
