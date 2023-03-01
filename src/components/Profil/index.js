@@ -100,7 +100,7 @@ function Profil() {
 
   return (
 
-    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+    <Form className="Profil" noValidate validated={validated} onSubmit={handleSubmit}>
       <Row className="mb-3">
         <Form.Group
           as={Col}
