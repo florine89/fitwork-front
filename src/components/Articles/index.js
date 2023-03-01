@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { findCategories } from '../../selectors/articles';
+import { findCategories } from '../../selectors/categories';
 
 import './style.scss';
 

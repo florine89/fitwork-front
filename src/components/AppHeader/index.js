@@ -12,7 +12,7 @@ import LoginForm from '../LoginForm';
 // import Profil from '../Profil';
 
 // la modif en getCategoriesList fait beuguer
-import { getCategoriesList } from '../../selectors/articles';
+import { getCategoriesList } from '../../selectors/categories';
 
 function Header() {
   const categories = useSelector(getCategoriesList);

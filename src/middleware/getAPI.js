@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 import { LOGIN, LOGOUT, saveUser } from '../actions/user';
-import { CATEGORIES_FETCH, saveCategories } from '../actions/articles';
+import { CATEGORIES_FETCH, saveCategories } from '../actions/categories';
 
 const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
 
