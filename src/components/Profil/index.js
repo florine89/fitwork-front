@@ -70,8 +70,17 @@ function Profil() {
         setBirthday(response.data.birthday);
       });
   }
+  function modifyProfil() {
+    axios
+      .patch(`${baseURL}/user/6`)
+      .then((response) => {
+        setData(response.data);
+        console.log(response.data);
+      });
+  }
   useEffect(() => {
     getProfil();
+    modifyProfil();
   }, []);
 
   // fonction pour modifier les informations de profil

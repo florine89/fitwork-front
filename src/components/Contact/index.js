@@ -1,16 +1,19 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import emailjs from '@emailjs/browser';
 
 /* eslint-disable react/jsx-no-bind */
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
+import logo from '../../assets/inscriptionok.jpg';
 
 import './style.scss';
-
+//
 // package ajouté https://www.emailjs.com/
 
 function Contact() {
+  const [success, setSuccess] = useState(false);
   console.log(process.env);
 
   const form = useRef();
@@ -25,6 +28,7 @@ function Contact() {
       `${process.env.REACT_APP_YOUR_PUBLIC_KEY}`,
     )
       .then((result) => {
+        setSuccess(true);
         console.log(result.text);
         console.log('message sent');
       }, (error) => {
@@ -34,7 +38,7 @@ function Contact() {
 
   return (
     <div className="Contact">
-
+      { !success && (
       <Form ref={form} onSubmit={sendEmail}>
 
         <Form.Group
@@ -78,7 +82,18 @@ function Contact() {
           Envoi
         </Button>
       </Form>
-
+      )}
+      { success
+        && (
+          <div className="Message">
+            <img src={logo} className="Message-logo" alt="Logo inscription" />
+            <Alert variant="dark">
+              <div className="Message-alert">
+                <Alert.Heading>Super ! Votre message a bien été envoyée !</Alert.Heading>
+              </div>
+            </Alert>
+          </div>
+        )}
     </div>
   );
 }
