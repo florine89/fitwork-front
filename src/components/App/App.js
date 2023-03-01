@@ -8,18 +8,13 @@ import Profil from '../Profil';
 import Footer from '../Footer';
 import Contact from '../Contact';
 import Home from '../Accueil';
-<<<<<<< HEAD
 import NotFound from '../404';
 import Program from '../Program';
 import Articles from '../Articles';
 
 // import Categories from '../Categories';
-=======
 import Categories from '../Categories';
-import NotFound from '../404';
-import Program from '../Program';
 import Admin from '../Admin';
->>>>>>> f305140071ef4604c87e1d9b41f2665404fac617
 
 import { fetchCategories } from '../../actions/categories';
 
