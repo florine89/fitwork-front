@@ -12,9 +12,10 @@ function Home() {
 
       <h1 className="home-quote">
         Un esprit sain, dans un corps sain !
-        <h2 className="home-small">
+
+        <span className="home-small">
           Pour travailler sainement.
-        </h2>
+        </span>
       </h1>
       <Nav.Link variant="" href="/inscription">Pour commencer inscrivez-vous ici</Nav.Link>
 
