@@ -8,7 +8,7 @@ import Profil from '../Profil';
 import Footer from '../Footer';
 import Contact from '../Contact';
 import Home from '../Accueil';
-import Categories from '../Articles';
+import Categories from '../Categories';
 import NotFound from '../404';
 import Program from '../Program';
 
