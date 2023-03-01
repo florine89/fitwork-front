@@ -1,6 +1,6 @@
 import './style.scss';
 
-import Nav from 'react-bootstrap/Nav';
+import { NavLink } from 'react-router-dom';
 
 import ArticleContainer from './Article';
 
@@ -16,7 +16,7 @@ function Home() {
         </span>
       </h1>
 
-      <Nav.Link variant="" href="/inscription">Pour commencer inscrivez-vous içi</Nav.Link>
+      <NavLink to="/inscription">Pour commencer inscrivez-vous ici</NavLink>
 
       <ArticleContainer />
 

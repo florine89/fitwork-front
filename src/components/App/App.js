@@ -8,9 +8,11 @@ import Profil from '../Profil';
 import Footer from '../Footer';
 import Contact from '../Contact';
 import Home from '../Accueil';
-import Categories from '../Categories';
 import NotFound from '../404';
 import Program from '../Program';
+import Articles from '../Articles';
+
+// import Categories from '../Categories';
 
 import { fetchCategories } from '../../actions/categories';
 
@@ -42,9 +44,8 @@ function App() {
           element=<Profil />
         />
         <Route path="/contact" element={<Contact />} />
-
-        <Route path="/categorie" element={<h1>Catégorie</h1>} />
-        <Route path="/categorie/:id" element={<Categories />} />
+        {/* <Route path="/categorie" element={<Categories /><h1>Catégorie</h1>} /> */}
+        <Route path="/categorie/:id" element={<Articles />} />
         <Route path="/programme" element={<Program />} />
         <Route path="/favoris" element={<h1>favoris</h1>} />
 
