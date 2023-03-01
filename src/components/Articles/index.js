@@ -10,7 +10,7 @@ function Categories() {
   console.log(id);
 
   const category = useSelector((state) => findCategories(state.categories.list, id));
-  console.log(category);
+  // console.log(category);
 
   return (
     <div className="Articles">
