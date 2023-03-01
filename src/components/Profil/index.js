@@ -177,7 +177,7 @@ function Profil() {
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
-      <Button type="submit" onClick={updateProfil}>Modifier mes informations</Button>
+      <Button className="Profil-button" type="submit" onClick={updateProfil}>Modifier mes informations</Button>
     </Form>
   );
 }
