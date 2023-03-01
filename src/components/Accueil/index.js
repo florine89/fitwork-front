@@ -4,8 +4,6 @@ import Nav from 'react-bootstrap/Nav';
 
 import ArticleContainer from './Article';
 
-import logo from '../../assets/femmebureau.jpg';
-
 function Home() {
   return (
     <div className="home">
@@ -17,7 +15,8 @@ function Home() {
           Pour travailler sainement.
         </span>
       </h1>
-      <Nav.Link variant="" href="/inscription">Pour commencer inscrivez-vous ici</Nav.Link>
+
+      <Nav.Link variant="" href="/inscription">Pour commencer inscrivez-vous içi</Nav.Link>
 
       <ArticleContainer />
 

@@ -92,7 +92,7 @@ function Profil() {
 
   return (
 
-    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+    <Form className="Profil" noValidate validated={validated} onSubmit={handleSubmit}>
       <Row className="mb-3">
         <Form.Group
           as={Col}
@@ -169,7 +169,7 @@ function Profil() {
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
-      <Button type="submit" onClick={updateProfil}>Modifier mes informations</Button>
+      <Button className="Profil-button" type="submit" onClick={updateProfil}>Modifier mes informations</Button>
     </Form>
   );
 }
