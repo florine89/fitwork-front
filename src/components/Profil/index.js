@@ -2,6 +2,8 @@
 import './style.scss';
 
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -10,13 +12,16 @@ import Row from 'react-bootstrap/Row';
 import axios from 'axios';
 
 function Profil() {
+  const id = useSelector((state) => state.user.id);
+
   const [validated, setValidated] = useState(false);
-  // change c'est la valeur initial
-  // handlechange va appeler setchange pour changer la veleur
-  // usestate c'est linitialisation du state
-  const [change, setChange] = useState('');
+  // change c'est la valeur initiale
+  // handlechange va appeler setchange pour changer la valeur
+  // usestate c'est l'initialisation du state
 
   const handleSubmit = (event) => {
+    event.preventDefault();
+
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -26,33 +31,25 @@ function Profil() {
     setValidated(true);
     // console.log('handlesubmit');
   };
-    // const [change, setChange] = useState('');
 
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [birthday, setBirthday] = useState('');
 
-  // const value = useSelector((state) => state.value);
-  function handleChange(evt) {
-    // console.log(evt.target.name);
-    if (evt.target.name === 'firstname') {
-      setFirstname(evt.target.value);
+  function handleChange(event) {
+    if (event.target.name === 'firstname') {
+      setFirstname(event.target.value);
     }
-    if (evt.target.name === 'lastname') {
-      setLastname(evt.target.value);
+    if (event.target.name === 'lastname') {
+      setLastname(event.target.value);
     }
-    if (evt.target.name === 'email') {
-      setEmail(evt.target.value);
+    if (event.target.name === 'email') {
+      setEmail(event.target.value);
     }
-    if (evt.target.name === 'password') {
-      setPassword(evt.target.value);
+    if (event.target.name === 'birthday') {
+      setBirthday(event.target.value);
     }
-    if (evt.target.name === 'birthday') {
-      setBirthday(evt.target.value);
-    }
-    // setChange(evt.target.value);
   }
 
   // appel API
@@ -61,23 +58,38 @@ function Profil() {
 
   const [data, setData] = useState([]);
 
-  // useEffect(() => {
-  //   axios.get(`${baseURL}/user`).then((response) => {
-  //     setPost(response.data);
-  //   });
-  // }, []);
-
   function getProfil() {
     axios
-      .get(`${baseURL}/user/6`)
+      .get(`${baseURL}/user/${id}`)
       .then((response) => {
         setData(response.data);
         console.log(response.data);
+        setLastname(response.data.lastname);
+        setFirstname(response.data.firstname);
+        setEmail(response.data.email);
+        setBirthday(response.data.birthday);
       });
   }
+
   useEffect(() => {
     getProfil();
   }, []);
+
+  // fonction pour modifier les informations de profil
+
+  function updateProfil() {
+    axios
+      .patch(`${baseURL}/user/${id}`, {
+        firstname,
+        lastname,
+        email,
+        birth_date: birthday,
+      })
+      .then((response) => {
+        console.log(response);
+      });
+  }
+
   return (
 
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
@@ -85,15 +97,15 @@ function Profil() {
         <Form.Group
           as={Col}
           md="4"
-          value={change}
+          value={lastname}
           onChange={handleChange}
           controlId="validationCustom01"
         >
           <Form.Label>Nom</Form.Label>
           <Form.Control
-            required
             type="text"
-            placeholder="First name"
+            placeholder="Nom"
+            name="lastname"
             defaultValue={data.lastname}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -101,15 +113,15 @@ function Profil() {
         <Form.Group
           as={Col}
           md="4"
-          value={change}
+          value={firstname}
           onChange={handleChange}
           controlId="validationCustom02"
         >
           <Form.Label>Prénom</Form.Label>
           <Form.Control
-            required
             type="text"
-            placeholder="Last name"
+            placeholder="Prénom"
+            name="firstname"
             defaultValue={data.firstname}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -117,7 +129,7 @@ function Profil() {
         <Form.Group
           as={Col}
           md="4"
-          value={change}
+          value={email}
           onChange={handleChange}
           controlId="validationCustomUsername"
         >
@@ -128,11 +140,11 @@ function Profil() {
               type="text"
               placeholder="Username"
               aria-describedby="inputGroupPrepend"
+              name="email"
               defaultValue={data.email}
-              required
             />
             <Form.Control.Feedback type="invalid">
-              Please choose a username.
+              Please choose an email.
             </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
@@ -141,23 +153,23 @@ function Profil() {
         <Form.Group
           as={Col}
           md="4"
-          value={change}
+          value={birthday}
           onChange={handleChange}
           controlId="validationCustom03"
         >
           <Form.Label>Date de naissance</Form.Label>
           <Form.Control
-            type="text"
+            type="date"
             placeholder="date de naissance"
+            name="birthday"
             defaultValue={data.birth_date}
-            required
           />
           <Form.Control.Feedback type="invalid">
-            Please provide a valid city.
+            Please provide a valid date.
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
-      <Button type="submit">Modifier mes informations</Button>
+      <Button type="submit" onClick={updateProfil}>Modifier mes informations</Button>
     </Form>
   );
 }
