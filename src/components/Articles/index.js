@@ -8,7 +8,7 @@ import { getArticlesList } from '../../selectors/articles';
 
 export default function Articles() {
   const { id } = useParams();
-  console.log('id de la catégori', id);
+  console.log('id de la catégorie', id);
 
   const articles = useSelector(getArticlesList);
   console.log(articles);
