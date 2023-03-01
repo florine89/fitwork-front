@@ -12,7 +12,7 @@ import Articles from '../Articles';
 import NotFound from '../404';
 import Program from '../Program';
 
-import { fetchArticles } from '../../actions/articles';
+import { fetchCategories } from '../../actions/articles';
 
 import './App.scss';
 
@@ -21,7 +21,7 @@ function App() {
   const isLogged = useSelector((state) => state.user.logged);
 
   useEffect(() => {
-    dispatch(fetchArticles());
+    dispatch(fetchCategories());
   }, []);
 
   return (

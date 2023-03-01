@@ -10,10 +10,11 @@ import logo from '../../assets/fitworkblu.png';
 import LoginForm from '../LoginForm';
 // import Profil from '../Profil';
 
-import { getArticlesList } from '../../selectors/articles';
+// la modif en getCategoriesList fait beuguer
+import { getCategoriesList } from '../../selectors/articles';
 
 function Header() {
-  const articles = useSelector(getArticlesList);
+  const articles = useSelector(getCategoriesList);
   const isLogged = useSelector((state) => state.user.logged);
 
   return (

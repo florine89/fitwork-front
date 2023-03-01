@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 import { LOGIN, LOGOUT, saveUser } from '../actions/user';
-import { ARTICLES_FETCH, saveArticles } from '../actions/articles';
+import { CATEGORIES_FETCH, saveCategories } from '../actions/articles';
 
 const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
 
@@ -12,11 +12,11 @@ const instance = axios.create({
 
 const getAPI = (store) => (next) => async (action) => {
   switch (action.type) {
-    case ARTICLES_FETCH:
+    case CATEGORIES_FETCH:
       try {
         const response = await axios.get(`${API_BASE_URL}/categories`);
         // console.log(response);
-        store.dispatch(saveArticles(response.data));
+        store.dispatch(saveCategories(response.data));
       }
       catch (error) {
         console.error(error);

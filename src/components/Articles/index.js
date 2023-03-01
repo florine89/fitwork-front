@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { findArticle } from '../../selectors/articles';
+import { findCategories } from '../../selectors/articles';
 
 import './style.scss';
 
@@ -9,7 +9,7 @@ function Articles() {
   const { id } = useParams();
   console.log(id);
 
-  const article = useSelector((state) => findArticle(state.articles.list, id));
+  const article = useSelector((state) => findCategories(state.articles.list, id));
   console.log(article);
 
   return (

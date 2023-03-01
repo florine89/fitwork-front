@@ -1,16 +1,16 @@
-export const ARTICLES_FETCH = 'ARTICLES_FETCH';
+export const CATEGORIES_FETCH = 'CATEGORIES_FETCH';
 
-export function fetchArticles() {
+export function fetchCategories() {
   return {
-    type: ARTICLES_FETCH,
+    type: CATEGORIES_FETCH,
   };
 }
 
-export const ARTICLES_SAVE = 'ARTICLES_SAVE';
+export const CATEGORIES_SAVE = 'CATEGORIES_SAVE';
 
-export function saveArticles(articles) {
+export function saveCategories(name) {
   return {
-    type: ARTICLES_SAVE,
-    payload: { articles },
+    type: CATEGORIES_SAVE,
+    payload: { name },
   };
 }
