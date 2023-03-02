@@ -1,6 +1,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import axios from 'axios';
 
+import { useSelector } from 'react-redux';
+
 import { LOGIN, LOGOUT, saveUser } from '../actions/user';
 import { CATEGORIES_FETCH, saveCategories } from '../actions/categories';
 import { ARTICLES_FETCH, saveArticles } from '../actions/articles';
@@ -15,7 +17,17 @@ const getAPI = (store) => (next) => async (action) => {
   switch (action.type) {
     case ARTICLES_FETCH:
       try {
-        const response = await axios.get(`${API_BASE_URL}/category/1`);
+        // const categories = useSelector(findCategories);
+        // console.log('categories', categories);
+        // const { id } = useParams();
+        // console.log('id de la catégorie', id);
+
+        // const id = useSelector((state) => state.name.id);
+        // console.log(id);
+
+        const id = 1;
+
+        const response = await axios.get(`${API_BASE_URL}/category/${id}`);
         console.log('response', response);
         store.dispatch(saveArticles(response.data));
       }
