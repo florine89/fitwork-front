@@ -2,7 +2,7 @@
 import './style.scss';
 
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
@@ -10,6 +10,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import axios from 'axios';
+import { saveUser } from '../../actions/user';
 
 function Profil() {
   const id = useSelector((state) => state.user.id);
@@ -76,7 +77,7 @@ function Profil() {
   }, []);
 
   // fonction pour modifier les informations de profil
-
+  const dispatch = useDispatch();
   function updateProfil() {
     axios
       .patch(`${baseURL}/user/${id}`, {
@@ -86,7 +87,8 @@ function Profil() {
         birth_date: birthday,
       })
       .then((response) => {
-        console.log(response);
+        dispatch(saveUser(response.data));
+        console.log('update user', response);
       });
   }
 
