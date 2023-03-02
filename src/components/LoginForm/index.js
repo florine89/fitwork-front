@@ -3,6 +3,7 @@ import './style.scss';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -17,6 +18,7 @@ function LoginForm({
   email,
   password,
 }) {
+  const navigate = useNavigate();
   // gestion de la connection, des différents états
   const pseudo = useSelector((state) => state.user.firstname);
 
@@ -37,14 +39,15 @@ function LoginForm({
   };
   const handleLogOut = () => {
     dispatch(logout());
+    const path = '/';
+    navigate(path);
   };
+
   // Modale (utilisation des states)
 
   return (
-
   // Création du form et des champs du formulaire pour la connnexion de l'utilisateur
   // Soumission du form avec un bouton
-
     <div className="login">
       <div className="login-form">
 
@@ -75,14 +78,14 @@ function LoginForm({
 
           {/* utilisateur anonyme */}
           {!isLogged && (
-          <Button
-            className="login-button"
-            onClick={handleShow}
-            variant="outline-dark"
-            size="lg"
-          >
-            Se connecter
-          </Button>
+            <Button
+              className="login-button"
+              onClick={handleShow}
+              variant="outline-dark"
+              size="lg"
+            >
+              Se connecter
+            </Button>
           )}
 
           <div className="login-form">

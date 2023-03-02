@@ -25,8 +25,8 @@ const getAPI = (store) => (next) => async (action) => {
         // const id = useSelector((state) => state.name.id);
         // console.log(id);
 
-        const id = 1;
-
+        const id = useSelector((state) => state.name.id);
+        console.log(id);
         const response = await axios.get(`${API_BASE_URL}/category/${id}`);
         console.log('response', response);
         store.dispatch(saveArticles(response.data));
