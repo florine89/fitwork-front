@@ -1,3 +1,19 @@
-.articles {
-    margin-top : 15rem;
+.Articles {
+    margin : 11rem 2rem 2rem 2rem;
+    z-index: -100;
 }
+
+.card{
+    &-container{
+    }
+    &-article{
+        z-index: -100;
+    }
+    &-button{
+        margin-bottom: .5rem;
+        bottom: 0;
+        position: absolute;
+    }
+}
+
+
