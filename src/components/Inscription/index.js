@@ -12,6 +12,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './Style.scss';
 import logo from '../../assets/inscriptionok.jpg';
+import LoginForm from '../LoginForm';
 
 // eslint-disable-next-line react/prop-types
 export default function Inscription() {
@@ -137,8 +138,8 @@ export default function Inscription() {
             <img src={logo} className="Message-logo" alt="Logo inscription" />
             <Alert variant="dark">
               <div className="Message-alert">
-                <Alert.Heading>Super ! Votre compte a bien été crée !</Alert.Heading>
-                <p>
+                <Alert.Heading className="Message-welcome">Super ! Votre compte a bien été crée !</Alert.Heading>
+                <p className="Message-fitworkers">
                   Bienvenue dans la Team des Fit Workers !
                 </p>
               </div>

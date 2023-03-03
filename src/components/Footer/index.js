@@ -12,11 +12,12 @@ function Footer() {
   return (
     <div className="footer">
 
-      <Nav defaultActiveKey="/home" as="ul">
+      {/* on enlève les navlink car header fixe
+       <Nav defaultActiveKey="/home" as="ul">
         <Nav.Item as="li">
-          {/* <Nav.Link href="/">
+          <Nav.Link href="/">
             <Image src={logo} className="footer-logo" alt="Logo FitWork" roundedCircle fluid />
-          </Nav.Link> */}
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item as="li">
           <Nav.Link href="/">Accueil</Nav.Link>
@@ -36,7 +37,7 @@ function Footer() {
         <Nav.Item as="li">
           <Nav.Link eventKey="link-5" href="/contact">Contact</Nav.Link>
         </Nav.Item>
-      </Nav>
+      </Nav> */}
 
       <div className="footer-link">
         <img className="footer-link-logo" href="#" src={logo2} alt="logo_instagram" />
