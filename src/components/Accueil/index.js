@@ -16,7 +16,7 @@ function Home() {
         </span>
       </h1>
 
-      <NavLink to="/inscription">Pour commencer inscrivez-vous ici</NavLink>
+      <NavLink className="home-login" to="/inscription">Pour commencer inscrivez-vous ici</NavLink>
 
       <ArticleContainer />
 
