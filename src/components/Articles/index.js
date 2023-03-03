@@ -1,8 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import './style.scss';
 
-import PropTypes from 'prop-types';
-
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -45,11 +43,11 @@ function Articles() {
   /**
    * Cette fonction ajoute au click un article au programme du user connecté
    */
-  function addArticleToProgram(props) {
+  function addArticleToProgram(idArticle) {
     // console.log('userId', userId);
 
     axios
-      .post(`${API_BASE_URL}/article/${props.id}/program`, {
+      .post(`${API_BASE_URL}/article/${idArticle}/program`, {
         user_id: userId,
       })
       .then((response) => {
@@ -78,7 +76,7 @@ function Articles() {
                 <Card.Text className="Articles-card-description">
                   {article.description}
                 </Card.Text>
-                <Button className="Articles-card-button" variant="primary" type="submit" onClick={addArticleToProgram} props={article}>Ajouter au programme</Button>
+                <Button className="Articles-card-button" variant="primary" type="submit" onClick={() => addArticleToProgram(article.id)}>Ajouter au programme</Button>
               </Card.Body>
             </Card>
           </article>
@@ -87,13 +85,5 @@ function Articles() {
     </div>
   );
 }
-
-Articles.propTypes = {
-  id: PropTypes.number,
-};
-
-Articles.defaultProps = {
-  id: 0,
-};
 
 export default Articles;
