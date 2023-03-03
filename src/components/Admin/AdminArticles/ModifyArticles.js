@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import { getCategoriesList } from '../../selectors/categories';
-import { getArticlesList } from '../../selectors/articles';
+import { getCategoriesList } from '../../../selectors/categories';
+import { getArticlesList } from '../../../selectors/articles';
 
-export default function ModifierArticles() {
+export default function ModifyArticles() {
   // const id = useSelector((state) => state.user.id))
   const categories = useSelector(getCategoriesList);
   const articles = useSelector(getArticlesList);

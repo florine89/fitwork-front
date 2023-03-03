@@ -5,7 +5,8 @@ import React, { useState } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
-import ModifierArticles from './ModifierArticles';
+import ModifyArticles from './AdminArticles/ModifyArticles';
+import AddArticles from './AdminArticles/AddArticles';
 
 function ControlledTabsExample() {
   const [key, setKey] = useState('home');
@@ -18,14 +19,14 @@ function ControlledTabsExample() {
       className="mb-3 tabs"
     >
       <Tab eventKey="ajouter un article" title="ajouter un article">
-        <ModifierArticles />
+        <AddArticles />
       </Tab>
       <Tab eventKey="modifier un article" title="modifier un article">
-        <ModifierArticles />
+        <ModifyArticles />
 
       </Tab>
       <Tab eventKey="supprimer un article" title="supprimer un article">
-        <ModifierArticles />
+        <ModifyArticles />
 
       </Tab>
     </Tabs>
