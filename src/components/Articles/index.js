@@ -12,26 +12,39 @@ import Form from 'react-bootstrap/Form';
 
 import logo from '../../assets/femmebureau.jpg';
 
+const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
+
 function Articles() {
-  const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
+  // récupérer tous les articles de la catégorie
 
   const [articles, setArticles] = useState([]); // je récupère les articles dans le state local
-  const userId = useSelector((state) => state.user.id); // je recupère mon user id avec redux
 
   const { id } = useParams(); // je recupère l'id de la catégorie dans la requete http
 
   /**
    * Cette fonction recupère la liste des articles de la catégorie concernée
-   */
+  */
   function getArticleByCategorie() {
     axios.get(`${API_BASE_URL}/category/${id}`).then((response) => {
-      setArticles(response.data);
+      setArticles(response.data); // j'importe mes data dans le state local
     });
   }
 
   /**
-   * A la soumission du formulaire, évite le comportement par défaut
+   * A chaque changement d'id, useEffect rappelle la fonction concernée et met à jour l'affichage
    */
+  useEffect(() => {
+    getArticleByCategorie();
+  }, [id]);
+
+  // ajouter un article au programme
+
+  const userId = useSelector((state) => state.user.id); // je recupère mon user id avec redux
+
+  /**
+   * A la soumission du formulaire, évite le comportement par défaut
+   * de rechargement de la page par exemple
+  */
   function handleSubmit(evt) {
     evt.preventDefault();
   }
@@ -42,23 +55,14 @@ function Articles() {
    * La fonction anonyme évite que la fonction ne s'exécute seule au rendu.
    */
   function addArticleToProgram(idArticle) {
-    // console.log('userId', userId);
-
     axios
       .post(`${API_BASE_URL}/article/${idArticle}/program`, {
-        user_id: userId,
+        user_id: userId, // je passe le user id du state
       })
       .then((response) => {
         console.log((response.data));
       });
   }
-
-  /**
-   * A chaque changement d'id, useEffect rappelle la fonction concernée et met à jour l'affichage
-   */
-  useEffect(() => {
-    getArticleByCategorie();
-  }, [id]);
 
   return (
     <div className="Articles">
