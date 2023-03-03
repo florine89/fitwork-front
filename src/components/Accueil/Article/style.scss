@@ -1,6 +1,7 @@
 .card{
     
     &-container{
+    z-index: -100;
     display: inline-flex;
     flex-wrap: wrap;
     justify-content: space-around;

@@ -93,7 +93,6 @@ function Profil() {
   }
 
   return (
-
     <Form className="Profil" noValidate validated={validated} onSubmit={handleSubmit}>
       <Row className="mb-3">
         <Form.Group

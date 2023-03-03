@@ -1,16 +1,16 @@
 @use '../../styles/vars';
 
 .header{
-background-color: vars.$primary;
-position: fixed;
-top: 0;
-width: 100%;
+    background-color: vars.$info;
+    height: 11rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
 
     &-logo {
     width: 10rem;
 }
 };
 
-.Nav {
-display:flex;
-}
+

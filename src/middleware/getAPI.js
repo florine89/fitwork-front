@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 import { LOGIN, LOGOUT, saveUser } from '../actions/user';
 import { CATEGORIES_FETCH, saveCategories } from '../actions/categories';
-import { ARTICLES_FETCH, saveArticles } from '../actions/articles';
+// import { ARTICLES_FETCH, saveArticles } from '../actions/articles';
 
 const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
 
@@ -15,7 +15,7 @@ const instance = axios.create({
 
 const getAPI = (store) => (next) => async (action) => {
   switch (action.type) {
-    case ARTICLES_FETCH:
+    /* case ARTICLES_FETCH:
       try {
         // const categories = useSelector(findCategories);
         // console.log('categories', categories);
@@ -36,7 +36,7 @@ const getAPI = (store) => (next) => async (action) => {
       }
 
       next(action);
-      break;
+      break; */
     case CATEGORIES_FETCH:
       try {
         const response = await axios.get(`${API_BASE_URL}/categories`);

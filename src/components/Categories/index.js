@@ -1,20 +1,23 @@
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 
-import { findCategories } from '../../selectors/categories';
+import axios from 'axios';
 
 import './style.scss';
 
-function Categories() {
-  const { id } = useParams();
-  console.log(id);
+const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
 
-  const category = useSelector((state) => findCategories(state.categories.list, id));
-  // console.log(category);
+function Categories() {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${API_BASE_URL}/categories`).then((response) => {
+      setCategories(response.data);
+    });
+  }, []);
 
   return (
-    <div className="Articles">
-      <h1 className="presentation-title">Article</h1>
+    <div className="Categories">
+      <h1 className="presentation-title">{categories.name}</h1>
     </div>
   );
 }
