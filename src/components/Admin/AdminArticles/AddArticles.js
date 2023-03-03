@@ -130,10 +130,7 @@ function AddArticles() {
           <img src={logo} className="Message-logo" alt="Logo inscription" />
           <Alert variant="dark">
             <div className="Message-alert">
-              <Alert.Heading>Super ! Votre compte a bien été crée !</Alert.Heading>
-              <p>
-                Bienvenue dans la Team des Fit Workers !
-              </p>
+              <Alert.Heading>Super ! ton articles a été ajouté !</Alert.Heading>
             </div>
           </Alert>
         </div>
