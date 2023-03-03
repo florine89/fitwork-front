@@ -12,48 +12,22 @@ import Form from 'react-bootstrap/Form';
 
 import logo from '../../assets/femmebureau.jpg';
 
+const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
+
 function Articles() {
-  const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
+  // récupérer tous les articles de la catégorie
 
   const [articles, setArticles] = useState([]); // je récupère les articles dans le state local
-  const userId = useSelector((state) => state.user.id); // je recupère mon user id avec redux
 
   const { id } = useParams(); // je recupère l'id de la catégorie dans la requete http
 
-  /* const idArticle = 1;
-  console.log(idArticle); // TODO a dynamiser */
-
   /**
    * Cette fonction recupère la liste des articles de la catégorie concernée
-   */
+  */
   function getArticleByCategorie() {
     axios.get(`${API_BASE_URL}/category/${id}`).then((response) => {
-      setArticles(response.data);
+      setArticles(response.data); // j'importe mes data dans le state local
     });
-  }
-
-  /**
-   * A la soumission du formulaire, évite le comportement par défaut
-   */
-  function handleSubmit(evt) {
-    evt.preventDefault();
-    // console.log('submit');
-  }
-
-  /**
-   * Cette fonction ajoute au click un article au programme du user connecté
-   */
-  function addArticleToProgram(idArticle) {
-    // console.log('userId', userId);
-
-    axios
-      .post(`${API_BASE_URL}/article/${idArticle}/program`, {
-        user_id: userId,
-      })
-      .then((response) => {
-        // setArticleId(article.id);
-        console.log((response.data));
-      });
   }
 
   /**
@@ -63,10 +37,54 @@ function Articles() {
     getArticleByCategorie();
   }, [id]);
 
+  // ajouter un article au programme
+
+  const userId = useSelector((state) => state.user.id); // je recupère mon user id avec redux
+
+  /**
+   * A la soumission du formulaire, évite le comportement par défaut
+   * de rechargement de la page par exemple
+  */
+  function handleSubmit(evt) {
+    evt.preventDefault();
+  }
+
+  /**
+ * La fonction permet d'ajouter un article aux favoris sur le onClick.
+ * @param {*} idArticle Sur le onClick, on lui passe l'arguemnt article.id.
+ * La fonction anonyme évite que la fonction ne s'exécute seule au rendu.
+ */
+  function addArticleToProgram(idArticle) {
+    axios
+      .post(`${API_BASE_URL}/article/${idArticle}/program`, {
+        user_id: userId, // je passe le user id du state
+      })
+      .then((response) => {
+        console.log((response.data));
+      });
+  }
+
+  // ajouter un article aux favoris
+
+  /**
+   * La fonction permet d'ajouter un article aux favoris sur le onClick.
+   * @param {*} idArticle Sur le onClick, on lui passe l'arguemnt article.id.
+   * La fonction anonyme évite que la fonction ne s'exécute seule au rendu.
+   */
+  function addArticleToFavorites(idArticle) {
+    axios
+      .post(`${API_BASE_URL}/article/${idArticle}/favorite`, {
+        user_id: userId, // je passe le user id du state
+      })
+      .then((response) => {
+        console.log((response.data));
+      });
+  }
+
   return (
     <div className="Articles">
       <h1>Articles disponibles pour la categorie</h1>
-      <Form onSubmit={handleSubmit}>
+      <Form className="Articles-form" onSubmit={handleSubmit}>
         {articles.map((article) => (
           <article key={article.id} className="Articles-card">
             <Card style={{ width: '18rem', height: '25rem' }}>
@@ -76,7 +94,24 @@ function Articles() {
                 <Card.Text className="Articles-card-description">
                   {article.description}
                 </Card.Text>
-                <Button className="Articles-card-button" variant="primary" type="submit" onClick={() => addArticleToProgram(article.id)}>Ajouter au programme</Button>
+                <div className="Articles-card-buttons">
+                  <Button
+                    className="Articles-card-buttons-one"
+                    variant="primary"
+                    type="submit"
+                    onClick={() => addArticleToProgram(article.id)}
+                  >
+                    Programme
+                  </Button>
+                  <Button
+                    className="Articles-card-buttons-one"
+                    variant="info"
+                    type="submit"
+                    onClick={() => addArticleToFavorites(article.id)}
+                  >
+                    Favoris
+                  </Button>
+                </div>
               </Card.Body>
             </Card>
           </article>

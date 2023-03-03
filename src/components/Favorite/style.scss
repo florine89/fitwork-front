@@ -1,0 +1,16 @@
+@use 'src/styles/vars';
+
+.program {
+
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    margin-top:15rem;
+    
+    &-title {
+        color: vars.$secondary;
+    }
+
+}

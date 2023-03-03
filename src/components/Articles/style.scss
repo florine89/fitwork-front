@@ -1,17 +1,32 @@
 .Articles {
-    margin : 11rem 2rem 2rem 2rem;
+    margin : 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-form{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
     &-card{
         display: inline-flex;
-    &-description{
-        max-height: 10rem;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
+
+        &-description{
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        &-buttons{
+                display: inline-flex;
+                justify-content: space-around;
+                margin-bottom: .5rem;
+                bottom: 0;
+                position: absolute;
+            &-one{
+                width: 7rem;
+            }
     }
-    &-button{
-        margin-bottom: .5rem;
-        bottom: 0;
-        position: absolute;
-    }
+
 }
+
 }

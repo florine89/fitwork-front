@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import Header from '../AppHeader';
 import Inscription from '../Inscription';
@@ -12,22 +12,21 @@ import NotFound from '../404';
 import Program from '../Program';
 import Articles from '../Articles';
 import Admin from '../Admin';
-
-// import Categories from '../Categories';
-
-import { fetchCategories } from '../../actions/categories';
-import { fetchArticles } from '../../actions/articles';
-
-import './App.scss';
+import Favorite from '../Favorite';
 import Categories from '../Categories';
 
+import { fetchCategories } from '../../actions/categories';
+
+import './App.scss';
+
 function App() {
+  /**
+   * On affiche les categories via le state de Redux (dans le menu directement)
+   */
   const dispatch = useDispatch();
-  const isLogged = useSelector((state) => state.user.logged);
 
   useEffect(() => {
     dispatch(fetchCategories());
-    dispatch(fetchArticles());
   }, []);
 
   return (
@@ -49,7 +48,7 @@ function App() {
         <Route path="/categories" element={<Categories />} />
         <Route path="/categorie/:id" element={<Articles />} />
         <Route path="/programme" element={<Program />} />
-        <Route path="/favoris" element={<h1>favoris</h1>} />
+        <Route path="/favoris" element={<Favorite />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
