@@ -84,7 +84,7 @@ function Articles() {
   return (
     <div className="Articles">
       <h1>Articles disponibles pour la categorie</h1>
-      <Form onSubmit={handleSubmit}>
+      <Form className="Articles-form" onSubmit={handleSubmit}>
         {articles.map((article) => (
           <article key={article.id} className="Articles-card">
             <Card style={{ width: '18rem', height: '25rem' }}>
@@ -105,7 +105,7 @@ function Articles() {
                   </Button>
                   <Button
                     className="Articles-card-buttons-one"
-                    variant="secondary"
+                    variant="info"
                     type="submit"
                     onClick={() => addArticleToFavorites(article.id)}
                   >
