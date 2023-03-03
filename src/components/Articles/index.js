@@ -20,9 +20,6 @@ function Articles() {
 
   const { id } = useParams(); // je recupère l'id de la catégorie dans la requete http
 
-  /* const idArticle = 1;
-  console.log(idArticle); // TODO a dynamiser */
-
   /**
    * Cette fonction recupère la liste des articles de la catégorie concernée
    */
@@ -37,11 +34,12 @@ function Articles() {
    */
   function handleSubmit(evt) {
     evt.preventDefault();
-    // console.log('submit');
   }
 
   /**
    * Cette fonction ajoute au click un article au programme du user connecté
+   * On lui passe l'argument idArticle. Sur le onClick, on lui passe article.id.
+   * La fonction anonyme évite que la fonction ne s'exécute seule au rendu.
    */
   function addArticleToProgram(idArticle) {
     // console.log('userId', userId);
@@ -51,7 +49,6 @@ function Articles() {
         user_id: userId,
       })
       .then((response) => {
-        // setArticleId(article.id);
         console.log((response.data));
       });
   }
@@ -76,7 +73,14 @@ function Articles() {
                 <Card.Text className="Articles-card-description">
                   {article.description}
                 </Card.Text>
-                <Button className="Articles-card-button" variant="primary" type="submit" onClick={() => addArticleToProgram(article.id)}>Ajouter au programme</Button>
+                <Button
+                  className="Articles-card-button"
+                  variant="primary"
+                  type="submit"
+                  onClick={() => addArticleToProgram(article.id)}
+                >
+                  Ajouter au programme
+                </Button>
               </Card.Body>
             </Card>
           </article>
