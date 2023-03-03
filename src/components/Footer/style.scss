@@ -1,8 +1,9 @@
-.footer {
-display: flex;
-//flex-wrap: wrap;
-flex-direction: column;
+@use '../../styles/vars';
 
+.footer {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid vars.$info;
     &-logo {
         width: 10rem;
     }
@@ -10,9 +11,8 @@ flex-direction: column;
 };
 
 .footer-link {
-display: flex;
-justify-content:flex-start;
-align-items: flex-end;
+    display: flex;
+    
     &-logo {
         width: 3rem;
         align-self: center;
