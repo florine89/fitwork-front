@@ -23,15 +23,18 @@ justify-content: center;
     };
 };
 
-.form {
-    margin: 10rem;
-    padding-top: 5rem;
+.inscription {
+    margin-top: 11rem;
+    padding-top: 2rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
 
     &-button {
-        width: 10rem;
-        margin: 1rem;
+        max-width: 15rem;
+        width: auto;
+        margin: .5rem;
     }
 }

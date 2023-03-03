@@ -8,10 +8,10 @@ function Home() {
   return (
     <div className="home">
 
-      <h1 className="home-quote">
+      <h1 className="home-title-big">
         Un esprit sain, dans un corps sain !
 
-        <span className="home-small">
+        <span className="home-title-small">
           Pour travailler sainement.
         </span>
       </h1>

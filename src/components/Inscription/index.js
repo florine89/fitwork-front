@@ -10,9 +10,8 @@ import Alert from 'react-bootstrap/Alert';
 /* eslint-disable react/jsx-no-bind */
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import './Style.scss';
+import './style.scss';
 import logo from '../../assets/inscriptionok.jpg';
-import LoginForm from '../LoginForm';
 
 // eslint-disable-next-line react/prop-types
 export default function Inscription() {
@@ -88,7 +87,7 @@ export default function Inscription() {
   return (
     <>
       { !success && (
-        <Form className="form" onSubmit={handleSubmit}>
+        <Form className="form inscription" onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formLastName" value={lastname} onChange={handleChange}>
             <Form.Label>Nom :</Form.Label>
             <Form.Control
@@ -123,10 +122,10 @@ export default function Inscription() {
             <Form.Control type="date" placeholder="Date de naissance" name="birthday" />
           </Form.Group>
 
-          <Button className="form-button" variant="primary" type="submit" onClick={createUser} disabled={success}>
+          <Button className="form-button inscription-button" variant="primary" type="submit" onClick={createUser} disabled={success}>
             Enregistrer
           </Button>
-          <Button className="form-button" variant="primary" type="reset" disabled={success}>
+          <Button className="form-button inscription-button" variant="primary" type="reset" disabled={success}>
             Annuler
           </Button>
         </Form>
