@@ -43,7 +43,7 @@ function Articles() {
               <Card.Img variant="top" src={logo} />
               <Card.Body>
                 <Card.Title>{article.title}</Card.Title>
-                <Card.Text>
+                <Card.Text className="card-description">
                   {article.description}
                 </Card.Text>
                 <Button className="card-button" variant="primary">Ajouter au programme</Button>

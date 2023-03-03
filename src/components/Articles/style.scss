@@ -1,13 +1,19 @@
 .Articles {
     margin : 11rem 2rem 2rem 2rem;
-    z-index: -100;
 }
 
 .card{
     &-container{
+    z-index: -100;
     }
     &-article{
         z-index: -100;
+    }
+    &-description{
+        max-height: 10rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
     }
     &-button{
         margin-bottom: .5rem;
