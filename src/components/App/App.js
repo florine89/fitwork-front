@@ -19,6 +19,7 @@ import { fetchCategories } from '../../actions/categories';
 import { fetchArticles } from '../../actions/articles';
 
 import './App.scss';
+import Categories from '../Categories';
 
 function App() {
   const dispatch = useDispatch();
@@ -47,8 +48,8 @@ function App() {
           element=<Profil />
         />
         <Route path="/contact" element={<Contact />} />
-        {/* <Route path="/categorie" element={<Categories /><h1>Catégorie</h1>} /> */}
         <Route path="/administrateur" element={<Admin />} />
+        <Route path="/categories" element={<Categories />} />
         <Route path="/categorie/:id" element={<Articles />} />
         <Route path="/programme" element={<Program />} />
         <Route path="/favoris" element={<h1>favoris</h1>} />

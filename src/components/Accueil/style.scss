@@ -1,13 +1,10 @@
 @use 'src/styles/vars';
 
 .home {
+    margin-top: 11rem;
     display: flex;
-    justify-content: center;
-
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-
 
     &-logo {
         margin-top: 3rem;
@@ -16,13 +13,20 @@
         width: 50rem;
     }
 
-    &-quote {
-        margin-top: 20rem;
-        color: vars.$dark;
+    &-title {
+        margin-top: 2rem;
+        color: vars.$primary;
+        font-weight: 400;
+
+    &-big {
+        color: vars.$secondary;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     &-small {
-        display: flex;
-        font-size: 2rem;
+        color: vars.$danger;
+    }
     }
 }
