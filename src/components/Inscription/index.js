@@ -140,7 +140,7 @@ export default function Inscription() {
               <div className="Message-alert">
                 <Alert.Heading className="Message-welcome">Super ! Votre compte a bien été crée !</Alert.Heading>
                 <p className="Message-fitworkers">
-                  Bienvenue dans la Team des Fit Workers !
+                  Bienvenue dans la Team des Fit Workers !!
                 </p>
               </div>
             </Alert>
