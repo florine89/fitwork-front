@@ -24,9 +24,9 @@ function Program() {
     <div className="program">
       <h1 className="program-title">Mon Programme :</h1>
       {articles.map((article) => (
-        <Form>
+        <Form key={article.id}>
           {['checkbox'].map((type) => (
-            <div className="mb-3">
+            <div className="mb-3" key={article.id}>
               <Form.Check
                 key={article.id}
                 type={type}
