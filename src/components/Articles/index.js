@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-no-bind */
 import './style.scss';
 
+import PropTypes from 'prop-types';
+
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -12,8 +14,6 @@ import Form from 'react-bootstrap/Form';
 
 import logo from '../../assets/femmebureau.jpg';
 
-// import { getArticlesList } from '../../selectors/articles';
-
 function Articles() {
   const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
 
@@ -22,8 +22,8 @@ function Articles() {
 
   const { id } = useParams(); // je recupère l'id de la catégorie dans la requete http
 
-  const idArticle = 1; // TODO a dynamiser
-  console.log(idArticle);
+  /* const idArticle = 1;
+  console.log(idArticle); // TODO a dynamiser */
 
   /**
    * Cette fonction recupère la liste des articles de la catégorie concernée
@@ -45,14 +45,15 @@ function Articles() {
   /**
    * Cette fonction ajoute au click un article au programme du user connecté
    */
-  function addArticleToProgram() {
+  function addArticleToProgram(props) {
     // console.log('userId', userId);
 
     axios
-      .post(`${API_BASE_URL}/article/${idArticle}/program`, {
+      .post(`${API_BASE_URL}/article/${props.id}/program`, {
         user_id: userId,
       })
       .then((response) => {
+        // setArticleId(article.id);
         console.log((response.data));
       });
   }
@@ -77,7 +78,7 @@ function Articles() {
                 <Card.Text className="Articles-card-description">
                   {article.description}
                 </Card.Text>
-                <Button className="Articles-card-button" variant="primary" type="submit" onClick={addArticleToProgram}>Ajouter au programme</Button>
+                <Button className="Articles-card-button" variant="primary" type="submit" onClick={addArticleToProgram} props={article}>Ajouter au programme</Button>
               </Card.Body>
             </Card>
           </article>
@@ -86,5 +87,13 @@ function Articles() {
     </div>
   );
 }
+
+Articles.propTypes = {
+  id: PropTypes.number,
+};
+
+Articles.defaultProps = {
+  id: 0,
+};
 
 export default Articles;
