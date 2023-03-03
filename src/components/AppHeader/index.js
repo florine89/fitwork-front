@@ -31,7 +31,7 @@ function Header() {
             <Nav className="me-auto">
               {/* quand on est connecté ça affiche profil, programme, favoris, contact */}
               {isLogged && (
-                <div className="Nav">
+                <>
                   <Nav.Link as={NavLink} to="/">Accueil</Nav.Link>
                   <Nav.Link as={NavLink} to="/profil">Profil</Nav.Link>
                   <Nav.Link as={NavLink} to="/programme">Programme</Nav.Link>
@@ -49,15 +49,15 @@ function Header() {
                       </NavDropdown.Item>
                     ))}
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="/categorie/4">
-                      Separated link
+                    <NavDropdown.Item as={NavLink} to="/categories">
+                      Toutes les catégories
                     </NavDropdown.Item>
                   </NavDropdown>
-                </div>
+                </>
               )}
               {/* quand on est connecté ça affiche s'inscrire seulement */}
               {!isLogged && (
-              <div className="Nav">
+              <>
                 <NavItem>
                   <Nav.Link as={NavLink} to="/">Accueil</Nav.Link>
                 </NavItem>
@@ -67,12 +67,12 @@ function Header() {
                 <Nav.Item>
                   <Nav.Link as={NavLink} to="/contact">Contact</Nav.Link>
                 </Nav.Item>
-              </div>
+              </>
               )}
             </Nav>
+            <LoginForm />
           </Navbar.Collapse>
         </Container>
-        <LoginForm />
       </Navbar>
     </header>
   );

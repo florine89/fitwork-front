@@ -1,6 +1,7 @@
 @use 'src/styles/vars';
 
 .home {
+    margin-top: 11rem;
     display: flex;
     justify-content: center;
 
@@ -17,7 +18,7 @@
     }
 
     &-quote {
-        margin-top: 20rem;
+        margin-top: 2rem;
         color: vars.$dark;
     }
 

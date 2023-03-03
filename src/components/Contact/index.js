@@ -36,9 +36,9 @@ function Contact() {
   };
 
   return (
-    <div className="Contact">
+    <>
       { !success && (
-      <Form ref={form} onSubmit={sendEmail}>
+      <Form ref={form} onSubmit={sendEmail} className="Contact">
 
         <Form.Group
           className="mb-3"
@@ -93,7 +93,7 @@ function Contact() {
             </Alert>
           </div>
         )}
-    </div>
+    </>
   );
 }
 

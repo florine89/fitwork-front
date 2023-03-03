@@ -87,7 +87,7 @@ export default function Inscription() {
   return (
     <>
       { !success && (
-        <Form className="form" onSubmit={handleSubmit}>
+        <Form className="form inscription" onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formLastName" value={lastname} onChange={handleChange}>
             <Form.Label>Nom :</Form.Label>
             <Form.Control
@@ -122,10 +122,10 @@ export default function Inscription() {
             <Form.Control type="date" placeholder="Date de naissance" name="birthday" />
           </Form.Group>
 
-          <Button className="form-button" variant="primary" type="submit" onClick={createUser} disabled={success}>
+          <Button className="form-button inscription-button" variant="primary" type="submit" onClick={createUser} disabled={success}>
             Enregistrer
           </Button>
-          <Button className="form-button" variant="primary" type="reset" disabled={success}>
+          <Button className="form-button inscription-button" variant="primary" type="reset" disabled={success}>
             Annuler
           </Button>
         </Form>
