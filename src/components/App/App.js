@@ -12,6 +12,7 @@ import NotFound from '../404';
 import Program from '../Program';
 import Articles from '../Articles';
 import Admin from '../Admin';
+import Page from '../../page';
 
 // import Categories from '../Categories';
 
@@ -31,32 +32,32 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <Page>
+      <div className="App">
 
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/inscription"
-          element={<Inscription />}
-        />
-        <Route
-          path="/profil"
-          element=<Profil />
-        />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/administrateur" element={<Admin />} />
-        <Route path="/categories" element={<Categories />} />
-        <Route path="/categorie/:id" element={<Articles />} />
-        <Route path="/programme" element={<Program />} />
-        <Route path="/favoris" element={<h1>favoris</h1>} />
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/inscription"
+            element={<Inscription />}
+          />
+          <Route
+            path="/profil"
+            element=<Profil />
+          />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/administrateur" element={<Admin />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/categorie/:id" element={<Articles />} />
+          <Route path="/programme" element={<Program />} />
+          <Route path="/favoris" element={<h1>favoris</h1>} />
 
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-
-      <Footer />
-
-    </div>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Page>
   );
 }
 

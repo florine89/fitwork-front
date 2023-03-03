@@ -2,7 +2,7 @@ import './style.scss';
 
 import { NavLink } from 'react-router-dom';
 
-import ArticleContainer from './Article';
+// import ArticleContainer from './Article';
 
 function Home() {
   return (
@@ -18,7 +18,7 @@ function Home() {
 
       <NavLink className="home-login" to="/inscription">Pour commencer inscrivez-vous ici</NavLink>
 
-      <ArticleContainer />
+      {/*     <ArticleContainer /> */}
 
     </div>
   );
