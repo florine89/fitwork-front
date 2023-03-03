@@ -1,9 +1,9 @@
 @use '../../styles/vars';
 
 .header{
-    background-color: vars.$info;
+    background-color: vars.$success; 
     height: 11rem;
-    position: fixed;
+    position: sticky;
     top: 0;
     width: 100%;
     left: 0;
