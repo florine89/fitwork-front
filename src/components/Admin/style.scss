@@ -1,7 +1,15 @@
 .Admin {
-    margin: 10rem;
-    padding-top: 5rem;
+    // margin-top: 10rem;
+    // padding-top: 5rem;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+}
+.tabs{
+    margin-top:12rem;
+    margin-bottom: 5rem;
+    padding: 5rem 0 0 0;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
 }
