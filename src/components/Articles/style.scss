@@ -1,14 +1,7 @@
 .Articles {
     margin : 11rem 2rem 2rem 2rem;
-}
-
-.card{
-    &-container{
-    z-index: -100;
-    }
-    &-article{
-        z-index: -100;
-    }
+    &-card{
+        display: inline-flex;
     &-description{
         max-height: 10rem;
         text-overflow: ellipsis;
@@ -21,5 +14,4 @@
         position: absolute;
     }
 }
-
-
+}
