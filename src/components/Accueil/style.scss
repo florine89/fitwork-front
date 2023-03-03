@@ -25,7 +25,12 @@
     }
 
     &-small {
-        color: vars.$danger;
+        display: flex;
+        justify-content: center;
+        font-size: 2rem;
     }
+
+    &-login {
+        margin: 5rem;
     }
 }

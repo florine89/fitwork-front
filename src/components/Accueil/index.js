@@ -7,15 +7,16 @@ import ArticleContainer from './Article';
 function Home() {
   return (
     <div className="home">
-      <div className="home-title">
-        <h1 className="home-title-big">
-          Un esprit sain, dans un corps sain !
-          <span className="home-title-small">
-            Pour travailler sainement.
-          </span>
-        </h1>
-      </div>
-      <NavLink to="/inscription">Pour commencer inscrivez-vous ici</NavLink>
+
+      <h1 className="home-quote">
+        Un esprit sain, dans un corps sain !
+
+        <span className="home-small">
+          Pour travailler sainement.
+        </span>
+      </h1>
+
+      <NavLink className="home-login" to="/inscription">Pour commencer inscrivez-vous ici</NavLink>
 
       <ArticleContainer />
 
