@@ -50,13 +50,30 @@ function Articles() {
   }
 
   /**
-   * Cette fonction ajoute au click un article au programme du user connecté
-   * On lui passe l'argument idArticle. Sur le onClick, on lui passe article.id.
-   * La fonction anonyme évite que la fonction ne s'exécute seule au rendu.
-   */
+ * La fonction permet d'ajouter un article aux favoris sur le onClick.
+ * @param {*} idArticle Sur le onClick, on lui passe l'arguemnt article.id.
+ * La fonction anonyme évite que la fonction ne s'exécute seule au rendu.
+ */
   function addArticleToProgram(idArticle) {
     axios
       .post(`${API_BASE_URL}/article/${idArticle}/program`, {
+        user_id: userId, // je passe le user id du state
+      })
+      .then((response) => {
+        console.log((response.data));
+      });
+  }
+
+  // ajouter un article aux favoris
+
+  /**
+   * La fonction permet d'ajouter un article aux favoris sur le onClick.
+   * @param {*} idArticle Sur le onClick, on lui passe l'arguemnt article.id.
+   * La fonction anonyme évite que la fonction ne s'exécute seule au rendu.
+   */
+  function addArticleToFavorites(idArticle) {
+    axios
+      .post(`${API_BASE_URL}/article/${idArticle}/favorite`, {
         user_id: userId, // je passe le user id du state
       })
       .then((response) => {
@@ -77,14 +94,24 @@ function Articles() {
                 <Card.Text className="Articles-card-description">
                   {article.description}
                 </Card.Text>
-                <Button
-                  className="Articles-card-button"
-                  variant="primary"
-                  type="submit"
-                  onClick={() => addArticleToProgram(article.id)}
-                >
-                  Ajouter au programme
-                </Button>
+                <div className="Articles-card-buttons">
+                  <Button
+                    className="Articles-card-buttons-one"
+                    variant="primary"
+                    type="submit"
+                    onClick={() => addArticleToProgram(article.id)}
+                  >
+                    Programme
+                  </Button>
+                  <Button
+                    className="Articles-card-buttons-one"
+                    variant="secondary"
+                    type="submit"
+                    onClick={() => addArticleToFavorites(article.id)}
+                  >
+                    Favoris
+                  </Button>
+                </div>
               </Card.Body>
             </Card>
           </article>

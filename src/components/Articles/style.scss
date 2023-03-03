@@ -1,17 +1,23 @@
 .Articles {
     margin : 11rem 2rem 2rem 2rem;
+
     &-card{
         display: inline-flex;
-    &-description{
-        max-height: 10rem;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
+        &-description{
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        &-buttons{
+                display: inline-flex;
+                margin-bottom: .5rem;
+                bottom: 0;
+                position: absolute;
+            &-one{
+                width: 7rem;
+            }
     }
-    &-button{
-        margin-bottom: .5rem;
-        bottom: 0;
-        position: absolute;
-    }
+
 }
+
 }
