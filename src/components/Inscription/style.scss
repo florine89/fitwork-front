@@ -1,10 +1,13 @@
 .Message {
     margin-top: 6rem;
     margin-bottom: 3rem;
+
     &-alert {
 margin-left: 44rem;
 display: flex;
 justify-content: center;
+align-items: center;
+flex-direction: column;
     };
 
     &-welcome {
@@ -17,8 +20,10 @@ justify-content: center;
     }
     &-logo {
      width: 28rem;
+     margin-top: 20rem;
      margin-left: 44rem;
      margin-bottom: 3rem;
+     justify-content: center;
 
     };
 };

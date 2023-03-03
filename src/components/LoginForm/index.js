@@ -35,6 +35,8 @@ function LoginForm({
     evt.preventDefault();
     dispatch(login());
     handleClose();
+    const path = '/';
+    navigate(path);
     // console.log('handleSubmit');
   };
   const handleLogOut = () => {

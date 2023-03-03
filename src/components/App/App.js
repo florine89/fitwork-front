@@ -38,10 +38,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route
           path="/inscription"
-          element={(
-          isLogged
-            ? <Home />
-            : <Inscription to="/" replace />)}
+          element={<Inscription />}
         />
         <Route
           path="/profil"
