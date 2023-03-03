@@ -1,6 +1,7 @@
 @use 'reset';
 @use 'vars';
+@use 'fonts';
 
 body {
-  font-family: Montserrat, sans-serif;
+  font-family: vars.$font-sans;
 }
