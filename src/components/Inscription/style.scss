@@ -2,8 +2,19 @@
     margin-top: 6rem;
     margin-bottom: 3rem;
     &-alert {
-    margin-left: 44rem;
+margin-left: 44rem;
+display: flex;
+justify-content: center;
     };
+
+    &-welcome {
+        justify-content: center;
+        align-items: center;
+    }
+
+    &-fitworkers {
+        justify-content: center;
+    }
     &-logo {
      width: 28rem;
      margin-left: 44rem;

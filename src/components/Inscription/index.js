@@ -137,9 +137,9 @@ export default function Inscription() {
             <img src={logo} className="Message-logo" alt="Logo inscription" />
             <Alert variant="dark">
               <div className="Message-alert">
-                <Alert.Heading>Super ! Votre compte a bien été crée !</Alert.Heading>
-                <p>
-                  Bienvenue dans la Team des Fit Workers !
+                <Alert.Heading className="Message-welcome">Super ! Votre compte a bien été crée !</Alert.Heading>
+                <p className="Message-fitworkers">
+                  Bienvenue dans la Team des Fit Workers !!
                 </p>
               </div>
             </Alert>
