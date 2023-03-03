@@ -10,7 +10,7 @@ import Alert from 'react-bootstrap/Alert';
 /* eslint-disable react/jsx-no-bind */
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import './Style.scss';
+import './style.scss';
 import logo from '../../assets/inscriptionok.jpg';
 
 // eslint-disable-next-line react/prop-types
