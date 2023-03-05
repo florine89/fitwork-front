@@ -13,39 +13,40 @@ function ArticleContainer() {
   const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
   const [articles, setArticles] = useState([]);
 
-  const userId = useSelector((state) => state.user.id);
-
   const { id } = useParams();
 
-  const idArticle1 = 1;
-  const idArticle2 = 2;
-  const idArticle3 = 3;
-
-  function getArticleByCategorie() {
-    axios.get(`${API_BASE_URL}/category/${id}`).then((response) => {
+  function getOneArticle() {
+    axios.get(`${API_BASE_URL}/categories/${1}`).then((response) => {
       setArticles(response.data);
     });
   }
 
   useEffect(() => {
-    getArticleByCategorie();
+    getOneArticle();
   }, [id]);
 
+  const userId = useSelector((state) => state.user.id);
+
   return (
+
     <div className="card-container">
+
       <article className="card-article">
-        <Card style={{ width: '18rem' }}>
-          <Card.Img variant="light" src={logo} />
-          <Card.Body>
-            <Card.Title>{article.title}</Card.Title>
-            <Card.Text>
-              {article.description}
-            </Card.Text>
-            <Button variant="light">Go somewhere</Button>
-          </Card.Body>
-        </Card>
+        {articles.map((categorie) => (
+          <Card style={{ width: '18rem' }}>
+            <Card.Img variant="light" src={logo} />
+            <Card.Body>
+              <Card.Title>{categorie.title}</Card.Title>
+              <Card.Text>
+                {categorie.description}
+              </Card.Text>
+              <Button variant="light">Go somewhere</Button>
+            </Card.Body>
+          </Card>
+        ))}
       </article>
-      <article className="card-article">
+
+      {/* <article className="card-article">
         <Card style={{ width: '18rem' }}>
           <Card.Img variant="light" src={logo} />
           <Card.Body>
@@ -70,7 +71,7 @@ function ArticleContainer() {
             <Button variant="light">Go somewhere</Button>
           </Card.Body>
         </Card>
-      </article>
+      </article> */}
     </div>
   );
 }

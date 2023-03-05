@@ -1,6 +1,7 @@
 import './style.scss';
 
 import { NavLink } from 'react-router-dom';
+import ArticleContainer from './Article';
 
 // import ArticleContainer from './Article';
 
@@ -16,9 +17,9 @@ function Home() {
         </span>
       </h1>
 
-      <NavLink className="home-login" to="/inscription">Pour commencer inscrivez-vous ici</NavLink>
+      <NavLink className="home-login" to="/inscription">Pour commencer, inscris-toi ici!</NavLink>
 
-      {/*     <ArticleContainer /> */}
+      <ArticleContainer />
 
     </div>
   );

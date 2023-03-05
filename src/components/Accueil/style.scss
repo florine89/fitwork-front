@@ -4,6 +4,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 2rem;
+    
+    &-login {
+        text-decoration: none;
+        color: vars.$primary;
+    }
 
     &-logo {
         margin-top: 3rem;

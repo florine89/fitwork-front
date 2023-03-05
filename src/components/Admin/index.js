@@ -1,58 +1,36 @@
 /* eslint-disable react/jsx-no-bind */
 import './style.scss';
 
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import ModifyArticles from './AdminArticles/ModifyArticles';
+import AddArticles from './AdminArticles/AddArticles';
 
-import { getCategoriesList } from '../../selectors/categories';
-import { getArticlesList } from '../../selectors/articles';
-
-function Admin() {
-  // const id = useSelector((state) => state.user.id))
-  const categories = useSelector(getCategoriesList);
-  const articles = useSelector(getArticlesList);
+function ControlledTabsExample() {
+  const [key, setKey] = useState('home');
 
   return (
-    <Form className="Admin">
+    <Tabs
+      id="controlled-tab-example"
+      activeKey={key}
+      onSelect={(k) => setKey(k)}
+      className="mb-3 tabs"
+    >
+      <Tab eventKey="ajouter un article" title="ajouter un article">
+        <AddArticles />
+      </Tab>
+      <Tab eventKey="modifier un article" title="modifier un article">
+        <ModifyArticles />
 
-      <Form.Group
-        className="mb-3"
-        controlId="category.ControlSelect"
-      >
-        <Form.Label>Choisi ta catégorie</Form.Label>
-        <Form.Select aria-label="Liste des catégories">
-          {categories.map((category) => (
-            <option
-              key={category.name}
-            >
-              {category.name}
-            </option>
-          ))}
-        </Form.Select>
-      </Form.Group>
+      </Tab>
+      <Tab eventKey="supprimer un article" title="supprimer un article">
+        <ModifyArticles />
 
-      <Form.Group
-        className="mb-3"
-        controlId="article.ControlSelect"
-      >
-        <Form.Label>Choisi ton article</Form.Label>
-        <Form.Select aria-label="Liste des articles">
-          {articles.map((article) => (
-            <option
-              key={article.id}
-            >
-              {article.title}
-            </option>
-          ))}
-        </Form.Select>
-      </Form.Group>
-
-      <Button className="Profil-button" type="submit">Modifier mes informations</Button>
-
-    </Form>
+      </Tab>
+    </Tabs>
   );
 }
 
-export default Admin;
+export default ControlledTabsExample;
