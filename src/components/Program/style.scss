@@ -5,8 +5,26 @@
     margin-top:2rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
 
     &-title {
-        color: vars.$secondary;
+        color: vars.$dark;
+    }
+
+    &-input{
+        display: inline-flex;
+        border-radius: 0;
+
+        &-article{
+            width: 35rem;
+            height: 3rem;
+            background-color: vars.$danger;
+            border-radius: 0;
+        }
+        &-bin{
+            border-radius: 0;
+            flex-grow: 1;
+            margin-bottom: .125rem;
+    }
     }
 }

@@ -68,6 +68,7 @@ function Articles() {
   }
 
   // ajouter un article aux favoris
+  // TODO gérer pour les favoris l'ajout du favoris 1 seule fois sinon erreur
 
   /**
    * La fonction permet d'ajouter un article aux favoris sur le onClick.

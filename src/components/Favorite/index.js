@@ -82,23 +82,6 @@ function Favorite() {
   }
 
   return (
-  /*     <div className="program">
-      <h1 className="program-title">Mes Favoris :</h1>
-      {articles.map((article) => (
-        <Form key={article.id}>
-          {['checkbox'].map((type) => (
-            <div className="mb-3" key={article.id}>
-              <Form.Check
-                key={article.id}
-                type={type}
-                id={`default-${type}`}
-                label={article.title}
-              />
-            </div>
-          ))}
-        </Form>
-      ))}
-    </div> */
 
     <div className="Articles">
       <h1>Mes favoris</h1>
