@@ -111,7 +111,13 @@ function Articles() {
                         onClick={() => addArticleToProgram(article.id)}
                       >à mon programme
                       </Dropdown.Item>
-                      <Dropdown.Item eventKey="2">à mes favoris</Dropdown.Item>
+                      <Dropdown.Item
+                        eventKey="2"
+                        type="submit"
+                        onClick={() => addArticleToFavorites(article.id)}
+                      >
+                        à mes favoris
+                      </Dropdown.Item>
                     </DropdownButton>
                   </ButtonGroup>
 
