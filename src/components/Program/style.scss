@@ -2,15 +2,27 @@
 
 .program {
 
-    width: auto;
+    margin:2rem;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
-    margin-top:15rem;
-    
+
+
     &-title {
-        color: vars.$secondary;
+        color: vars.$dark;
     }
 
+    &-input{
+        color: vars.$dark;
+
+        &-article{
+            background-color: vars.$light;
+            display: flex;
+            align-items: center;
+        }
+        &-bin{
+            margin-right: 1rem;
+            color: vars.$primary;
+    }
+    }
 }

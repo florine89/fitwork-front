@@ -12,32 +12,71 @@ import Row from 'react-bootstrap/Row';
 import axios from 'axios';
 import { saveUser } from '../../actions/user';
 
-function Profil() {
-  const id = useSelector((state) => state.user.id);
+const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
 
+function Profil() {
+  /// Propriété Bootstrap
+  // permet d'activer la propriété validated de Bootstrap sur le formulaire
   const [validated, setValidated] = useState(false);
-  // change c'est la valeur initiale
-  // handlechange va appeler setchange pour changer la valeur
-  // usestate c'est l'initialisation du state
 
   const handleSubmit = (event) => {
+    // a la soumission du formulaire, évite le rafraichissement de la page par exemple
     event.preventDefault();
 
+    // permet de contrôler le formulaire avec Bootstrap
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
-
+    // change le state et passe visuellement le formulaire à True (Check ok)
     setValidated(true);
-    // console.log('handlesubmit');
   };
 
+  /// Affichage et modification du formulaire
+  // j'importe l'id du user stocké à partir du state de Redux
+  const id = useSelector((state) => state.user.id);
+
+  // Déclaration d'un state initial 'vide' pour les différents champs du formulaire
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [birthday, setBirthday] = useState('');
 
+  const [data, setData] = useState([]);
+
+  /**
+   * Cette fonction permet de récupérer les données du profil en fonction de
+   * l'id du user connecté
+   * Les données sont alors affichée dans le champ du formulaire en tant que "defaultValue"
+   */
+  function getProfil() {
+    axios
+      .get(`${API_BASE_URL}/user/${id}`)
+      .then((response) => {
+        setData(response.data);
+        // console.log(response.data);
+        setLastname(response.data.lastname);
+        setFirstname(response.data.firstname);
+        setEmail(response.data.email);
+        setBirthday(response.data.birthday);
+      });
+  }
+
+  // Avec le hook de React, j'affiche au premier rendu de ma page les données
+  useEffect(() => {
+    getProfil();
+  }, []);
+
+  /// Fonction pour modifier les informations de profil
+
+  /**
+   * Cette fonction permet de vérifier lors de la modification d'un champ
+   * - de quel champ il s'agit
+   * - compare le nom du champ avec celui attendu
+   * - on nourri le state avec la nouvelle valeur
+   * @param {*} event , il s'agit de l'evenement sur lequel j'effectue mon Change
+   */
   function handleChange(event) {
     if (event.target.name === 'firstname') {
       setFirstname(event.target.value);
@@ -53,34 +92,17 @@ function Profil() {
     }
   }
 
-  // appel API
-
-  const baseURL = 'http://barrealexandre-server.eddi.cloud:8080/api';
-
-  const [data, setData] = useState([]);
-
-  function getProfil() {
-    axios
-      .get(`${baseURL}/user/${id}`)
-      .then((response) => {
-        setData(response.data);
-        console.log(response.data);
-        setLastname(response.data.lastname);
-        setFirstname(response.data.firstname);
-        setEmail(response.data.email);
-        setBirthday(response.data.birthday);
-      });
-  }
-
-  useEffect(() => {
-    getProfil();
-  }, []);
-
-  // fonction pour modifier les informations de profil
   const dispatch = useDispatch();
+
+  /**
+   * useDispatch permet d'envoyer les modifcations dans le store
+   * via l'action saveUser
+   * Les données récupérées lors de la modification d'un champ
+   * sont enregistrées en BDD
+   */
   function updateProfil() {
     axios
-      .patch(`${baseURL}/user/${id}`, {
+      .patch(`${API_BASE_URL}/user/${id}`, {
         firstname,
         lastname,
         email,
@@ -88,13 +110,13 @@ function Profil() {
       })
       .then((response) => {
         dispatch(saveUser(response.data));
-        console.log('update user', response);
+        // console.log('update user', response);
       });
   }
 
   return (
     <Form className="Profil" noValidate validated={validated} onSubmit={handleSubmit}>
-      <Row className="mb-3">
+      <Row className="mb-3 Profil-input">
         <Form.Group
           as={Col}
           md="4"
@@ -149,8 +171,6 @@ function Profil() {
             </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
-      </Row>
-      <Row className="mb-3">
         <Form.Group
           as={Col}
           md="4"
@@ -169,8 +189,8 @@ function Profil() {
             Please provide a valid date.
           </Form.Control.Feedback>
         </Form.Group>
+        <Button className="Profil-button" type="submit" onClick={updateProfil}>Modifier mes informations</Button>
       </Row>
-      <Button className="Profil-button" type="submit" onClick={updateProfil}>Modifier mes informations</Button>
     </Form>
   );
 }
