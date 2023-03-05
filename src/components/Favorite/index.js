@@ -84,7 +84,7 @@ function Favorite() {
   return (
 
     <div className="Articles">
-      <h1>Mes favoris</h1>
+      <h1 className="Articles-title">Mes favoris</h1>
       <Form className="Articles-form" onSubmit={handleSubmit}>
         {articles.map((article) => (
           <article key={article.id} className="Articles-card">

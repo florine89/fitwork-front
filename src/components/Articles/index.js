@@ -13,6 +13,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 
+import { getCategoriesList } from '../../selectors/categories';
 import logo from '../../assets/femmebureau.jpg';
 
 const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
@@ -32,6 +33,20 @@ function Articles() {
       setArticles(response.data); // j'importe mes data dans le state local
     });
   }
+
+  // TODO Afficher le nom de la category
+
+  const categories = useSelector(getCategoriesList);
+  /* function getCategoryName() {
+    const categoryName = categories.find((category) => {
+      console.log('category id', category.id);
+      console.log('id use params', id);
+      // eslint-disable-next-line eqeqeq
+      return category.id == id;
+    });
+    console.log('categoryName', categoryName);
+    return categoryName;
+  } */
 
   /**
    * A chaque changement d'id, useEffect rappelle la fonction concernée et met à jour l'affichage
@@ -87,7 +102,8 @@ function Articles() {
 
   return (
     <div className="Articles">
-      <h1>Articles disponibles pour la categorie</h1>
+      <h1 className="Articles-title">Articles disponibles pour la categorie</h1>
+
       <Form className="Articles-form" onSubmit={handleSubmit}>
         {articles.map((article) => (
           <article key={article.id} className="Articles-card">

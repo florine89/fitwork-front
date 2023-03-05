@@ -31,7 +31,7 @@ function Program() {
 
   return (
     <div className="program">
-      <h1 className="program-title">Mon Programme :</h1>
+      <h1 className="program-title">Mon Programme</h1>
       <Counter number={number} />
       {articles.map((article) => (
         <ListGroup key={article.id}>
