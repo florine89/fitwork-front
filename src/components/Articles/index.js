@@ -53,7 +53,7 @@ function Articles() {
   }
 
   /**
- * La fonction permet d'ajouter un article aux favoris sur le onClick.
+ * La fonction permet d'ajouter un article au programme sur le onClick.
  * @param {*} idArticle Sur le onClick, on lui passe l'arguemnt article.id.
  * La fonction anonyme évite que la fonction ne s'exécute seule au rendu.
  */
