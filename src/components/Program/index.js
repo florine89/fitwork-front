@@ -4,9 +4,12 @@ import { useSelector } from 'react-redux';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 import Icon from '../ui/Icon';
 import './style.scss';
+
+import Counter from './Counter';
 
 const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
 
@@ -23,33 +26,36 @@ function Program() {
   }, [id]);
 
   // TODO coder la route delete
+  // TODO counter ?
+  const number = 1;
 
   return (
     <div className="program">
       <h1 className="program-title">Mon Programme :</h1>
-
+      <Counter number={number} />
       {articles.map((article) => (
-        <Form key={article.id}>
+        <ListGroup key={article.id}>
           {['checkbox'].map((type) => (
             <div className="mb-3 program-input" key={article.id}>
-              <Form.Check
-                className="program-input-article"
-                key={article.id}
-                type={type}
-                id={`default-${type}`}
-                label={article.title}
-              />
-              <Button
-                type="submit"
-                variant="info"
-                className="program-input-bin"
-              >
-                <Icon icon="bin" size="1rem" />
-              </Button>
+              <ListGroup.Item className="program-input-article">
+                <Button
+                  type="submit"
+                  variant="info"
+                  className="program-input-bin"
+                >
+                  <Icon icon="bin" size="1rem" />
+                </Button>
+                <Form.Check
+                  key={article.id}
+                  type={type}
+                  id={`default-${type}`}
+                  label={article.title}
+                />
 
+              </ListGroup.Item>
             </div>
           ))}
-        </Form>
+        </ListGroup>
       ))}
     </div>
   );

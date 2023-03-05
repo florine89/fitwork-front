@@ -2,29 +2,26 @@
 
 .program {
 
-    margin-top:2rem;
+    margin:2rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
+
 
     &-title {
         color: vars.$dark;
     }
 
     &-input{
-        display: inline-flex;
-        border-radius: 0;
+        color: vars.$dark;
 
         &-article{
-            width: 35rem;
-            height: 3rem;
-            background-color: vars.$danger;
-            border-radius: 0;
+            background-color: vars.$light;
+            display: flex;
+            align-items: center;
         }
         &-bin{
-            border-radius: 0;
-            flex-grow: 1;
-            margin-bottom: .125rem;
+            margin-right: 1rem;
+            color: vars.$primary;
     }
     }
 }
