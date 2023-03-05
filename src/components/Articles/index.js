@@ -7,6 +7,9 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 
@@ -95,7 +98,24 @@ function Articles() {
                   {article.description}
                 </Card.Text>
                 <div className="Articles-card-buttons">
-                  <Button
+
+                  <ButtonGroup vertical>
+                    <DropdownButton
+                      as={ButtonGroup}
+                      title="Ajouter l'article"
+                      id="bg-vertical-dropdown-1"
+                    >
+                      <Dropdown.Item
+                        eventKey="1"
+                        type="submit"
+                        onClick={() => addArticleToProgram(article.id)}
+                      >à mon programme
+                      </Dropdown.Item>
+                      <Dropdown.Item eventKey="2">à mes favoris</Dropdown.Item>
+                    </DropdownButton>
+                  </ButtonGroup>
+
+                  {/*                   <Button
                     className="Articles-card-buttons-one"
                     variant="primary"
                     type="submit"
@@ -110,7 +130,8 @@ function Articles() {
                     onClick={() => addArticleToFavorites(article.id)}
                   >
                     Favoris
-                  </Button>
+                  </Button> */}
+
                 </div>
               </Card.Body>
             </Card>

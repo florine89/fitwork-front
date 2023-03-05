@@ -1,13 +1,13 @@
 @use 'src/styles/vars';
 
-.program {
+.favorite {
 
     width: auto;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
-    margin-top:15rem;
+    margin-top:2rem;
     
     &-title {
         color: vars.$secondary;
