@@ -51,7 +51,7 @@ function Favorite() {
 
   /**
  * La fonction permet d'ajouter un article au programme sur le onClick.
- * @param {*} idArticle Sur le onClick, on lui passe l'arguemnt article.id.
+ * @param {*} idArticle Sur le onClick, on lui passe l'arguemnt article_id.
  * La fonction anonyme évite que la fonction ne s'exécute seule au rendu.
  */
   function addArticleToProgram(idArticle) {
@@ -64,8 +64,13 @@ function Favorite() {
       });
   }
 
-  // TODO delete un article des favoris
+  // Delete un article des favoris
+  // TODO passer un paramètre dans les dépendances afin d'afficher les articles modifiés
 
+  /**
+   * Cette fonction permet de supprimer un article des favoris du user
+   * @param {*} idArticle ici, idArticle correspond à article_id
+   */
   function deleteOneArticleFromFavorite(idArticle) {
     axios
       .delete(`${API_BASE_URL}/article/${idArticle}/favorite`, {
