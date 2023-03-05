@@ -19,14 +19,15 @@
     }
 
     &-title {
-        padding-top: 2rem;
+        margin-top: 1rem;
         color: vars.$primary;
-
+        
     &-big {
         color: vars.$secondary;
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: 3rem;    
     }
 
     &-small {
@@ -35,5 +36,9 @@
         font-size: 2rem;
     }
 
+    &-login {
+        margin: 5rem;
+        padding: 2rem;
+    }
 }
 }

@@ -2,26 +2,51 @@ import './style.scss';
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import logo from '../../../assets/femmebureau.jpg';
 //
 function ArticleContainer() {
+  const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
+  const [articles, setArticles] = useState([]);
+
+  const { id } = useParams();
+
+  function getOneArticle() {
+    axios.get(`${API_BASE_URL}/categories/${1}`).then((response) => {
+      setArticles(response.data);
+    });
+  }
+
+  useEffect(() => {
+    getOneArticle();
+  }, [id]);
+
+  const userId = useSelector((state) => state.user.id);
+
   return (
+
     <div className="card-container">
+
       <article className="card-article">
-        <Card style={{ width: '18rem' }}>
-          <Card.Img variant="light" src={logo} />
-          <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Card.Text>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </Card.Text>
-            <Button variant="light">Go somewhere</Button>
-          </Card.Body>
-        </Card>
+        {articles.map((categorie) => (
+          <Card style={{ width: '18rem' }}>
+            <Card.Img variant="light" src={logo} />
+            <Card.Body>
+              <Card.Title>{categorie.title}</Card.Title>
+              <Card.Text>
+                {categorie.description}
+              </Card.Text>
+              <Button variant="light">Go somewhere</Button>
+            </Card.Body>
+          </Card>
+        ))}
       </article>
-      <article className="card-article">
+
+      {/* <article className="card-article">
         <Card style={{ width: '18rem' }}>
           <Card.Img variant="light" src={logo} />
           <Card.Body>
@@ -46,9 +71,8 @@ function ArticleContainer() {
             <Button variant="light">Go somewhere</Button>
           </Card.Body>
         </Card>
-      </article>
+      </article> */}
     </div>
   );
 }
-
 export default ArticleContainer;
