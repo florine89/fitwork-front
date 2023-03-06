@@ -14,6 +14,7 @@ import Articles from '../Articles';
 import Admin from '../Admin';
 import Categories from '../Categories';
 import Page from '../../page';
+import Favoris from '../Favorite';
 import { fetchCategories } from '../../actions/categories';
 
 import './App.scss';
@@ -48,7 +49,7 @@ function App() {
           <Route path="/categories" element={<Categories />} />
           <Route path="/categorie/:id" element={<Articles />} />
           <Route path="/programme" element={<Program />} />
-          <Route path="/favoris" element={<h1>favoris</h1>} />
+          <Route path="/favoris" element={<Favoris />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
