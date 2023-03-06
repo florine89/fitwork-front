@@ -13,9 +13,9 @@
 
     &-logo {
         margin-top: 3rem;
-        padding-top: 7rem;
-        padding-bottom: 7rem;
+        padding-top: 3rem;
         width: 50rem;
+        font-size: 10rem;
     }
 
     &-title {
@@ -40,5 +40,10 @@
         margin: 5rem;
         padding: 2rem;
     }
+}
+
+&-description {
+    font-size: 1.5rem;
+    padding-bottom: 5rem;
 }
 }

@@ -3,7 +3,7 @@ import './style.scss';
 
 import { NavLink } from 'react-router-dom';
 import ArticleContainer from './Article';
-// import { logo2 } from '../../assets/Home.jpg';
+import logo2 from '../../assets/Home.jpg';
 
 // import ArticleContainer from './Article';
 
@@ -17,12 +17,12 @@ function Home() {
           <span className="home-title-small">
             Pour travailler sainement.
           </span>
-          {/*          <img src={logo2} alt="home-image" /> */}
+          <img src={logo2} alt="home-image" className="home-logo" />
         </h1>
       </div>
 
       <h2 className="home-description">
-        Cette application
+        FitWork vous suit au quotidien
       </h2>
 
       <NavLink className="home-login" to="/inscription">Découvres tous nos conseils bien-être en t'inscrivant ici!</NavLink>
