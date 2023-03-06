@@ -1,4 +1,4 @@
-.card{
+.card{ 
     
     &-container{
    // z-index: -100;
@@ -6,12 +6,21 @@
     flex-wrap: wrap;
     justify-content: space-around;
     margin: 0.5rem;
+    overflow-x: hidden;
     }
 
     &-article{
         margin: 0.5rem;
         display: flex;
         flex-direction: row;
+    }
+}
 
+@media screen and (max-width: 850px) {
+    .card-article {
+        display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
     }
 }
