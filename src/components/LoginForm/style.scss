@@ -1,6 +1,10 @@
 @import '../../styles/custom.scss';
 
 .login {
+    &-button{
+        width: 14rem;
+        margin: 1rem;
+    }
     &-form {
         justify-content: center;
     }

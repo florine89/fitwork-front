@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import './style.scss';
 
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -37,22 +37,28 @@ function Articles() {
   // TODO Afficher le nom de la category
 
   const categories = useSelector(getCategoriesList);
-  /* function getCategoryName() {
+
+  /**
+   * On récupère la liste des catégories dans le state de redux
+   * @returns le nom de la categorie
+   */
+  function getCategoryName() {
     const categoryName = categories.find((category) => {
       console.log('category id', category.id);
       console.log('id use params', id);
       // eslint-disable-next-line eqeqeq
       return category.id == id;
     });
-    console.log('categoryName', categoryName);
-    return categoryName;
-  } */
+    console.log('categoryName', categoryName.name);
+    return categoryName.name;
+  }
 
   /**
    * A chaque changement d'id, useEffect rappelle la fonction concernée et met à jour l'affichage
    */
   useEffect(() => {
     getArticleByCategorie();
+    getCategoryName();
   }, [id]);
 
   // ajouter un article au programme
@@ -102,15 +108,16 @@ function Articles() {
 
   return (
     <div className="Articles">
-      <h1 className="Articles-title">Articles disponibles pour la categorie</h1>
-
+      <h1 className="Articles-title">
+        Articles disponibles pour la categorie
+      </h1>
       <Form className="Articles-form" onSubmit={handleSubmit}>
         {articles.map((article) => (
           <article key={article.id} className="Articles-card">
             <Card style={{ width: '18rem', height: '25rem' }}>
               <Card.Img variant="top" src={logo} />
               <Card.Body>
-                <Card.Title>{article.title}</Card.Title>
+                <Card.Title as={NavLink} to={`/article/${article.id}`}>{article.title}</Card.Title>
                 <Card.Text className="Articles-card-description">
                   {article.description}
                 </Card.Text>
