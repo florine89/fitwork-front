@@ -25,7 +25,8 @@ function Home() {
         L'application FitWork te suit au bureau !
       </p>
       <p className="home-description2">
-        Retrouve pleins de conseils variés afin de rester actif et sans stress
+        Une application de conseils, avec des exercices
+        physiques et relaxant, pour maintenir votre bien-être au travail
       </p>
 
       <NavLink className="home-login" to="/inscription">Découvres tous nos conseils bien-être en t'inscrivant ici!</NavLink>
