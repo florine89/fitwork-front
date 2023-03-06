@@ -5,7 +5,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Alert from 'react-bootstrap/Alert';
 
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { getCategoriesList } from '../../../selectors/categories';
 import logo from '../../../assets/inscriptionok.jpg';
@@ -15,6 +15,7 @@ function AddArticles() {
   const [description, setDescription] = useState('');
   const [selectCategory, setSelectCategory] = useState('');
   const [success, setSuccess] = useState(false);
+  const refForm = useRef(null);
 
   const categories = useSelector(getCategoriesList);
   const id = useSelector((state) => state.user.id);
@@ -40,6 +41,10 @@ function AddArticles() {
   }
   function handleSubmit(evt) {
     evt.preventDefault();
+    // video 22:00
+    // if (!refForm) {
+    //   return;
+    // }
     // console.log('submit');
   }
 
@@ -64,7 +69,13 @@ function AddArticles() {
   return (
     <>
       { !success && (
-        <Form onSubmit={handleSubmit}>
+        <Form
+          ref={refForm}
+          // mettre le chemin ou sera envoyer l'image(video 20:00)
+          // action="/upload"
+          method="POST"
+          onSubmit={handleSubmit}
+        >
           <Form.Group
             className="mb-3"
             controlId="formBasicEmail"
@@ -103,22 +114,6 @@ function AddArticles() {
 
             </Form.Select>
           </Form.Group>
-          {/* <Dropdown>
-            <Dropdown.Toggle id="dropdown-basic" name="category" onChange={handleChange}>
-              choisissez votre catégorie
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {categories.map((category) => (
-                <Dropdown.Item
-                  // as={NavLink}
-                  key={category.id}
-                  to={`/categorie/${category.id}`}
-                >
-                  {category.name}
-                </Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown> */}
           <Button variant="primary" type="submit" onClick={createUser}>
             Enregistrer
           </Button>
