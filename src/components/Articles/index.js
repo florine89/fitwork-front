@@ -37,22 +37,28 @@ function Articles() {
   // TODO Afficher le nom de la category
 
   const categories = useSelector(getCategoriesList);
-  /* function getCategoryName() {
+
+  /**
+   * On récupère la liste des catégories dans le state de redux
+   * @returns le nom de la categorie
+   */
+  function getCategoryName() {
     const categoryName = categories.find((category) => {
       console.log('category id', category.id);
       console.log('id use params', id);
       // eslint-disable-next-line eqeqeq
       return category.id == id;
     });
-    console.log('categoryName', categoryName);
-    return categoryName;
-  } */
+    console.log('categoryName', categoryName.name);
+    return categoryName.name;
+  }
 
   /**
    * A chaque changement d'id, useEffect rappelle la fonction concernée et met à jour l'affichage
    */
   useEffect(() => {
     getArticleByCategorie();
+    getCategoryName();
   }, [id]);
 
   // ajouter un article au programme
@@ -102,8 +108,9 @@ function Articles() {
 
   return (
     <div className="Articles">
-      <h1 className="Articles-title">Articles disponibles pour la categorie</h1>
-
+      <h1 className="Articles-title">
+        Articles disponibles pour la categorie
+      </h1>
       <Form className="Articles-form" onSubmit={handleSubmit}>
         {articles.map((article) => (
           <article key={article.id} className="Articles-card">

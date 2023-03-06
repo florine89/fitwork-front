@@ -5,6 +5,8 @@ import Nav from 'react-bootstrap/Nav';
 import { Link, NavLink } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Button from 'react-bootstrap/Button';
+
 import { useSelector } from 'react-redux';
 import { NavItem } from 'react-bootstrap';
 import logo from '../../assets/fitworkblu.png';
@@ -61,14 +63,25 @@ function Header() {
                   <Nav.Link as={NavLink} to="/">Accueil</Nav.Link>
                 </NavItem>
                 <Nav.Item>
-                  <Nav.Link as={NavLink} to="/inscription">S'inscrire</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
                   <Nav.Link as={NavLink} to="/contact">Contact</Nav.Link>
                 </Nav.Item>
+
               </>
             )}
           </Nav>
+          {!isLogged && (
+          <Button
+            as={NavLink}
+            className="login-button"
+            variant="outline-secondary"
+            to="/inscription"
+            size="lg"
+          >
+            S'inscrire
+          </Button>
+          )}
+
+          {/* <Nav.Link as={NavLink} to="/inscription">S'inscrire</Nav.Link> */}
           <LoginForm />
         </Navbar.Collapse>
       </Container>

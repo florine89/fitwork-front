@@ -2,6 +2,7 @@ import './style.scss';
 
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+
 import axios from 'axios';
 
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -26,11 +27,12 @@ function Article() {
   return (
     <div className="Article">
       <ListGroup variant="flush">
-        <ListGroup.Item>{article.title}</ListGroup.Item>
-        <ListGroup.Item>{article.description}</ListGroup.Item>
+        <ListGroup.Item>Titre: {article.title}</ListGroup.Item>
+        <ListGroup.Item>Description: {article.description}</ListGroup.Item>
 
-        {/*         <ListGroup.Item>{article.time}</ListGroup.Item>
-        <ListGroup.Item>{article.type}</ListGroup.Item> */}
+        <ListGroup.Item>
+          Type: {!article.type ? 'pas de type renseigné' : article.type}
+        </ListGroup.Item>
       </ListGroup>
     </div>
   );
