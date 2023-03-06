@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import './style.scss';
 
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -110,7 +110,7 @@ function Articles() {
             <Card style={{ width: '18rem', height: '25rem' }}>
               <Card.Img variant="top" src={logo} />
               <Card.Body>
-                <Card.Title>{article.title}</Card.Title>
+                <Card.Title as={NavLink} to={`/article/${article.id}`}>{article.title}</Card.Title>
                 <Card.Text className="Articles-card-description">
                   {article.description}
                 </Card.Text>

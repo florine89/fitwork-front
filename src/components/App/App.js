@@ -11,6 +11,7 @@ import Home from '../Accueil';
 import NotFound from '../404';
 import Program from '../Program';
 import Articles from '../Articles';
+import Article from '../Articles/Article';
 import Admin from '../Admin';
 import Categories from '../Categories';
 import Page from '../../page';
@@ -48,6 +49,7 @@ function App() {
           <Route path="/administrateur" element={<Admin />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/categorie/:id" element={<Articles />} />
+          <Route path="/article/:id" element={<Article />} />
           <Route path="/programme" element={<Program />} />
           <Route path="/favoris" element={<Favoris />} />
 
