@@ -43,7 +43,15 @@
 }
 
 &-description {
-    font-size: 1.5rem;
-    padding-bottom: 5rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: vars.$danger;
+}
+
+&-description2 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: vars.$danger;
+    padding-bottom: 3rem;
 }
 }

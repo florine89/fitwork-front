@@ -21,9 +21,12 @@ function Home() {
         </h1>
       </div>
 
-      <h2 className="home-description">
-        FitWork vous suit au quotidien
-      </h2>
+      <p className="home-description">
+        L'application FitWork te suit au bureau !
+      </p>
+      <p className="home-description2">
+        Retrouve pleins de conseils variés afin de rester actif et sans stress
+      </p>
 
       <NavLink className="home-login" to="/inscription">Découvres tous nos conseils bien-être en t'inscrivant ici!</NavLink>
       <ArticleContainer />
