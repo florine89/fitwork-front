@@ -16,9 +16,13 @@ function ArticleContainer() {
   const { id } = useParams();
 
   function getOneArticle() {
-    axios.get(`${API_BASE_URL}/categories/${1}`).then((response) => {
+    axios.get(`${API_BASE_URL}/articles`).then((response) => {
       setArticles(response.data);
     });
+  }
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * 4);
   }
 
   useEffect(() => {
@@ -32,13 +36,13 @@ function ArticleContainer() {
     <div className="card-container">
 
       <article className="card-article">
-        {articles.map((categorie) => (
-          <Card style={{ width: '18rem' }}>
+        {articles.slice(0, 3).map((article) => (
+          <Card key={article.id} style={{ width: '18rem' }}>
             <Card.Img variant="light" src={logo} />
             <Card.Body>
-              <Card.Title>{categorie.title}</Card.Title>
+              <Card.Title>{article.title}</Card.Title>
               <Card.Text>
-                {categorie.description}
+                {article.description}
               </Card.Text>
               <Button variant="light">Go somewhere</Button>
             </Card.Body>
