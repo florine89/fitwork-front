@@ -21,16 +21,14 @@ function ArticleContainer() {
     });
   }
 
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * 4);
-  }
-
   useEffect(() => {
     getOneArticle();
   }, [id]);
 
   const userId = useSelector((state) => state.user.id);
 
+  // on fait un .slice.map pour afficher les 3 premiers articles
+  // puis on dynamise avec article.title et article.description
   return (
 
     <div className="card-container">
@@ -44,7 +42,6 @@ function ArticleContainer() {
               <Card.Text>
                 {article.description}
               </Card.Text>
-              <Button variant="light">Go somewhere</Button>
             </Card.Body>
           </Card>
         ))}
