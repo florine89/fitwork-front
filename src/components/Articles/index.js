@@ -109,7 +109,7 @@ function Articles() {
   return (
     <div className="Articles">
       <h1 className="Articles-title">
-        Articles disponibles pour la categorie {getCategoryName()}
+        Nos articles "{getCategoryName()}"
       </h1>
       <Form className="Articles-form" onSubmit={handleSubmit}>
         {articles.map((article) => (
@@ -117,7 +117,7 @@ function Articles() {
             <Card style={{ width: '18rem', height: '25rem' }}>
               <Card.Img variant="top" src={logo} />
               <Card.Body>
-                <Card.Title as={NavLink} to={`/article/${article.id}`}>{article.title}</Card.Title>
+                <Card.Title as={NavLink} to={`/article/${article.id}`} className="Articles-card-title">{article.title}</Card.Title>
                 <Card.Text className="Articles-card-description">
                   {article.description}
                 </Card.Text>

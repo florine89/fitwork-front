@@ -1,3 +1,9 @@
 .Article{
     margin: 2rem;
+    display: flex;
+    justify-content: center;
+
+    &-image{
+        width: 20rem;
+    }
 }
