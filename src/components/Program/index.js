@@ -50,26 +50,22 @@ function Program() {
       <Form onSubmit={handleSubmit}>
         {articles.map((article) => (
           <ListGroup key={article.program_id}>
-            {['checkbox'].map((type) => (
-              <div className="mb-3 program-input" key={article.program_id}>
-                <ListGroup.Item className="program-input-article">
-                  <Button
-                    type="submit"
-                    variant="info"
-                    className="program-input-bin"
-                    onClick={() => deleteArticleProgram(article.program_id)}
-                  >
-                    <Icon icon="bin" size="1rem" />
-                  </Button>
-                  <Form.Check
-                    key={article.id}
-                    type={type}
-                    id={`default-${type}`}
-                    label={article.title}
-                  />
-                </ListGroup.Item>
-              </div>
-            ))}
+            <div className="mb-3 program-input" key={article.program_id}>
+              <ListGroup.Item className="program-input-article">
+                <Button
+                  type="submit"
+                  variant="info"
+                  className="program-input-bin"
+                  onClick={() => deleteArticleProgram(article.program_id)}
+                >
+                  <Icon icon="bin" size="1rem" />
+                </Button>
+                <Form.Check
+                  key={article.id}
+                  label={article.title}
+                />
+              </ListGroup.Item>
+            </div>
           </ListGroup>
         ))}
       </Form>
