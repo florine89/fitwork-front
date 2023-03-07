@@ -8,6 +8,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
+import Icon from '../ui/Icon';
 import './style.scss';
 import logo from '../../assets/femmebureau.jpg';
 
@@ -76,6 +77,8 @@ function Favorite() {
       })
       .then((response) => {
         console.log((response.data));
+        const newArticles = articles.filter((article) => article.article_id !== idArticle);
+        setArticles(newArticles);
       });
   }
 
@@ -85,7 +88,7 @@ function Favorite() {
       <h1 className="Articles-title">Mes favoris</h1>
       <Form className="Articles-form" onSubmit={handleSubmit}>
         {articles.map((article) => (
-          <article key={article.id} className="Articles-card">
+          <article key={article.article_id} className="Articles-card">
             <Card style={{ width: '18rem', height: '25rem' }}>
               <Card.Img variant="top" src={logo} />
               <Card.Body>
@@ -110,7 +113,7 @@ function Favorite() {
                       type="submit"
                       onClick={() => deleteOneArticleFromFavorite(article.article_id)}
                     >
-                      Retirer des fav
+                      <Icon icon="bin" size="1rem" />
                     </Button>
                   </ButtonGroup>
 
