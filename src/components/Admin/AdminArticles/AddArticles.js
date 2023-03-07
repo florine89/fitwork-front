@@ -21,6 +21,13 @@ function AddArticles() {
   const id = useSelector((state) => state.user.id);
 
   const baseURL = 'http://barrealexandre-server.eddi.cloud:8080/api';
+  /**
+ * Cette fonction permet de vérifier lors de la modification d'un champ
+ * - de quel champ il s'agit
+ * - compare le nom du champ avec celui attendu
+ * - on nourri le state avec la nouvelle valeur
+ * @param {*} event , il s'agit de l'evenement sur lequel j'effectue mon Change
+ */
 
   function handleChange(evt) {
     // console.log(evt.target.name);
@@ -39,6 +46,7 @@ function AddArticles() {
     console.log('changeCat', selectCategory);
     // console.log('changeselectCategory', setSelectCategory);
   }
+
   function handleSubmit(evt) {
     evt.preventDefault();
     // video 22:00
