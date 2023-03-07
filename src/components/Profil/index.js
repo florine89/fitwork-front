@@ -90,14 +90,14 @@ function Profil() {
     }
   }
 
-  const dispatch = useDispatch();
-
   /**
    * useDispatch permet d'envoyer les modifcations dans le store
    * via l'action saveUser
    * Les données récupérées lors de la modification d'un champ
    * sont enregistrées en BDD
    */
+  const dispatch = useDispatch();
+
   function updateProfil() {
     axios
       .patch(`${process.env.REACT_APP_API_BASE_URL}/user/${id}`, {

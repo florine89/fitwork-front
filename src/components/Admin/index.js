@@ -25,10 +25,10 @@ function ControlledTabsExample() {
         <ModifyArticles />
 
       </Tab>
-      <Tab eventKey="supprimer un article" title="supprimer un article">
+      {/* <Tab eventKey="supprimer un article" title="supprimer un article">
         <ModifyArticles />
 
-      </Tab>
+      </Tab> */}
     </Tabs>
   );
 }
