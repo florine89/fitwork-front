@@ -41,14 +41,16 @@ function Program() {
       setArticles(response.data);
     });
   }, [id]);
-  // TODO coder la route delete
-  // TODO counter ?
-  const number = 1;
+
+  // cette const recupère le tableau des articles et filtre le nombre d'article
+  const undoneArticles = articles.filter(({ article }) => !article);
+  // on récupère les tâches effectuées
+  // const doneArticles = articles.filter(({ done }) => done);
 
   return (
     <div className="program">
       <h1 className="program-title">Mon Programme</h1>
-      <Counter number={number} />
+      <Counter number={undoneArticles.length} />
       <Form onSubmit={handleSubmit}>
         {articles.map((article) => (
           <ListGroup>
