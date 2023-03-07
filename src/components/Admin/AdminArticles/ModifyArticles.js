@@ -27,26 +27,27 @@ export default function ModifyArticles() {
   // const categories = useSelector(getCategoriesList);
   // const articles = useSelector(getArticlesList);
 
-  /**
-   * useDispatch permet d'envoyer les modifcations dans le store
-   * via l'action saveUser
-   * Les données récupérées lors de la modification d'un champ
-   * sont enregistrées en BDD
-   */
+  // /**
+  //  * useDispatch permet d'envoyer les modifcations dans le store
+  //  * via l'action saveUser
+  //  * Les données récupérées lors de la modification d'un champ
+  //  * sont enregistrées en BDD
+  //  */
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+
   /// Affichage et modification du formulaire
   // j'importe l'id du user stocké à partir du state de Redux
   const id = useSelector((state) => state.user.id);
-  const [validated, setValidated] = useState(false);
+  // const [validated, setValidated] = useState(false);
 
-  const handleSubmit = (event) => {
-    // a la soumission du formulaire, évite le rafraichissement de la page par exemple
-    event.preventDefault();
+  // const handleSubmit = (event) => {
+  //   // a la soumission du formulaire, évite le rafraichissement de la page par exemple
+  //   event.preventDefault();
 
-    // change le state et passe visuellement le formulaire à True (Check ok)
-    setValidated(true);
-  };
+  //   // change le state et passe visuellement le formulaire à True (Check ok)
+  //   setValidated(true);
+  // };
 
   // const [data, setData] = useState([]);
   const [articles, setArticles] = useState([]);
@@ -65,33 +66,6 @@ export default function ModifyArticles() {
   }, []);
 
   /// Fonction pour modifier les informations de profil
-
-  /**
-   * Cette fonction permet de vérifier lors de la modification d'un champ
-   * - de quel champ il s'agit
-   * - compare le nom du champ avec celui attendu
-   * - on nourri le state avec la nouvelle valeur
-   * @param {*} event , il s'agit de l'evenement sur lequel j'effectue mon Change
-   */
-
-  // function updateArticles() {
-  //   axios
-  //     .patch(`${API_BASE_URL}/user/${id}/articles`, {
-  //       title,
-  //       description,
-  //       image,
-  //       category,
-  //     })
-  //     .then((response) => {
-  //       dispatch(saveUser(response.data));
-  //       // console.log('update user', response);
-  //     });
-  // }
-
-  function modifyArticle(article_id) {
-    console.log('modifyArticle');
-    //! redirect vers une route front administrateur/article/${id}
-  }
 
   function removeArticle(article_id) {
     console.log('removeArticle');
