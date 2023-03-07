@@ -20,6 +20,10 @@ function Program() {
   const id = useSelector((state) => state.user.id);
   // console.log('id du user', id);
 
+  // cette const recupère le tableau des articles et filtre le nombre d'article
+
+  const undoneArticles = articles.filter(({ article }) => !article);
+
   function deleteArticleProgram(idProgram) {
     console.log('delete');
     axios.delete(`${API_BASE_URL}/program/${idProgram}`, {
@@ -42,9 +46,7 @@ function Program() {
     });
   }, [id]);
 
-  // cette const recupère le tableau des articles et filtre le nombre d'article
-  const undoneArticles = articles.filter(({ article }) => !article);
-  // on récupère les tâches effectuées
+  // on récupère les tâches effectuéesicle
   // const doneArticles = articles.filter(({ done }) => done);
 
   return (
