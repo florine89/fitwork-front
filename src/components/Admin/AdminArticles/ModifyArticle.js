@@ -19,6 +19,7 @@ export default function ModifyArticle() {
   // j'importe l'id du user stocké à partir du state de Redux
 //   const id = useSelector((state) => state.user.id);
   const categories = useSelector(getCategoriesList);
+  const userId = useSelector((state) => state.user.id);
 
   const [validated, setValidated] = useState(false);
 
@@ -40,15 +41,20 @@ export default function ModifyArticle() {
   function handleChange(event) {
     if (event.target.name === 'title') {
       setTitle(event.target.value);
+      console.log('name', event.target.name);
     }
     if (event.target.name === 'description') {
       setDescription(event.target.value);
+      console.log('desccription', event.target.value);
     }
-    if (event.target.name === 'image') {
-      setImage(event.target.value);
-    }
+    // if (event.target.name === 'image') {
+    //   setImage(event.target.value);
+    //   setTitle(event.target.value);
+
+    // }
     if (event.target.name === 'category') {
       setCategory(event.target.value);
+      console.log('category', event.target.value);
     }
   }
   const { id } = useParams();
@@ -69,12 +75,14 @@ export default function ModifyArticle() {
       .patch(`${API_BASE_URL}/article/${id}`, {
         title,
         description,
-        // image,
-        category,
+        category_id: category,
+        user_id: userId,
       })
       .then((response) => {
         setTitle(response.data);
-        console.log('update user', response.data);
+        setDescription(response.data);
+        setCategory(response.data);
+        console.log('update article', response);
       });
   }
 
@@ -180,14 +188,13 @@ export default function ModifyArticle() {
                   {cat.name}
                 </option>
               ))}
-              {/* <option value="1">1</option> */}
-
             </Form.Select>
           </Form.Group>
           <Button
             // key={article.id}
             className="Profil-button"
             type="submit"
+            onClick={updateArticle}
           >Modifier mes informations
           </Button>
         </Row>
