@@ -15,6 +15,7 @@ import Admin from '../Admin';
 import Categories from '../Categories';
 import Page from '../../page';
 import Favoris from '../Favorite';
+import ModifyArticle from '../Admin/AdminArticles/ModifyArticle';
 import { fetchCategories } from '../../actions/categories';
 
 import './App.scss';
@@ -46,6 +47,7 @@ function App() {
           />
           <Route path="/contact" element={<Contact />} />
           <Route path="/administrateur" element={<Admin />} />
+          <Route path="/administrateur/article/:id" element={<ModifyArticle />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/categorie/:id" element={<Articles />} />
           <Route path="/programme" element={<Program />} />
