@@ -50,7 +50,7 @@ function Profil() {
    */
   function getProfil() {
     axios
-      .get(`${process.env.REACT_APP_API_BASE_URL}/user/${id}`)
+      .get(`http://${process.env.REACT_APP_API_BASE_URL}/user/${id}`)
       .then((response) => {
         setData(response.data);
         // console.log(response.data);

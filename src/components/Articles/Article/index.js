@@ -7,15 +7,13 @@ import axios from 'axios';
 
 import ListGroup from 'react-bootstrap/ListGroup';
 
-const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
-
 function Article() {
   const [article, setArticle] = useState([]);
 
   const { id } = useParams();
 
   function getOneArticle() {
-    axios.get(`${API_BASE_URL}/article/${id}`).then((response) => {
+    axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/article/${id}`).then((response) => {
       setArticle(response.data);
     });
   }

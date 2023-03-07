@@ -11,8 +11,6 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import './style.scss';
 import logo from '../../assets/femmebureau.jpg';
 
-const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
-
 function Favorite() {
   // j'initialise le state avec un tableau vide poru récupérer mes articles
   const [articles, setArticles] = useState([]);
@@ -25,7 +23,7 @@ function Favorite() {
    * de l'utilisateur connecté
    */
   function getFavoriteForOneUser() {
-    axios.get(`${API_BASE_URL}/user/${id}/favorite`).then((response) => {
+    axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/user/${id}/favorite`).then((response) => {
       setArticles(response.data);
     });
   }
@@ -56,7 +54,7 @@ function Favorite() {
  */
   function addArticleToProgram(idArticle) {
     axios
-      .post(`${API_BASE_URL}/article/${idArticle}/program`, {
+      .post(`http://${process.env.REACT_APP_API_BASE_URL}/article/${idArticle}/program`, {
         user_id: userId, // je passe le user id du state
       })
       .then((response) => {
@@ -73,7 +71,7 @@ function Favorite() {
    */
   function deleteOneArticleFromFavorite(idArticle) {
     axios
-      .delete(`${API_BASE_URL}/article/${idArticle}/favorite`, {
+      .delete(`http://${process.env.REACT_APP_API_BASE_URL}/article/${idArticle}/favorite`, {
         user_id: userId,
       })
       .then((response) => {

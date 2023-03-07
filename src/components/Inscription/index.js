@@ -48,10 +48,6 @@ export default function Inscription() {
     evt.preventDefault();
     // console.log('submit');
   }
-  // appel API
-
-  const baseURL = 'http://barrealexandre-server.eddi.cloud:8080/api';
-
   // const [post, setPost] = useState(null);
 
   const [success, setSuccess] = useState(false);
@@ -70,7 +66,7 @@ export default function Inscription() {
     console.log('birthday', birthday);
 
     axios
-      .post(`${baseURL}/user`, {
+      .post(`http://${process.env.REACT_APP_API_BASE_URL}/user`, {
         firstname,
         lastname,
         email,
