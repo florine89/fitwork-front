@@ -49,7 +49,7 @@ function Program() {
       <Counter number={number} />
       <Form onSubmit={handleSubmit}>
         {articles.map((article) => (
-          <ListGroup>
+          <ListGroup key={article.program_id}>
             {['checkbox'].map((type) => (
               <div className="mb-3 program-input" key={article.program_id}>
                 <ListGroup.Item className="program-input-article">
