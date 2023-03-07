@@ -25,7 +25,8 @@ function Program() {
     })
       .then((response) => {
         console.log(response.data);
-        //     setArticles(response.data);
+        const newArticles = articles.filter((article) => article.program_id !== idProgram);
+        setArticles(newArticles);
       });
   }
 
