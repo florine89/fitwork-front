@@ -12,8 +12,6 @@ import './style.scss';
 
 import Counter from './Counter';
 
-const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
-
 function Program() {
   const [articles, setArticles] = useState([]);
 
@@ -22,7 +20,7 @@ function Program() {
 
   function deleteArticleProgram(idProgram) {
     console.log('delete');
-    axios.delete(`${API_BASE_URL}/program/${idProgram}`, {
+    axios.delete(`http://${process.env.REACT_APP_API_BASE_URL}/program/${idProgram}`, {
       user_id: id,
     })
       .then((response) => {
@@ -36,7 +34,7 @@ function Program() {
   }
 
   useEffect(() => {
-    axios.get(`${API_BASE_URL}/user/${id}/program`).then((response) => {
+    axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/user/${id}/program`).then((response) => {
       setArticles(response.data);
     });
   }, [id]);

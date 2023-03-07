@@ -12,8 +12,6 @@ import Row from 'react-bootstrap/Row';
 import axios from 'axios';
 import { saveUser } from '../../actions/user';
 
-const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
-
 function Profil() {
   /// Propriété Bootstrap
   // permet d'activer la propriété validated de Bootstrap sur le formulaire
@@ -52,7 +50,7 @@ function Profil() {
    */
   function getProfil() {
     axios
-      .get(`${API_BASE_URL}/user/${id}`)
+      .get(`http://${process.env.REACT_APP_API_BASE_URL}/user/${id}`)
       .then((response) => {
         setData(response.data);
         // console.log(response.data);
@@ -102,7 +100,7 @@ function Profil() {
    */
   function updateProfil() {
     axios
-      .patch(`${API_BASE_URL}/user/${id}`, {
+      .patch(`${process.env.REACT_APP_API_BASE_URL}/user/${id}`, {
         firstname,
         lastname,
         email,
