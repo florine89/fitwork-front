@@ -1,9 +1,5 @@
 import './style.scss';
 
-import Nav from 'react-bootstrap/Nav';
-import Image from 'react-bootstrap/Image';
-
-import logo from '../../assets/logo.png';
 import logo1 from '../../assets/logofb.png';
 import logo2 from '../../assets/insta.png';
 import logo3 from '../../assets/whatsapp.png';

@@ -7,6 +7,7 @@
     align-items: center;
     &-title{
         color: vars.$secondary;
+        padding: 1rem;
     }
     &-form{
         display: flex;
@@ -16,20 +17,22 @@
     &-card{
         display: inline-flex;
 
+        &-title{
+            color: vars.$primary;
+            font-size: large;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
         &-description{
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
         }
         &-buttons{
-                display: inline-flex;
-                justify-content: space-around;
                 margin-bottom: .5rem;
                 bottom: 0;
                 position: absolute;
-            &-one{
-                width: 7rem;
-            }
     }
 }
 }

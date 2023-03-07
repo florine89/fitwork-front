@@ -16,8 +16,6 @@ import Form from 'react-bootstrap/Form';
 import { getCategoriesList } from '../../selectors/categories';
 import logo from '../../assets/femmebureau.jpg';
 
-const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
-
 function Articles() {
   // récupérer tous les articles de la catégorie
 
@@ -29,7 +27,7 @@ function Articles() {
    * Cette fonction recupère la liste des articles de la catégorie concernée
   */
   function getArticleByCategorie() {
-    axios.get(`${API_BASE_URL}/category/${id}`).then((response) => {
+    axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/category/${id}`).then((response) => {
       setArticles(response.data); // j'importe mes data dans le state local
     });
   }
@@ -43,14 +41,16 @@ function Articles() {
    * @returns le nom de la categorie
    */
   function getCategoryName() {
+    // eslint-disable-next-line arrow-body-style
     const categoryName = categories.find((category) => {
-      console.log('category id', category.id);
-      console.log('id use params', id);
-      // eslint-disable-next-line eqeqeq
-      return category.id == id;
+      // console.log('category id', category.id);
+      // eslint-disable-next-line radix
+      // console.log('id use params', parseInt(id));
+      // eslint-disable-next-line radix
+      return category.id === parseInt(id);
     });
-    console.log('categoryName', categoryName.name);
-    return categoryName.name;
+    // console.log('categoryName', categoryName.name);
+    return categoryName.name ? categoryName.name : '';
   }
 
   /**
@@ -58,7 +58,7 @@ function Articles() {
    */
   useEffect(() => {
     getArticleByCategorie();
-    getCategoryName();
+    // getCategoryName();
   }, [id]);
 
   // ajouter un article au programme
@@ -80,7 +80,7 @@ function Articles() {
  */
   function addArticleToProgram(idArticle) {
     axios
-      .post(`${API_BASE_URL}/article/${idArticle}/program`, {
+      .post(`http://${process.env.REACT_APP_API_BASE_URL}/article/${idArticle}/program`, {
         user_id: userId, // je passe le user id du state
       })
       .then((response) => {
@@ -98,7 +98,7 @@ function Articles() {
    */
   function addArticleToFavorites(idArticle) {
     axios
-      .post(`${API_BASE_URL}/article/${idArticle}/favorite`, {
+      .post(`http://${process.env.REACT_APP_API_BASE_URL}/article/${idArticle}/favorite`, {
         user_id: userId, // je passe le user id du state
       })
       .then((response) => {
@@ -109,7 +109,7 @@ function Articles() {
   return (
     <div className="Articles">
       <h1 className="Articles-title">
-        Articles disponibles pour la categorie
+        Nos articles "{getCategoryName()}"
       </h1>
       <Form className="Articles-form" onSubmit={handleSubmit}>
         {articles.map((article) => (
@@ -117,7 +117,7 @@ function Articles() {
             <Card style={{ width: '18rem', height: '25rem' }}>
               <Card.Img variant="top" src={logo} />
               <Card.Body>
-                <Card.Title as={NavLink} to={`/article/${article.id}`}>{article.title}</Card.Title>
+                <Card.Title as={NavLink} to={`/article/${article.id}`} className="Articles-card-title">{article.title}</Card.Title>
                 <Card.Text className="Articles-card-description">
                   {article.description}
                 </Card.Text>

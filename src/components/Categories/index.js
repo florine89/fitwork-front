@@ -4,13 +4,11 @@ import axios from 'axios';
 
 import './style.scss';
 
-const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
-
 function Categories() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    axios.get(`${API_BASE_URL}/categories`).then((response) => {
+    axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/categories`).then((response) => {
       setCategories(response.data);
     });
   }, []);

@@ -8,10 +8,9 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
+import Icon from '../ui/Icon';
 import './style.scss';
 import logo from '../../assets/femmebureau.jpg';
-
-const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
 
 function Favorite() {
   // j'initialise le state avec un tableau vide poru récupérer mes articles
@@ -25,7 +24,7 @@ function Favorite() {
    * de l'utilisateur connecté
    */
   function getFavoriteForOneUser() {
-    axios.get(`${API_BASE_URL}/user/${id}/favorite`).then((response) => {
+    axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/user/${id}/favorite`).then((response) => {
       setArticles(response.data);
     });
   }
@@ -56,7 +55,7 @@ function Favorite() {
  */
   function addArticleToProgram(idArticle) {
     axios
-      .post(`${API_BASE_URL}/article/${idArticle}/program`, {
+      .post(`http://${process.env.REACT_APP_API_BASE_URL}/article/${idArticle}/program`, {
         user_id: userId, // je passe le user id du state
       })
       .then((response) => {
@@ -73,11 +72,13 @@ function Favorite() {
    */
   function deleteOneArticleFromFavorite(idArticle) {
     axios
-      .delete(`${API_BASE_URL}/article/${idArticle}/favorite`, {
+      .delete(`http://${process.env.REACT_APP_API_BASE_URL}/article/${idArticle}/favorite`, {
         user_id: userId,
       })
       .then((response) => {
         console.log((response.data));
+        const newArticles = articles.filter((article) => article.article_id !== idArticle);
+        setArticles(newArticles);
       });
   }
 
@@ -87,7 +88,7 @@ function Favorite() {
       <h1 className="Articles-title">Mes favoris</h1>
       <Form className="Articles-form" onSubmit={handleSubmit}>
         {articles.map((article) => (
-          <article key={article.id} className="Articles-card">
+          <article key={article.article_id} className="Articles-card">
             <Card style={{ width: '18rem', height: '25rem' }}>
               <Card.Img variant="top" src={logo} />
               <Card.Body>
@@ -112,7 +113,7 @@ function Favorite() {
                       type="submit"
                       onClick={() => deleteOneArticleFromFavorite(article.article_id)}
                     >
-                      Retirer des fav
+                      <Icon icon="bin" size="1rem" />
                     </Button>
                   </ButtonGroup>
 
