@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -75,7 +76,7 @@ function Program() {
                 <ListGroup.Item className="program-input-article">
                   <Button
                     type="submit"
-                    variant="info"
+                    variant="light"
                     className="program-input-bin"
                     onClick={() => deleteArticleProgram(article.program_id)}
                   >
@@ -85,6 +86,8 @@ function Program() {
                     type="submit"
                     variant="light"
                     className="program-input-bin"
+                    as={NavLink}
+                    to={`/article/${article.article_id}`}
                   >
                     <Icon icon="search" size="1rem" />
                   </Button>
