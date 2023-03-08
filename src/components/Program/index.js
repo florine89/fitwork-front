@@ -16,7 +16,11 @@ function Program() {
   const [articles, setArticles] = useState([]);
 
   const id = useSelector((state) => state.user.id);
-  // console.log('id du user', id);
+  console.log('id du user', id);
+
+  // cette const recupère le tableau des articles et filtre le nombre d'article
+
+  const undoneArticles = articles.filter(({ article }) => !article);
 
   function deleteArticleProgram(idProgram) {
     console.log('delete');
@@ -34,38 +38,59 @@ function Program() {
     evt.preventDefault();
   }
 
+  function toggleStatus(article) {
+  // faire appel à la bdd pour modifier le statut
+    axios
+      .patch(`http://${process.env.REACT_APP_API_BASE_URL}/program/${article.program_id}`, {
+        user_id: id,
+      })
+      .then((response) => {
+        const updatedArticles = articles.map((art) => {
+          if (art.program_id === article.program_id) art.status = !art.status;
+          return (art);
+        });
+        setArticles(updatedArticles);
+      });
+  }
+
   useEffect(() => {
     axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/user/${id}/program`).then((response) => {
       setArticles(response.data);
     });
   }, [id]);
-  // TODO coder la route delete
-  // TODO counter ?
-  const number = 1;
+
+  // on récupère les tâches effectuéesicle
+  // const doneArticles = articles.filter(({ done }) => done);
+  console.log(articles);
 
   return (
     <div className="program">
       <h1 className="program-title">Mon Programme</h1>
-      <Counter number={number} />
+      <Counter number={undoneArticles.length} />
       <Form onSubmit={handleSubmit}>
         {articles.map((article) => (
           <ListGroup key={article.program_id}>
-            <div className="mb-3 program-input" key={article.program_id}>
-              <ListGroup.Item className="program-input-article">
-                <Button
-                  type="submit"
-                  variant="info"
-                  className="program-input-bin"
-                  onClick={() => deleteArticleProgram(article.program_id)}
-                >
-                  <Icon icon="bin" size="1rem" />
-                </Button>
-                <Form.Check
-                  key={article.id}
-                  label={article.title}
-                />
-              </ListGroup.Item>
-            </div>
+            {['checkbox'].map((type) => (
+              <div className="mb-3 program-input" key={article.program_id}>
+                <ListGroup.Item className="program-input-article">
+                  <Button
+                    type="submit"
+                    variant="info"
+                    className="program-input-bin"
+                    onClick={() => deleteArticleProgram(article.program_id)}
+                  >
+                    <Icon icon="bin" size="1rem" />
+                  </Button>
+                  <Form.Check
+                    key={article.id}
+                    type={type}
+                    id={`default-${type}`}
+                    label={article.title}
+                    onChange={() => toggleStatus(article)}
+                  />
+                </ListGroup.Item>
+              </div>
+            ))}
           </ListGroup>
         ))}
       </Form>

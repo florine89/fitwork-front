@@ -38,7 +38,7 @@ function Articles() {
   function getArticleByCategorie() {
     axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/category/${id}`).then((response) => {
       setArticles(response.data); // j'importe mes data dans le state local
-    });
+    }).catch((error) => console.log(error));
   }
 
   // TODO Afficher le nom de la category
