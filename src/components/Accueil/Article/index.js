@@ -16,10 +16,10 @@ function ArticleContainer() {
   const { id } = useParams();
 
   function getOneArticle() {
-    axios.get(`${API_BASE_URL}/articles`);
-    axios.get(`${API_BASE_URL}/article/${id}/image`).then((response) => {
-      setArticles(response.data);
-    });
+    axios.get(`${API_BASE_URL}/articles`)
+      .then((response) => {
+        setArticles(response.data);
+      });
   }
 
   useEffect(() => {
@@ -37,7 +37,7 @@ function ArticleContainer() {
       <article className="card-article">
         {articles.slice(0, 3).map((article) => (
           <Card key={article.id} style={{ width: '18rem' }}>
-            <Card.Img variant="light" src={article.image} />
+            <Card.Img variant="light" src={`http://${process.env.REACT_APP_API_BASE_URL}/article/${article.id}/image`} />
             <Card.Body>
               <Card.Title>{article.title}</Card.Title>
               <Card.Text>

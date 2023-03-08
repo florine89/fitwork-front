@@ -86,28 +86,28 @@ export default function ModifyArticles() {
     //     });
     // }
     }
-
-    return (
-      <div>
-        {articles.map((article) => (
-          <div key={article.id}>
-            <div>Titre : {article.title}</div>
-            <div>Description : {article.description}</div>
-            <Button
-          // onClick={() => modifyArticle(article.id)}
-              as={NavLink}
-              to={`article/${article.id}`}
-            >
-              Modifier
-            </Button>
-            <Button
-              onClick={() => removeArticle(article.id)}
-            >
-              Supprimer
-            </Button>
-          </div>
-        ))}
-      </div>
-    );
   }
+
+  return (
+    <div>
+      {articles.map((article) => (
+        <div key={article.id}>
+          <div>Titre : {article.title}</div>
+          <div>Description : {article.description}</div>
+          <Button
+          // onClick={() => modifyArticle(article.id)}
+            as={NavLink}
+            to={`article/${article.id}`}
+          >
+            Modifier
+          </Button>
+          <Button
+            onClick={() => removeArticle(article.id)}
+          >
+            Supprimer
+          </Button>
+        </div>
+      ))}
+    </div>
+  );
 }
