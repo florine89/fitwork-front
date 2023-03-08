@@ -17,6 +17,7 @@ import Categories from '../Categories';
 import Page from '../../page';
 import Favoris from '../Favorite';
 import ModifyArticle from '../Admin/AdminArticles/ModifyArticle';
+import About from '../About';
 import { fetchCategories } from '../../actions/categories';
 
 import './App.scss';
@@ -47,6 +48,7 @@ function App() {
             element=<Profil />
           />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/a-propos" element={<About />} />
           <Route path="/administrateur" element={<Admin />} />
           <Route path="/administrateur/article/:id" element={<ModifyArticle />} />
           <Route path="/categories" element={<Categories />} />
