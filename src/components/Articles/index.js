@@ -6,18 +6,21 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 
-import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import Spinner from 'react-bootstrap/Spinner';
 
 import { getCategoriesList } from '../../selectors/categories';
 import logo from '../../assets/femmebureau.jpg';
 
 function Articles() {
+  // Loader
+  const [isLoading, toggleIsLoading] = useState(false);
+
   // Gestion des messages
   const [showFav, setShowFav] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -36,13 +39,20 @@ function Articles() {
    * Cette fonction recupère la liste des articles de la catégorie concernée
   */
   function getArticleByCategorie() {
-    axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/category/${id}`).then((response) => {
-      setArticles(response.data); // j'importe mes data dans le state local
-    }).catch((error) => console.log(error));
+    toggleIsLoading(true);
+    axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/category/${id}`)
+      .then((response) => {
+        setArticles(response.data); // j'importe mes data dans le state local
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        toggleIsLoading(false);
+      });
   }
 
-  // TODO Afficher le nom de la category
-
+  // Afficher le nom de la catégorie
   const categories = useSelector(getCategoriesList);
 
   /**
@@ -67,7 +77,6 @@ function Articles() {
    */
   useEffect(() => {
     getArticleByCategorie();
-    // getCategoryName();
   }, [id]);
 
   // ajouter un article au programme
@@ -123,9 +132,17 @@ function Articles() {
 
   return (
     <div className="Articles">
+
       <h1 className="Articles-title">
         Nos articles "{getCategoryName()}"
       </h1>
+
+      {isLoading
+        && (
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        )}
 
       <Modal show={showFav} onHide={handleCloseFav}>
         <Modal.Header closeButton>
@@ -148,63 +165,48 @@ function Articles() {
         <Modal.Body>Cet article est déjà dans tes favoris!</Modal.Body>
       </Modal>
 
-      <Form className="Articles-form" onSubmit={handleSubmit}>
-        {articles.map((article) => (
-          <article key={article.id} className="Articles-card">
-            <Card style={{ width: '18rem', height: '25rem' }}>
-              <Card.Img variant="top" src={logo} />
-              <Card.Body>
-                <Card.Title as={NavLink} to={`/article/${article.id}`} className="Articles-card-title">{article.title}</Card.Title>
-                <Card.Text className="Articles-card-description">
-                  {article.description}
-                </Card.Text>
-                <div className="Articles-card-buttons">
+      {!isLoading && (
+        <Form className="Articles-form" onSubmit={handleSubmit}>
+          {articles.map((article) => (
+            <article key={article.id} className="Articles-card">
+              <Card style={{ width: '18rem', height: '25rem' }}>
+                <Card.Img variant="top" src={logo} />
+                <Card.Body>
+                  <Card.Title as={NavLink} to={`/article/${article.id}`} className="Articles-card-title">{article.title}</Card.Title>
+                  <Card.Text className="Articles-card-description">
+                    {article.description}
+                  </Card.Text>
+                  <div className="Articles-card-buttons">
 
-                  <ButtonGroup vertical>
-                    <DropdownButton
-                      as={ButtonGroup}
-                      title="Ajouter l'article"
-                      id="bg-vertical-dropdown-1"
-                    >
-                      <Dropdown.Item
-                        eventKey="1"
-                        type="submit"
-                        onClick={() => addArticleToProgram(article.id)}
-                      >à mon programme
-                      </Dropdown.Item>
-                      <Dropdown.Item
-                        eventKey="2"
-                        type="submit"
-                        onClick={() => addArticleToFavorites(article.id)}
+                    <ButtonGroup vertical>
+                      <DropdownButton
+                        as={ButtonGroup}
+                        title="Ajouter l'article"
+                        id="bg-vertical-dropdown-1"
                       >
-                        à mes favoris
-                      </Dropdown.Item>
-                    </DropdownButton>
-                  </ButtonGroup>
+                        <Dropdown.Item
+                          eventKey="1"
+                          type="submit"
+                          onClick={() => addArticleToProgram(article.id)}
+                        >à mon programme
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          eventKey="2"
+                          type="submit"
+                          onClick={() => addArticleToFavorites(article.id)}
+                        >
+                          à mes favoris
+                        </Dropdown.Item>
+                      </DropdownButton>
+                    </ButtonGroup>
 
-                  {/*                   <Button
-                    className="Articles-card-buttons-one"
-                    variant="primary"
-                    type="submit"
-                    onClick={() => addArticleToProgram(article.id)}
-                  >
-                    Programme
-                  </Button>
-                  <Button
-                    className="Articles-card-buttons-one"
-                    variant="info"
-                    type="submit"
-                    onClick={() => addArticleToFavorites(article.id)}
-                  >
-                    Favoris
-                  </Button> */}
-
-                </div>
-              </Card.Body>
-            </Card>
-          </article>
-        ))}
-      </Form>
+                  </div>
+                </Card.Body>
+              </Card>
+            </article>
+          ))}
+        </Form>
+      )}
     </div>
   );
 }

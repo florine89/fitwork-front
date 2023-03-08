@@ -1,0 +1,24 @@
+@use 'src/styles/vars';
+
+.Categories {
+
+    margin:2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &-title {
+        color: vars.$dark;
+    }
+
+    &-card {
+        text-decoration: none;
+        margin: 1rem;
+        
+        &-header{
+            font-size: large;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+    }
+}
