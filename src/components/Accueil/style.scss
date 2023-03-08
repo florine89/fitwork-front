@@ -5,6 +5,23 @@
     flex-direction: column;
     align-items: center;
     padding: 2rem;
+
+    &-message {
+        font-size: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: vars.$danger; 
+        padding-top: 1.5rem;
+        
+       &-program {   
+        display: flex;   
+        justify-content: center;
+        font-size: 1.5rem;
+        padding: 0.3rem;  
+        }
+    }
     
     &-login {
         text-decoration: none;
@@ -55,4 +72,9 @@
     color: vars.$danger;
     padding-bottom: 3rem;
 }
+}
+
+.home-message-picture {
+    width: 50rem;
+    padding: 2rem;
 }

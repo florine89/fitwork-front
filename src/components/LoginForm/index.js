@@ -20,7 +20,6 @@ function LoginForm({
 }) {
   const navigate = useNavigate();
   // gestion de la connection, des différents états
-  const pseudo = useSelector((state) => state.user.firstname);
 
   const isLogged = useSelector((state) => state.user.logged);
   const isLoading = useSelector((state) => state.user.loading);
@@ -64,9 +63,6 @@ function LoginForm({
           {/* Utilisateur est connecté */}
           {isLogged && (
             <div className="login-form-logged">
-              <p className="login-form-message">
-                {`Bienvenue ${pseudo}`}
-              </p>
               <Button
                 className="login-button"
                 onClick={handleLogOut}

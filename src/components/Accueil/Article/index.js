@@ -7,7 +7,7 @@ import axios from 'axios';
 
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import logo from '../../../assets/femmebureau.jpg';
+// import logo from '../../../assets/femmebureau.jpg';
 //
 function ArticleContainer() {
   const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
@@ -16,7 +16,8 @@ function ArticleContainer() {
   const { id } = useParams();
 
   function getOneArticle() {
-    axios.get(`${API_BASE_URL}/articles`).then((response) => {
+    axios.get(`${API_BASE_URL}/articles`);
+    axios.get(`${API_BASE_URL}/article/${id}/image`).then((response) => {
       setArticles(response.data);
     });
   }
@@ -36,7 +37,7 @@ function ArticleContainer() {
       <article className="card-article">
         {articles.slice(0, 3).map((article) => (
           <Card key={article.id} style={{ width: '18rem' }}>
-            <Card.Img variant="light" src={logo} />
+            <Card.Img variant="light" src={article.image} />
             <Card.Body>
               <Card.Title>{article.title}</Card.Title>
               <Card.Text>
