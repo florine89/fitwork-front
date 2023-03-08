@@ -149,25 +149,6 @@ export default function ModifyArticle() {
             </InputGroup>
           </Form.Group> */}
 
-          {/* <Form.Group
-            as={Col}
-            md="4"
-            value={category}
-            onChange={handleChange}
-            controlId="validationCustom03"
-          >
-            <Form.Label>choisir une catégorie :</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="category"
-              name="category"
-              defaultValue={title}
-
-            />
-            <Form.Control.Feedback type="invalid">
-              Please provide a valid date.
-            </Form.Control.Feedback>
-          </Form.Group> */}
           <Form.Group
             className="mb-3"
             controlId="exampleForm.ControlSelect"
