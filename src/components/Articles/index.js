@@ -12,15 +12,19 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
-import Alert from 'react-bootstrap/Alert';
+import Modal from 'react-bootstrap/Modal';
 
 import { getCategoriesList } from '../../selectors/categories';
 import logo from '../../assets/femmebureau.jpg';
 
 function Articles() {
-  const [show, setShow] = useState(false);
-
+  // Gestion des messages
+  const [showFav, setShowFav] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [showProg, setShowProg] = useState(false);
+  const handleCloseFav = () => setShowFav(false);
+  const handleCloseProg = () => setShowProg(false);
+  const handleCloseError = () => setShowError(false);
 
   // récupérer tous les articles de la catégorie
 
@@ -89,7 +93,7 @@ function Articles() {
         user_id: userId, // je passe le user id du state
       })
       .then((response) => {
-        setShow(true);
+        setShowProg(true);
         console.log((response.data));
       });
   }
@@ -108,7 +112,7 @@ function Articles() {
         user_id: userId, // je passe le user id du state
       })
       .then((response) => {
-        setShow(true);
+        setShowFav(true);
         console.log((response.data));
       })
       .catch((error) => {
@@ -123,23 +127,26 @@ function Articles() {
         Nos articles "{getCategoryName()}"
       </h1>
 
-      <Alert show={show} variant="primary">
-        <Alert.Heading>Cet article a bien été ajouté!</Alert.Heading>
-        <div className="d-flex justify-content-end">
-          <Button onClick={() => setShow(false)} variant="outline-primary">
-            Je continue
-          </Button>
-        </div>
-      </Alert>
+      <Modal show={showFav} onHide={handleCloseFav}>
+        <Modal.Header closeButton>
+          <Modal.Title>C'EST OK</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Cet article a bien été ajouté à tes favoris!</Modal.Body>
+      </Modal>
 
-      <Alert show={showError} variant="secondary">
-        <Alert.Heading>Cet article est déjà dans tes favoris</Alert.Heading>
-        <div className="d-flex justify-content-end">
-          <Button onClick={() => setShowError(false)} variant="outline-secondary">
-            Je continue
-          </Button>
-        </div>
-      </Alert>
+      <Modal show={showProg} onHide={handleCloseProg}>
+        <Modal.Header closeButton>
+          <Modal.Title>C'EST OK</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Cet article a bien été ajouté à ton programme!</Modal.Body>
+      </Modal>
+
+      <Modal show={showError} onHide={handleCloseError}>
+        <Modal.Header closeButton>
+          <Modal.Title>OUPS</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Cet article est déjà dans tes favoris!</Modal.Body>
+      </Modal>
 
       <Form className="Articles-form" onSubmit={handleSubmit}>
         {articles.map((article) => (

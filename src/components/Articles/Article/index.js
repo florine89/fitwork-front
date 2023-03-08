@@ -6,6 +6,7 @@ import './style.scss';
 
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import axios from 'axios';
 import logo from '../../../assets/femmebureau.jpg';
@@ -25,6 +26,21 @@ function Article() {
     getOneArticle();
   }, [id]);
 
+  const userId = useSelector((state) => state.user.id); // je recupère mon user id avec redux
+
+  function addArticleToFavorites(idArticle) {
+    axios
+      .post(`http://${process.env.REACT_APP_API_BASE_URL}/article/${idArticle}/favorite`, {
+        user_id: userId, // je passe le user id du state
+      })
+      .then((response) => {
+        console.log((response.data));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   return (
     <div className="Article">
 
@@ -38,7 +54,13 @@ function Article() {
           </Card.Text>
           <ButtonGroup aria-label="Ajouter l'article">
             <Button variant="light">Ajouter aux favoris</Button>
-            <Button variant="primary">Ajouter au programme</Button>
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={() => addArticleToFavorites(article.id)}
+            >
+              Ajouter au programme
+            </Button>
           </ButtonGroup>
 
         </Card.Body>
