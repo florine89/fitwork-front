@@ -81,6 +81,13 @@ function Program() {
                   >
                     <Icon icon="bin" size="1rem" />
                   </Button>
+                  <Button
+                    type="submit"
+                    variant="light"
+                    className="program-input-bin"
+                  >
+                    <Icon icon="search" size="1rem" />
+                  </Button>
                   <Form.Check
                     key={article.id}
                     type={type}
