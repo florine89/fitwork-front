@@ -70,6 +70,21 @@ export default function ModifyArticles() {
   function removeArticle(article_id) {
     console.log('removeArticle');
     //! Delete de l'article (requete axios) en fonction de "article_id"
+    function updateArticle() {
+    //   axios
+    //     .patch(`${API_BASE_URL}/article/${id}`, {
+    //       title,
+    //       description,
+    //       category_id: category,
+    //       user_id: userId,
+    //     })
+    //     .then((response) => {
+    //       setTitle(response.data);
+    //       setDescription(response.data);
+    //       setCategory(response.data);
+    //       console.log('update article', response);
+    //     });
+    // }
   }
 
   return (
