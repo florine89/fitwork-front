@@ -53,6 +53,19 @@ function Article() {
       });
   }
 
+  function addArticleToProgram(idArticle) {
+    axios
+      .post(`http://${process.env.REACT_APP_API_BASE_URL}/article/${idArticle}/program`, {
+        user_id: userId, // je passe le user id du state
+      })
+      .then((response) => {
+        console.log((response.data));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   return (
     <div className="Article">
 
@@ -74,11 +87,17 @@ function Article() {
               {article.description}
             </Card.Text>
             <ButtonGroup aria-label="Ajouter l'article">
-              <Button variant="light">Ajouter aux favoris</Button>
+              <Button
+                variant="light"
+                type="submit"
+                onClick={() => addArticleToFavorites(article.id)}
+              >
+                Ajouter aux favoris
+              </Button>
               <Button
                 variant="primary"
                 type="submit"
-                onClick={() => addArticleToFavorites(article.id)}
+                onClick={() => addArticleToProgram(article.id)}
               >
                 Ajouter au programme
               </Button>

@@ -8,7 +8,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import ModifyArticles from './AdminArticles/ModifyArticles';
 import AddArticles from './AdminArticles/AddArticles';
 
-function ControlledTabsExample() {
+function Admin() {
   const [key, setKey] = useState('home');
 
   return (
@@ -33,4 +33,4 @@ function ControlledTabsExample() {
   );
 }
 
-export default ControlledTabsExample;
+export default Admin;
