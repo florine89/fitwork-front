@@ -12,11 +12,20 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
 
 import { getCategoriesList } from '../../selectors/categories';
 import logo from '../../assets/femmebureau.jpg';
 
 function Articles() {
+  // Gestion des messages
+  const [showFav, setShowFav] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [showProg, setShowProg] = useState(false);
+  const handleCloseFav = () => setShowFav(false);
+  const handleCloseProg = () => setShowProg(false);
+  const handleCloseError = () => setShowError(false);
+
   // récupérer tous les articles de la catégorie
 
   const [articles, setArticles] = useState([]); // je récupère les articles dans le state local
@@ -84,6 +93,7 @@ function Articles() {
         user_id: userId, // je passe le user id du state
       })
       .then((response) => {
+        setShowProg(true);
         console.log((response.data));
       });
   }
@@ -102,7 +112,12 @@ function Articles() {
         user_id: userId, // je passe le user id du state
       })
       .then((response) => {
+        setShowFav(true);
         console.log((response.data));
+      })
+      .catch((error) => {
+        setShowError(true);
+        console.error(error);
       });
   }
 
@@ -111,6 +126,28 @@ function Articles() {
       <h1 className="Articles-title">
         Nos articles "{getCategoryName()}"
       </h1>
+
+      <Modal show={showFav} onHide={handleCloseFav}>
+        <Modal.Header closeButton>
+          <Modal.Title>C'EST OK</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Cet article a bien été ajouté à tes favoris!</Modal.Body>
+      </Modal>
+
+      <Modal show={showProg} onHide={handleCloseProg}>
+        <Modal.Header closeButton>
+          <Modal.Title>C'EST OK</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Cet article a bien été ajouté à ton programme!</Modal.Body>
+      </Modal>
+
+      <Modal show={showError} onHide={handleCloseError}>
+        <Modal.Header closeButton>
+          <Modal.Title>OUPS</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Cet article est déjà dans tes favoris!</Modal.Body>
+      </Modal>
+
       <Form className="Articles-form" onSubmit={handleSubmit}>
         {articles.map((article) => (
           <article key={article.id} className="Articles-card">

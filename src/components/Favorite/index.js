@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Modal from 'react-bootstrap/Modal';
 
 import Icon from '../ui/Icon';
 import './style.scss';
@@ -48,6 +49,9 @@ function Favorite() {
     evt.preventDefault();
   }
 
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+
   /**
  * La fonction permet d'ajouter un article au programme sur le onClick.
  * @param {*} idArticle Sur le onClick, on lui passe l'arguemnt article_id.
@@ -59,6 +63,7 @@ function Favorite() {
         user_id: userId, // je passe le user id du state
       })
       .then((response) => {
+        setShow(true);
         console.log((response.data));
       });
   }
@@ -86,6 +91,14 @@ function Favorite() {
 
     <div className="Articles">
       <h1 className="Articles-title">Mes favoris</h1>
+
+      <Modal show={show} onHide={handleClose} variant="secondary">
+        <Modal.Header closeButton>
+          <Modal.Title>C'EST OK</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Ton article a bien été ajouté à ton programme!</Modal.Body>
+      </Modal>
+
       <Form className="Articles-form" onSubmit={handleSubmit}>
         {articles.map((article) => (
           <article key={article.article_id} className="Articles-card">
