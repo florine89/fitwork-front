@@ -87,6 +87,7 @@ function Program() {
                     id={`default-${type}`}
                     label={article.title}
                     onChange={() => toggleStatus(article)}
+                    number={changeStatus.length}
                   />
                 </ListGroup.Item>
               </div>
