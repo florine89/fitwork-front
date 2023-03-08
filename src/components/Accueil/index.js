@@ -2,16 +2,26 @@
 import './style.scss';
 
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import ArticleContainer from './Article';
 import logo2 from '../../assets/Home.jpg';
-
-// import ArticleContainer from './Article';
+import logo3 from '../../assets/connecte.jpg';
 
 function Home() {
+  const isLogged = useSelector((state) => state.user.logged);
+  const pseudo = useSelector((state) => state.user.firstname);
   return (
     <div className="home">
 
       <div className="home-main">
+        { isLogged && (
+        <p className="home-message">
+          {`Hello ${pseudo} !`}
+          <span className="home-message-program">"Chaque petits pas mène à un grand changement"</span>
+          <img src={logo3} alt="picture-welcome" className="home-message-picture" />
+        </p>
+        )}
+        { !isLogged && (
         <h1 className="home-title-big">
           Un esprit sain, dans un corps sain !
           <span className="home-title-small">
@@ -19,6 +29,7 @@ function Home() {
           </span>
           <img src={logo2} alt="home-image" className="home-logo" />
         </h1>
+        )}
       </div>
 
       <p className="home-description">
@@ -26,7 +37,7 @@ function Home() {
       </p>
       <p className="home-description2">
         Une application de conseils, d'exercices
-        physiques et relaxant, pour maintenir votre bien-être au travail
+        physiques et relaxant, pour maintenir ton bien-être au travail
       </p>
 
       <NavLink className="home-login" to="/inscription">Découvres tous nos conseils bien-être en t'inscrivant ici!</NavLink>

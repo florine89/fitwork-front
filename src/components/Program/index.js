@@ -18,10 +18,6 @@ function Program() {
   const id = useSelector((state) => state.user.id);
   console.log('id du user', id);
 
-  // cette const recupère le tableau des articles et filtre le nombre d'article
-
-  const undoneArticles = articles.filter(({ article }) => !article);
-
   function deleteArticleProgram(idProgram) {
     console.log('delete');
     axios.delete(`http://${process.env.REACT_APP_API_BASE_URL}/program/${idProgram}`, {
@@ -59,6 +55,11 @@ function Program() {
     });
   }, [id]);
 
+  // cette const recupère le tableau des articles et filtre le nombre d'article
+  const undoneArticles = articles.filter((article) => article.status === false);
+  console.log('hello', undoneArticles);
+  // const changeStatus = articles.filter(({ article }) => !article);
+
   // on récupère les tâches effectuéesicle
   // const doneArticles = articles.filter(({ done }) => done);
   console.log(articles);
@@ -66,7 +67,7 @@ function Program() {
   return (
     <div className="program">
       <h1 className="program-title">Mon Programme</h1>
-      <Counter number={undoneArticles.length} />
+      <Counter number={articles.filter((article) => article.status === false).length} />
       <Form onSubmit={handleSubmit}>
         {articles.map((article) => (
           <ListGroup key={article.program_id}>
@@ -87,7 +88,8 @@ function Program() {
                     id={`default-${type}`}
                     label={article.title}
                     onChange={() => toggleStatus(article)}
-                    number={changeStatus.length}
+                    // checked={article.status}
+                    defaultChecked={article.status}
                   />
                 </ListGroup.Item>
               </div>
