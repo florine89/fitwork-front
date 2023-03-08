@@ -100,7 +100,7 @@ function Profil() {
 
   function updateProfil() {
     axios
-      .patch(`${process.env.REACT_APP_API_BASE_URL}/user/${id}`, {
+      .patch(`http://${process.env.REACT_APP_API_BASE_URL}/user/${id}`, {
         firstname,
         lastname,
         email,

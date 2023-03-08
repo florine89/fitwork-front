@@ -16,7 +16,7 @@ function Program() {
   const [articles, setArticles] = useState([]);
 
   const id = useSelector((state) => state.user.id);
-  // console.log('id du user', id);
+  console.log('id du user', id);
 
   // cette const recupère le tableau des articles et filtre le nombre d'article
 
@@ -38,6 +38,21 @@ function Program() {
     evt.preventDefault();
   }
 
+  function toggleStatus(article) {
+  // faire appel à la bdd pour modifier le statut
+    axios
+      .patch(`http://${process.env.REACT_APP_API_BASE_URL}/program/${article.program_id}`, {
+        user_id: id,
+      })
+      .then((response) => {
+        const updatedArticles = articles.map((art) => {
+          if (art.program_id === article.program_id) art.status = !art.status;
+          return (art);
+        });
+        setArticles(updatedArticles);
+      });
+  }
+
   useEffect(() => {
     axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/user/${id}/program`).then((response) => {
       setArticles(response.data);
@@ -46,6 +61,7 @@ function Program() {
 
   // on récupère les tâches effectuéesicle
   // const doneArticles = articles.filter(({ done }) => done);
+  console.log(articles);
 
   return (
     <div className="program">
@@ -70,6 +86,7 @@ function Program() {
                     type={type}
                     id={`default-${type}`}
                     label={article.title}
+                    onChange={() => toggleStatus(article)}
                   />
                 </ListGroup.Item>
               </div>
