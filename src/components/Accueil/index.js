@@ -40,7 +40,7 @@ function Home() {
         physiques et relaxant, pour maintenir ton bien-être au travail
       </p>
 
-      <NavLink className="home-login" to="/inscription">Découvres tous nos conseils bien-être en t'inscrivant ici!</NavLink>
+      <NavLink className="home-login" to="/inscription">Découvre tous nos conseils bien-être en t'inscrivant ici!</NavLink>
       <ArticleContainer />
     </div>
   );

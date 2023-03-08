@@ -65,7 +65,7 @@ function Profil() {
         setFirstname(response.data.firstname);
         setEmail(response.data.email);
         setBirthday(dayjs(response.data.birth_date).format('YYYY-MM-DD'));
-        console.log('res data birthdate', response.data.birth_date);
+        // console.log('res data birthdate', response.data.birth_date);
       });
   }
 

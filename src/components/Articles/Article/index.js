@@ -10,7 +10,6 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import axios from 'axios';
-import logo from '../../../assets/femmebureau.jpg';
 
 function Article() {
   // Loader
@@ -35,20 +34,8 @@ function Article() {
       });
   }
 
-  /*   function getImage() {
-    axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/article/${id}/image`)
-      .then((response) => {
-        setImage(response.data);
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  } */
-
   useEffect(() => {
     getOneArticle();
-    // getImage();
   }, [id]);
 
   const userId = useSelector((state) => state.user.id); // je recupère mon user id avec redux
@@ -82,7 +69,7 @@ function Article() {
           <Card.Header as="h5">Type: {!article.type ? 'pas de type renseigné' : article.type}</Card.Header>
           <Card.Body>
             <Card.Title>{article.title}</Card.Title>
-            <Card.Img src={logo} className="Article-image" />
+            <Card.Img src={`http://${process.env.REACT_APP_API_BASE_URL}/article/${article.id}/image`} className="Article-image" />
             <Card.Text className="Article-card">
               {article.description}
             </Card.Text>
