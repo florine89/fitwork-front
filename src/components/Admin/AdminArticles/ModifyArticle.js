@@ -12,7 +12,7 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { getCategoriesList } from '../../../selectors/categories';
 
-const API_BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
+// const API_BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
 
 export default function ModifyArticle() {
   // j'importe l'id du user stocké à partir du state de Redux
@@ -60,7 +60,7 @@ export default function ModifyArticle() {
 
   function getOneArticle() {
     axios
-      .get(`${API_BASE_URL}/article/${id}`)
+      .get(`http://${process.env.REACT_APP_API_BASE_URL}/article/${id}`)
       .then((response) => {
         console.log(response.data);
         setTitle(response.data.title);
@@ -71,7 +71,7 @@ export default function ModifyArticle() {
   }
   function updateArticle() {
     axios
-      .patch(`${API_BASE_URL}/article/${id}`, {
+      .patch(`http://${process.env.REACT_APP_API_BASE_URL}/article/${id}`, {
         title,
         description,
         category_id: category,

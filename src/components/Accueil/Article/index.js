@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom';
 // import logo from '../../../assets/femmebureau.jpg';
 //
 function ArticleContainer() {
-  const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
+  const API_BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
   const [articles, setArticles] = useState([]);
 
   const { id } = useParams();

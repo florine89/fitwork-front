@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Dropdown from 'react-bootstrap/Dropdown';
+// import Dropdown from 'react-bootstrap/Dropdown';
 import Alert from 'react-bootstrap/Alert';
 
 import axios from 'axios';
@@ -20,7 +20,7 @@ function AddArticles() {
   const categories = useSelector(getCategoriesList);
   const id = useSelector((state) => state.user.id);
 
-  const baseURL = `${process.env.REACT_APP_API_BASE_URL}`;
+  // const baseURL = `${process.env.REACT_APP_API_BASE_URL}`;
   /*
  * Cette fonction permet de vérifier lors de la modification d'un champ
  * - de quel champ il s'agit
@@ -62,7 +62,7 @@ function AddArticles() {
     // console.log('selectCategory', setSelectCategory);
 
     axios
-      .post(`${baseURL}/article`, {
+      .post(`http://${process.env.REACT_APP_API_BASE_URL}/article`, {
         title,
         description,
         user_id: id,

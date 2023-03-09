@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-no-bind */
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import Button from 'react-bootstrap/Button';
@@ -20,7 +20,7 @@ import Button from 'react-bootstrap/Button';
 // import { getCategoriesList } from '../../../selectors/categories';
 // import { getArticlesList } from '../../../selectors/articles';
 
-const API_BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
+// const API_BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
 
 export default function ModifyArticles() {
   const [title, setTitle] = useState('');
@@ -28,7 +28,7 @@ export default function ModifyArticles() {
   const [category, setCategory] = useState('');
   const [articles, setArticles] = useState([]);
 
-  const id = useSelector((state) => state.user.id);
+  const userId = useSelector((state) => state.user.id);
   // const categories = useSelector(getCategoriesList);
   // const articles = useSelector(getArticlesList);
 
@@ -54,32 +54,28 @@ export default function ModifyArticles() {
   // };
 
   // const [data, setData] = useState([]);
+  const { id } = useParams();
 
   function getArticles() {
     axios
-      .get(`${API_BASE_URL}/user/${id}/articles`)
+      .get(`http://${process.env.REACT_APP_API_BASE_URL}/user/${id}/articles`)
       .then((response) => {
         setArticles(response.data);
       });
   }
 
-  // Avec le hook de React, j'affiche au premier rendu de ma page les données
-  useEffect(() => {
-    getArticles();
-  }, []);
-
   /// Fonction pour modifier les informations de profil
 
-  function removeArticle(article_id) {
+  function removeArticle() {
     console.log('removeArticle');
     //! Delete de l'article (requete axios) en fonction de "article_id"
 
     axios
-      .delete(`${API_BASE_URL}/article/${id}`, {
+      .delete(`http://${process.env.REACT_APP_API_BASE_URL}/article/${id}`, {
         title,
         description,
         category_id: category,
-        user_id: id,
+        user_id: userId,
       })
       .then((response) => {
         setTitle(response.data);
@@ -88,6 +84,10 @@ export default function ModifyArticles() {
         console.log('update article', response);
       });
   }
+  // Avec le hook de React, j'affiche au premier rendu de ma page les données
+  useEffect(() => {
+    getArticles();
+  }, []);
 
   return (
     <div>
@@ -103,7 +103,7 @@ export default function ModifyArticles() {
             Modifier
           </Button>
           <Button
-            onClick={() => removeArticle(article.id)}
+            onClick={() => removeArticle()}
           >
             Supprimer
           </Button>
