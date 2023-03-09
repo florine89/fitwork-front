@@ -33,7 +33,7 @@ function ArticleContainer() {
   return (
 
     <article className="card-article">
-
+      <p className="card-article-title">Comment ça fonctionne? Ci dessous un échantillon des articles disponibles !</p>
       <Carousel variant="dark" slide={false}>
         {articles.slice(0, 3).map((article) => (
           <Carousel.Item key={article.id}>

@@ -7,16 +7,14 @@
     &-logo {
         width: 10rem;
     }
-
 };
 
 .footer-link {
+    color: vars.$primary;
     display: flex;
-    
-        width: 6rem;
-        align-self: center;
-        margin: 1rem;
-
+    align-self: center;
+    margin: 1rem;
+    font-size: x-large;
 }
 
 
