@@ -190,7 +190,7 @@ function Profil() {
             type="date"
             placeholder="date de naissance"
             name="birthday"
-            defaultValue={dayjs(data.birth_date).format('YYYY-MM-DD')}
+            defaultValue={data.birth_date}
           />
           <Form.Control.Feedback type="invalid">
             Please provide a valid date.
