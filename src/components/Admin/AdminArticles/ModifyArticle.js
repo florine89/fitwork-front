@@ -12,7 +12,7 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { getCategoriesList } from '../../../selectors/categories';
 
-const API_BASE_URL = 'http://barrealexandre-server.eddi.cloud:8080/api';
+const API_BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
 
 export default function ModifyArticle() {
   // j'importe l'id du user stocké à partir du state de Redux
