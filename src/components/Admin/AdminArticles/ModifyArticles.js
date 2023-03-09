@@ -23,7 +23,12 @@ import Button from 'react-bootstrap/Button';
 const API_BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
 
 export default function ModifyArticles() {
-  // const id = useSelector((state) => state.user.id))
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('');
+  const [articles, setArticles] = useState([]);
+
+  const id = useSelector((state) => state.user.id);
   // const categories = useSelector(getCategoriesList);
   // const articles = useSelector(getArticlesList);
 
@@ -38,7 +43,6 @@ export default function ModifyArticles() {
 
   /// Affichage et modification du formulaire
   // j'importe l'id du user stocké à partir du state de Redux
-  const id = useSelector((state) => state.user.id);
   // const [validated, setValidated] = useState(false);
 
   // const handleSubmit = (event) => {
@@ -50,7 +54,6 @@ export default function ModifyArticles() {
   // };
 
   // const [data, setData] = useState([]);
-  const [articles, setArticles] = useState([]);
 
   function getArticles() {
     axios
@@ -70,23 +73,22 @@ export default function ModifyArticles() {
   function removeArticle(article_id) {
     console.log('removeArticle');
     //! Delete de l'article (requete axios) en fonction de "article_id"
-    function updateArticle() {
-    //   axios
-    //     .patch(`${API_BASE_URL}/article/${id}`, {
-    //       title,
-    //       description,
-    //       category_id: category,
-    //       user_id: userId,
-    //     })
-    //     .then((response) => {
-    //       setTitle(response.data);
-    //       setDescription(response.data);
-    //       setCategory(response.data);
-    //       console.log('update article', response);
-    //     });
-    // }
-    }
+
+    axios
+      .delete(`${API_BASE_URL}/article/${id}`, {
+        title,
+        description,
+        category_id: category,
+        user_id: id,
+      })
+      .then((response) => {
+        setTitle(response.data);
+        setDescription(response.data);
+        setCategory(response.data);
+        console.log('update article', response);
+      });
   }
+
   return (
     <div>
       {articles.map((article) => (
