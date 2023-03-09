@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 function Counter({ number }) {
   let text = `${number} tâches en cours`;
 
   if (number === 0) {
-    text = 'Aucune tâche en cours';
+    text = 'Commencez votre programme';
   }
   else if (number === 1) {
-    text = '1 tâche en cours';
+    text = '1 activité en cours';
   }
 
   return (
