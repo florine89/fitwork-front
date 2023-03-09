@@ -3,7 +3,11 @@ import './style.scss';
 
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
+import Button from 'react-bootstrap/Button';
+
 import ArticleContainer from './Article';
+
 import logo2 from '../../assets/Home.jpg';
 import logo3 from '../../assets/connecte.jpg';
 
@@ -22,7 +26,7 @@ function Home() {
         </p>
         )}
         { !isLogged && (
-        <>
+        <div className="home-header">
           <h1 className="home-title-big">
             Un esprit sain, dans un corps sain !
             <span className="home-title-small">
@@ -31,11 +35,9 @@ function Home() {
             <img src={logo2} alt="home-image" className="home-logo" />
           </h1>
           <NavLink className="home-login" to="/inscription">Découvre tous nos conseils bien-être en t'inscrivant ici!</NavLink>
-        </>
-
+        </div>
         )}
       </div>
-
       <p className="home-description">
         L'application FitWork te suit au bureau !
       </p>
@@ -43,8 +45,13 @@ function Home() {
         Une application de conseils, d'exercices
         physiques et relaxant, pour maintenir ton bien-être au travail
       </p>
-
+      <NavLink className="home-login" to="/inscription">Découvre tous nos conseils bien-être en t'inscrivant ici!</NavLink>
       <ArticleContainer />
+
+      <Button className="home-btn" variant="primary" size="lg">
+        Je m'inscris !
+      </Button>
+
     </div>
   );
 }
