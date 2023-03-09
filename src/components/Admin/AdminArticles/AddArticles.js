@@ -10,6 +10,8 @@ import { useSelector } from 'react-redux';
 import { getCategoriesList } from '../../../selectors/categories';
 import logo from '../../../assets/inscriptionok.jpg';
 
+import './addArticles.scss';
+
 function AddArticles() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -75,39 +77,40 @@ function AddArticles() {
       });
   }
   return (
-    <>
+    <div className="containers">
       { !success && (
         <Form
           // ref={refForm}
           // mettre le chemin ou sera envoyer l'image(video 20:00)
           // action="/upload"
+          className="form"
           method="POST"
           onSubmit={handleSubmit}
         >
           <Form.Group
-            className="mb-3"
+            className="mb-3 form-title"
             controlId="formBasicEmail"
             onChange={handleChange}
           >
-            <Form.Label>Titre :</Form.Label>
-            <Form.Control type="text" placeholder="Titre de l'exercice" name="title" />
+            <Form.Label className="form_label">Titre </Form.Label>
+            <Form.Control type="text" placeholder="Titre de l'exercice" name="title" className="form_input" />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword" onChange={handleChange}>
-            <Form.Label>description :</Form.Label>
-            <Form.Control type="text" placeholder="description de l'exercice" name="description" />
+          <Form.Group className="mb-3 form-description" controlId="formBasicPassword" onChange={handleChange}>
+            <Form.Label className="form_label">description </Form.Label>
+            <Form.Control type="text" placeholder="description de l'exercice" name="description" className="form_input" />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Images :</Form.Label>
-            <Form.Control type="file" placeholder="Ajout d'une image" />
+          <Form.Group className="mb-3 form-img" controlId="formBasicPassword">
+            <Form.Label className="form_label">Images </Form.Label>
+            <Form.Control type="file" placeholder="Ajout d'une image" className="form_input" />
           </Form.Group>
           <Form.Group
-            className="mb-3"
+            className="mb-3 form-thématique"
             controlId="exampleForm.ControlSelect"
           >
-            <Form.Label>Thématique</Form.Label>
-            <Form.Select aria-label="Exemple par défaut" name="category" onChange={handleChange}>
+            <Form.Label className="form_label">Thématique</Form.Label>
+            <Form.Select aria-label="Exemple par défaut" name="category" onChange={handleChange} className="form_input">
               <option>Choix de la thématique</option>
               {categories.map((category) => (
                 <option
@@ -122,7 +125,7 @@ function AddArticles() {
 
             </Form.Select>
           </Form.Group>
-          <Button variant="primary" type="submit" onClick={createUser}>
+          <Button variant="primary" type="submit" onClick={createUser} className="form-btn">
             Enregistrer
           </Button>
         </Form>
@@ -138,7 +141,7 @@ function AddArticles() {
           </Alert>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

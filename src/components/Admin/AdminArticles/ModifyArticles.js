@@ -6,6 +6,8 @@ import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 
 import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Card from 'react-bootstrap/Card';
 // import Col from 'react-bootstrap/Col';
 // import Form from 'react-bootstrap/Form';
 // import InputGroup from 'react-bootstrap/InputGroup';
@@ -90,21 +92,33 @@ export default function ModifyArticles() {
     <div>
       {articles.map((article) => (
         <div key={article.id}>
-          <div>Titre : {article.title}</div>
-          <div>Description : {article.description}</div>
-          <Button
+          <Card style={{ width: '18rem', height: '25rem' }}>
+            <Card.Body>
+              <Card.Title>{article.title}</Card.Title>
+              <Card.Text className="Articles-card-description">
+                {article.description}
+              </Card.Text>
+              <div className="Articles-card-buttons">
+
+                <ButtonGroup size="sm">
+                  <Button
           // onClick={() => modifyArticle(article.id)}
-            as={NavLink}
-            to={`article/${article.id}`}
-          >
-            Modifier
-          </Button>
-          <Button
-            type="submit"
-            onClick={() => removeArticle(article.id)}
-          >
-            Supprimer
-          </Button>
+                    as={NavLink}
+                    to={`article/${article.id}`}
+                  >
+                    Modifier
+                  </Button>
+                  <Button
+                    type="submit"
+                    onClick={() => removeArticle(article.id)}
+                  >
+                    Supprimer
+                  </Button>
+                </ButtonGroup>
+
+              </div>
+            </Card.Body>
+          </Card>
         </div>
       ))}
     </div>
