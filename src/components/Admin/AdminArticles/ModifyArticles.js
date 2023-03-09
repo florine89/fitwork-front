@@ -71,19 +71,24 @@ export default function ModifyArticles() {
 
   function removeArticle(idArticle) {
     console.log('removeArticle');
-    console.log(idArticle);
+    console.log(id);
     //! Delete de l'article (requete axios) en fonction de "article_id"
 
     axios
       .delete(`http://${process.env.REACT_APP_API_BASE_URL}/article/${idArticle}`, {
-        user_id: id,
+        data: { user_id: id },
       })
       .then((response) => {
         console.log(response.data);
 
         const newArticles = articles.filter((article) => article.id !== idArticle);
         setArticles(newArticles);
-      });
+      })
+      .catch(
+        (error) => {
+          console.log(error);
+        },
+      );
   }
   // Avec le hook de React, j'affiche au premier rendu de ma page les données
   useEffect(() => {
