@@ -1,0 +1,13 @@
+@use 'src/styles/vars';
+
+.card{
+    margin: 2em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    &-btn{
+        display: inline-block;
+        text-align: center;
+    }
+}
