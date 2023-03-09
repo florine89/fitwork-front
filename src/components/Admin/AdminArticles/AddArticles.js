@@ -15,7 +15,7 @@ function AddArticles() {
   const [description, setDescription] = useState('');
   const [selectCategory, setSelectCategory] = useState('');
   const [success, setSuccess] = useState(false);
-  const refForm = useRef(null);
+  // const refForm = useRef(null);
 
   const categories = useSelector(getCategoriesList);
   const id = useSelector((state) => state.user.id);
@@ -78,7 +78,7 @@ function AddArticles() {
     <>
       { !success && (
         <Form
-          ref={refForm}
+          // ref={refForm}
           // mettre le chemin ou sera envoyer l'image(video 20:00)
           // action="/upload"
           method="POST"

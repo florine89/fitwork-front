@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-no-bind */
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 
 import Button from 'react-bootstrap/Button';
@@ -23,12 +23,12 @@ import Button from 'react-bootstrap/Button';
 // const API_BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
 
 export default function ModifyArticles() {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('');
+  // const [title, setTitle] = useState('');
+  // const [description, setDescription] = useState('');
+  // const [category, setCategory] = useState('');
   const [articles, setArticles] = useState([]);
 
-  const userId = useSelector((state) => state.user.id);
+  const id = useSelector((state) => state.user.id);
   // const categories = useSelector(getCategoriesList);
   // const articles = useSelector(getArticlesList);
 
@@ -54,7 +54,6 @@ export default function ModifyArticles() {
   // };
 
   // const [data, setData] = useState([]);
-  const { id } = useParams();
 
   function getArticles() {
     axios
@@ -66,22 +65,20 @@ export default function ModifyArticles() {
 
   /// Fonction pour modifier les informations de profil
 
-  function removeArticle() {
+  function removeArticle(idArticle) {
     console.log('removeArticle');
+    console.log(idArticle);
     //! Delete de l'article (requete axios) en fonction de "article_id"
 
     axios
-      .delete(`http://${process.env.REACT_APP_API_BASE_URL}/article/${id}`, {
-        title,
-        description,
-        category_id: category,
-        user_id: userId,
+      .delete(`http://${process.env.REACT_APP_API_BASE_URL}/article/${idArticle}`, {
+        user_id: id,
       })
       .then((response) => {
-        setTitle(response.data);
-        setDescription(response.data);
-        setCategory(response.data);
-        console.log('update article', response);
+        console.log(response.data);
+
+        const newArticles = articles.filter((article) => article.id !== idArticle);
+        setArticles(newArticles);
       });
   }
   // Avec le hook de React, j'affiche au premier rendu de ma page les données
@@ -103,7 +100,8 @@ export default function ModifyArticles() {
             Modifier
           </Button>
           <Button
-            onClick={() => removeArticle()}
+            type="submit"
+            onClick={() => removeArticle(article.id)}
           >
             Supprimer
           </Button>
