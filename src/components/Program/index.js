@@ -113,14 +113,14 @@ function Program() {
           onClick={toggleShowToast}
         >J'ai terminé
         </Button>
-        <Toast show={showA} onClose={toggleShowToast} className="message-toast">
-          <Toast.Header>
-            <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
-            <strong className="me-auto">Bravo !</strong>
-          </Toast.Header>
-          <Toast.Body>Tu as atteint tes objectifs journaliers</Toast.Body>
-        </Toast>
       </Form>
+      <Toast show={showA} onClose={toggleShowToast} className="message-toast">
+        <Toast.Header>
+          <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
+          <strong className="me-auto">Bravo !</strong>
+        </Toast.Header>
+        <Toast.Body>Tu as atteint tes objectifs journaliers</Toast.Body>
+      </Toast>
     </div>
   );
 }
