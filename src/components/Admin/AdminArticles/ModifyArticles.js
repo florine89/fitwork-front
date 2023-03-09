@@ -8,6 +8,8 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Card from 'react-bootstrap/Card';
+
+import './ModifyArticles.scss';
 // import Col from 'react-bootstrap/Col';
 // import Form from 'react-bootstrap/Form';
 // import InputGroup from 'react-bootstrap/InputGroup';
@@ -89,10 +91,11 @@ export default function ModifyArticles() {
   }, []);
 
   return (
-    <div>
+    <div className="card">
       {articles.map((article) => (
         <div key={article.id}>
           <Card style={{ width: '18rem', height: '25rem' }}>
+            {/* <Card.Img variant="top" src={`http://${process.env.REACT_APP_API_BASE_URL}/article/${article.id}/image`} /> */}
             <Card.Body>
               <Card.Title>{article.title}</Card.Title>
               <Card.Text className="Articles-card-description">
@@ -100,15 +103,17 @@ export default function ModifyArticles() {
               </Card.Text>
               <div className="Articles-card-buttons">
 
-                <ButtonGroup size="sm">
+                <ButtonGroup size="sm" className="card-btn">
                   <Button
           // onClick={() => modifyArticle(article.id)}
+                    className="card-btn_modif"
                     as={NavLink}
                     to={`article/${article.id}`}
                   >
                     Modifier
                   </Button>
                   <Button
+                    className="card-btn_delete"
                     type="submit"
                     onClick={() => removeArticle(article.id)}
                   >
