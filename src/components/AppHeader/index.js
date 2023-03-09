@@ -19,6 +19,7 @@ import { getCategoriesList } from '../../selectors/categories';
 function Header() {
   const categories = useSelector(getCategoriesList);
   const isLogged = useSelector((state) => state.user.logged);
+  console.log(isLogged);
 
   return (
 

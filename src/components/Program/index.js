@@ -14,6 +14,10 @@ import './style.scss';
 import Counter from './Counter';
 
 function Program() {
+  const instance = axios.create({
+    baseURL: `http://${process.env.REACT_APP_BASE_URL}`,
+  });
+
   const [articles, setArticles] = useState([]);
 
   const id = useSelector((state) => state.user.id);
@@ -21,9 +25,7 @@ function Program() {
 
   function deleteArticleProgram(idProgram) {
     console.log('delete');
-    axios.delete(`http://${process.env.REACT_APP_API_BASE_URL}/program/${idProgram}`, {
-      user_id: id,
-    })
+    instance.delete(`/program/${idProgram}`)
       .then((response) => {
         console.log(response.data);
         const newArticles = articles.filter((article) => article.program_id !== idProgram);
@@ -37,8 +39,8 @@ function Program() {
 
   function toggleStatus(article) {
   // faire appel à la bdd pour modifier le statut
-    axios
-      .patch(`http://${process.env.REACT_APP_API_BASE_URL}/program/${article.program_id}`, {
+    instance
+      .patch(`/program/${article.program_id}`, {
         user_id: id,
       })
       .then((response) => {
@@ -51,7 +53,7 @@ function Program() {
   }
 
   useEffect(() => {
-    axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/user/${id}/program`).then((response) => {
+    instance.get(`/user/${id}/program`).then((response) => {
       setArticles(response.data);
     });
   }, [id]);

@@ -15,6 +15,10 @@ import logo from '../../assets/inscriptionok.jpg';
 
 // eslint-disable-next-line react/prop-types
 export default function Inscription() {
+  const instance = axios.create({
+    baseURL: `http://${process.env.REACT_APP_BASE_URL}`,
+  });
+
   // const [change, setChange] = useState('');
 
   const [firstname, setFirstname] = useState('');
@@ -66,8 +70,8 @@ export default function Inscription() {
     console.log('password', password);
     console.log('birthday', birthday);
 
-    axios
-      .post(`http://${process.env.REACT_APP_API_BASE_URL}/user`, {
+    instance
+      .post('/user', {
         firstname,
         lastname,
         email,

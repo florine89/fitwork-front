@@ -20,7 +20,7 @@ import Button from 'react-bootstrap/Button';
 // import { getCategoriesList } from '../../../selectors/categories';
 // import { getArticlesList } from '../../../selectors/articles';
 
-const API_BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
+const API_BASE_URL = `${process.env.REACT_APP_BASE_URL}`;
 
 export default function ModifyArticles() {
   // const id = useSelector((state) => state.user.id))

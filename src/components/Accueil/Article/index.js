@@ -11,12 +11,16 @@ import { useParams } from 'react-router-dom';
 // import logo from '../../../assets/femmebureau.jpg';
 //
 function ArticleContainer() {
+  const instance = axios.create({
+    baseURL: `http://${process.env.REACT_APP_BASE_URL}`,
+  });
+
   const [articles, setArticles] = useState([]);
 
   const { id } = useParams();
 
   function getOneArticle() {
-    axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/articles`)
+    instance.get('/articles')
       .then((response) => {
         setArticles(response.data);
       });
@@ -39,7 +43,7 @@ function ArticleContainer() {
           <Carousel.Item key={article.id}>
 
             <Card style={{ width: '18rem', height: '25rem' }}>
-              <Card.Img className="card-img" variant="light" src={`http://${process.env.REACT_APP_API_BASE_URL}/article/${article.id}/image`} />
+              <Card.Img className="card-img" variant="light" src={`http://${process.env.REACT_APP_BASE_URL}/article/${article.id}/image`} />
               <Card.Body>
                 <Card.Title>{article.title}</Card.Title>
                 <Card.Text className="card-description">

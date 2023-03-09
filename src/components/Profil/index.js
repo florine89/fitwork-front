@@ -17,6 +17,10 @@ import dayjs from 'dayjs';
 import { saveUser } from '../../actions/user';
 
 function Profil() {
+  const instance = axios.create({
+    baseURL: `http://${process.env.REACT_APP_BASE_URL}`,
+  });
+
   /// Propriété Bootstrap
   // permet d'activer la propriété validated de Bootstrap sur le formulaire
   const [validated, setValidated] = useState(false);
@@ -53,8 +57,8 @@ function Profil() {
    * Les données sont alors affichée dans le champ du formulaire en tant que "defaultValue"
    */
   function getProfil() {
-    axios
-      .get(`http://${process.env.REACT_APP_API_BASE_URL}/user/${id}`)
+    instance
+      .get(`/user/${id}`)
       .then((response) => {
         // afficher les data au premier rendu
         setData(response.data);
@@ -108,8 +112,8 @@ function Profil() {
   const dispatch = useDispatch();
 
   function updateProfil() {
-    axios
-      .patch(`http://${process.env.REACT_APP_API_BASE_URL}/user/${id}`, {
+    instance
+      .patch(`/user/${id}`, {
         firstname,
         lastname,
         email,
@@ -118,6 +122,9 @@ function Profil() {
       .then((response) => {
         dispatch(saveUser(response.data));
         console.log('update user', response.data);
+      })
+      .catch((error) => {
+        console.error(error);
       });
   }
 
