@@ -96,29 +96,29 @@ export default function ModifyArticles() {
   }, []);
 
   return (
-    <div className="card">
+    <div className="card-modify">
       {articles.map((article) => (
         <div key={article.id}>
-          <Card style={{ width: '18rem', height: '25rem' }}>
-            {/* <Card.Img variant="top" src={`http://${process.env.REACT_APP_API_BASE_URL}/article/${article.id}/image`} /> */}
+          <Card className="card-modify_body" style={{ width: '18rem', height: '25rem' }}>
             <Card.Body>
               <Card.Title>{article.title}</Card.Title>
               <Card.Text className="Articles-card-description">
                 {article.description}
               </Card.Text>
-              <div className="Articles-card-buttons">
+              {/* <Card.Img variant="top" src={`http://${process.env.REACT_APP_API_BASE_URL}/article/${article.id}/image`} /> */}
+              <div className="card-modify_body_modif">
 
-                <ButtonGroup size="sm" className="card-btn">
+                <ButtonGroup size="sm">
                   <Button
           // onClick={() => modifyArticle(article.id)}
-                    className="card-btn_modif"
+                    // className="card-btn_modif"
                     as={NavLink}
                     to={`article/${article.id}`}
                   >
                     Modifier
                   </Button>
                   <Button
-                    className="card-btn_delete"
+                    className="card-modify_body_delete"
                     type="submit"
                     onClick={() => removeArticle(article.id)}
                   >

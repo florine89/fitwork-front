@@ -1,13 +1,19 @@
 @use 'src/styles/vars';
 
-.card{
+.card-modify{
     margin: 2em;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    &-btn{
-        display: inline-block;
+    &_body{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         text-align: center;
+        margin-right: 15px;
+        &-modif{
+            margin-right: 20px;
+        }
     }
 }
