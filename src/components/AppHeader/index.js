@@ -22,13 +22,15 @@ function Header() {
 
   return (
 
-    <Navbar className="sticky-top" bg="info" expand="lg">
+    <Navbar expand="lg" className="sticky-top" bg="info">
       <Container>
-        <Link to="/">
-          <img src={logo} className="header-logo" alt="Logo FitWork" />
-        </Link>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Brand>
+          <Link to="/">
+            <img src={logo} className="header-logo" alt="Logo FitWork" />
+          </Link>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             {/* quand on est connecté ça affiche profil, programme, favoris, contact */}
             {isLogged && (
@@ -84,7 +86,6 @@ function Header() {
           </Button>
           )}
 
-          {/* <Nav.Link as={NavLink} to="/inscription">S'inscrire</Nav.Link> */}
           <LoginForm />
         </Navbar.Collapse>
       </Container>
