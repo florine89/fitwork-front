@@ -20,8 +20,8 @@ function AddArticles() {
   const categories = useSelector(getCategoriesList);
   const id = useSelector((state) => state.user.id);
 
-  const baseURL = 'http://barrealexandre-server.eddi.cloud:8080/api';
-  /**
+  const baseURL = `${process.env.REACT_APP_API_BASE_URL}`;
+  /*
  * Cette fonction permet de vérifier lors de la modification d'un champ
  * - de quel champ il s'agit
  * - compare le nom du champ avec celui attendu
