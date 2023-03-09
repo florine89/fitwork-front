@@ -22,20 +22,15 @@ function Home() {
         </p>
         )}
         { !isLogged && (
-        <>
-          <h1 className="home-title-big">
-            Un esprit sain, dans un corps sain !
-            <span className="home-title-small">
-              Pour travailler sainement.
-            </span>
-            <img src={logo2} alt="home-image" className="home-logo" />
-          </h1>
-          <NavLink className="home-login" to="/inscription">Découvre tous nos conseils bien-être en t'inscrivant ici!</NavLink>
-        </>
-
+        <h1 className="home-title-big">
+          Un esprit sain, dans un corps sain !
+          <span className="home-title-small">
+            Pour travailler sainement.
+          </span>
+          <img src={logo2} alt="home-image" className="home-logo" />
+        </h1>
         )}
       </div>
-
       <p className="home-description">
         L'application FitWork te suit au bureau !
       </p>
@@ -43,7 +38,7 @@ function Home() {
         Une application de conseils, d'exercices
         physiques et relaxant, pour maintenir ton bien-être au travail
       </p>
-
+      <NavLink className="home-login" to="/inscription">Découvre tous nos conseils bien-être en t'inscrivant ici!</NavLink>
       <ArticleContainer />
     </div>
   );
