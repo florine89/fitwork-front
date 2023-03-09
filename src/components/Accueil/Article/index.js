@@ -1,5 +1,6 @@
 import './style.scss';
 
+import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useState, useEffect } from 'react';
@@ -31,49 +32,27 @@ function ArticleContainer() {
   // puis on dynamise avec article.title et article.description
   return (
 
-    <div className="card-container">
+    <article className="card-article">
 
-      <article className="card-article">
+      <Carousel variant="dark" slide={false}>
         {articles.slice(0, 3).map((article) => (
-          <Card key={article.id} style={{ width: '18rem' }}>
-            <Card.Img variant="light" src={`http://${process.env.REACT_APP_API_BASE_URL}/article/${article.id}/image`} />
-            <Card.Body>
-              <Card.Title>{article.title}</Card.Title>
-              <Card.Text>
-                {article.description}
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        ))}
-      </article>
+          <Carousel.Item key={article.id}>
 
-      {/* <article className="card-article">
-        <Card style={{ width: '18rem' }}>
-          <Card.Img variant="light" src={logo} />
-          <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Card.Text>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </Card.Text>
-            <Button variant="light">Go somewhere</Button>
-          </Card.Body>
-        </Card>
-      </article>
-      <article className="card-article">
-        <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src={logo} />
-          <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Card.Text>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </Card.Text>
-            <Button variant="light">Go somewhere</Button>
-          </Card.Body>
-        </Card>
-      </article> */}
-    </div>
+            <Card style={{ width: '18rem', height: '25rem' }}>
+              <Card.Img className="card-img" variant="light" src={`http://${process.env.REACT_APP_API_BASE_URL}/article/${article.id}/image`} />
+              <Card.Body>
+                <Card.Title>{article.title}</Card.Title>
+                <Card.Text className="card-description">
+                  {article.description}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Carousel.Item>
+
+        ))}
+      </Carousel>
+
+    </article>
   );
 }
 export default ArticleContainer;
