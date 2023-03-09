@@ -1,17 +1,13 @@
 import './style.scss';
 
-import logo1 from '../../assets/logofb.png';
-import logo2 from '../../assets/insta.png';
-import logo3 from '../../assets/whatsapp.png';
+import logo from '../../assets/logo.png';
 
 function Footer() {
   return (
     <div className="footer">
 
       <div className="footer-link">
-        <img className="footer-link-logo" href="#" src={logo2} alt="logo_instagram" />
-        <img className="footer-link-logo" href="#" src={logo1} alt="logo_facebook" />
-        <img className="footer-link-logo" href="#" src={logo3} alt="logo_whatsapp" />
+        FIT WORK
       </div>
 
     </div>

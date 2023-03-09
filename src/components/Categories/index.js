@@ -1,21 +1,35 @@
-import { useEffect, useState } from 'react';
-
-import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 import './style.scss';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Card from 'react-bootstrap/Card';
+
+import { getCategoriesList } from '../../selectors/categories';
 
 function Categories() {
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/categories`).then((response) => {
-      setCategories(response.data);
-    });
-  }, []);
+  const categories = useSelector(getCategoriesList);
 
   return (
     <div className="Categories">
-      <h1 className="presentation-title">{categories.name}</h1>
+      <h1 className="Categories-title">Les catégories</h1>
+
+      <ListGroup>
+        {categories.map((category) => (
+          <Card
+            className="Categories-card"
+            style={{ width: '18rem' }}
+            bg="light"
+            as={NavLink}
+            key={category.id}
+            to={`/categorie/${category.id}`}
+          >
+            <Card.Header className="Categories-card-header">{category.name}</Card.Header>
+            <Card.Body>Description de la catégorie</Card.Body>
+          </Card>
+        ))}
+      </ListGroup>
+
     </div>
   );
 }

@@ -94,7 +94,7 @@ export default function ModifyArticles() {
           <div>Titre : {article.title}</div>
           <div>Description : {article.description}</div>
           <Button
-            // onClick={() => modifyArticle(article.id)}
+          // onClick={() => modifyArticle(article.id)}
             as={NavLink}
             to={`article/${article.id}`}
           >

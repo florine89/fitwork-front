@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -16,7 +17,7 @@ function Program() {
   const [articles, setArticles] = useState([]);
 
   const id = useSelector((state) => state.user.id);
-  // console.log('id du user', id);
+  console.log('id du user', id);
 
   function deleteArticleProgram(idProgram) {
     console.log('delete');
@@ -34,19 +35,40 @@ function Program() {
     evt.preventDefault();
   }
 
+  function toggleStatus(article) {
+  // faire appel à la bdd pour modifier le statut
+    axios
+      .patch(`http://${process.env.REACT_APP_API_BASE_URL}/program/${article.program_id}`, {
+        user_id: id,
+      })
+      .then((response) => {
+        const updatedArticles = articles.map((art) => {
+          if (art.program_id === article.program_id) art.status = !art.status;
+          return (art);
+        });
+        setArticles(updatedArticles);
+      });
+  }
+
   useEffect(() => {
     axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/user/${id}/program`).then((response) => {
       setArticles(response.data);
     });
   }, [id]);
-  // TODO coder la route delete
-  // TODO counter ?
-  const number = 1;
+
+  // cette const recupère le tableau des articles et filtre le nombre d'article
+  const undoneArticles = articles.filter((article) => article.status === false);
+  console.log('hello', undoneArticles);
+  // const changeStatus = articles.filter(({ article }) => !article);
+
+  // on récupère les tâches effectuéesicle
+  // const doneArticles = articles.filter(({ done }) => done);
+  console.log(articles);
 
   return (
     <div className="program">
       <h1 className="program-title">Mon Programme</h1>
-      <Counter number={number} />
+      <Counter number={articles.filter((article) => article.status === false).length} />
       <Form onSubmit={handleSubmit}>
         {articles.map((article) => (
           <ListGroup key={article.program_id}>
@@ -55,17 +77,29 @@ function Program() {
                 <ListGroup.Item className="program-input-article">
                   <Button
                     type="submit"
-                    variant="info"
+                    variant="light"
                     className="program-input-bin"
                     onClick={() => deleteArticleProgram(article.program_id)}
                   >
                     <Icon icon="bin" size="1rem" />
+                  </Button>
+                  <Button
+                    type="submit"
+                    variant="light"
+                    className="program-input-bin"
+                    as={NavLink}
+                    to={`/article/${article.article_id}`}
+                  >
+                    <Icon icon="search" size="1rem" />
                   </Button>
                   <Form.Check
                     key={article.id}
                     type={type}
                     id={`default-${type}`}
                     label={article.title}
+                    onChange={() => toggleStatus(article)}
+                    // checked={article.status}
+                    defaultChecked={article.status}
                   />
                 </ListGroup.Item>
               </div>

@@ -40,6 +40,7 @@ export default function Inscription() {
     }
     if (evt.target.name === 'birthday') {
       setBirthday(evt.target.value);
+      console.log(evt.target.value);
     }
     // setChange(evt.target.value);
   }

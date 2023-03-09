@@ -9,7 +9,11 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
+
 import axios from 'axios';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import dayjs from 'dayjs';
+
 import { saveUser } from '../../actions/user';
 
 function Profil() {
@@ -52,12 +56,16 @@ function Profil() {
     axios
       .get(`http://${process.env.REACT_APP_API_BASE_URL}/user/${id}`)
       .then((response) => {
+        // afficher les data au premier rendu
         setData(response.data);
         // console.log(response.data);
+
+        // afficher les data modifiées
         setLastname(response.data.lastname);
         setFirstname(response.data.firstname);
         setEmail(response.data.email);
-        setBirthday(response.data.birthday);
+        setBirthday(dayjs(response.data.birth_date).format('YYYY-MM-DD'));
+        // console.log('res data birthdate', response.data.birth_date);
       });
   }
 
@@ -87,6 +95,7 @@ function Profil() {
     }
     if (event.target.name === 'birthday') {
       setBirthday(event.target.value);
+      // console.log('evt target', event.target.value);
     }
   }
 
@@ -100,7 +109,7 @@ function Profil() {
 
   function updateProfil() {
     axios
-      .patch(`${process.env.REACT_APP_API_BASE_URL}/user/${id}`, {
+      .patch(`http://${process.env.REACT_APP_API_BASE_URL}/user/${id}`, {
         firstname,
         lastname,
         email,
@@ -108,7 +117,7 @@ function Profil() {
       })
       .then((response) => {
         dispatch(saveUser(response.data));
-        // console.log('update user', response);
+        console.log('update user', response.data);
       });
   }
 
@@ -181,7 +190,7 @@ function Profil() {
             type="date"
             placeholder="date de naissance"
             name="birthday"
-            defaultValue={data.birth_date}
+            defaultValue={dayjs(data.birth_date).format('YYYY-MM-DD')}
           />
           <Form.Control.Feedback type="invalid">
             Please provide a valid date.
