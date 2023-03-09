@@ -17,12 +17,30 @@ import Counter from './Counter';
 function Program() {
   // toast
   const [showA, setShowA] = useState(false);
-  const toggleShowToast = () => setShowA(!showA);
-
   const [articles, setArticles] = useState([]);
 
   const id = useSelector((state) => state.user.id);
   console.log('id du user', id);
+
+  function toggleStatus(article) {
+    // faire appel à la bdd pour modifier le statut
+    axios
+      .patch(`http://${process.env.REACT_APP_API_BASE_URL}/program/${article.program_id}`, {
+        user_id: id,
+      })
+      .then((response) => {
+        const updatedArticles = articles.map((art) => {
+          if (art.program_id === article.program_id) art.status = !art.status;
+          return (art);
+        });
+        setArticles(updatedArticles);
+      });
+  }
+
+  const toggleShowToast = () => {
+    setShowA(!showA);
+    articles.map((article) => toggleStatus(article));
+  };
 
   function deleteArticleProgram(idProgram) {
     console.log('delete');
@@ -38,21 +56,6 @@ function Program() {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-  }
-
-  function toggleStatus(article) {
-  // faire appel à la bdd pour modifier le statut
-    axios
-      .patch(`http://${process.env.REACT_APP_API_BASE_URL}/program/${article.program_id}`, {
-        user_id: id,
-      })
-      .then((response) => {
-        const updatedArticles = articles.map((art) => {
-          if (art.program_id === article.program_id) art.status = !art.status;
-          return (art);
-        });
-        setArticles(updatedArticles);
-      });
   }
 
   useEffect(() => {
@@ -114,7 +117,7 @@ function Program() {
         >J'ai terminé
         </Button>
       </Form>
-      <Toast show={showA} onClose={toggleShowToast} className="message-toast">
+      <Toast show={showA} onClose={() => setShowA(!showA)} className="message-toast">
         <Toast.Header>
           <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
           <strong className="me-auto">Bravo !</strong>
