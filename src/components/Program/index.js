@@ -34,6 +34,7 @@ function Program() {
           if (art.program_id === article.program_id) art.status = !art.status;
           return (art);
         });
+        // mis à jour du state avec les articles modifier
         setArticles(updatedArticles);
       });
   }

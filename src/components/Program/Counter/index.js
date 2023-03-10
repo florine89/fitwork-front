@@ -5,7 +5,7 @@ function Counter({ number }) {
   let text = `${number} tâches en cours`;
 
   if (number === 0) {
-    text = 'Commencez votre programme';
+    text = 'Commencez à ajouter des articles à votre programme !';
   }
   else if (number === 1) {
     text = '1 activité en cours';
