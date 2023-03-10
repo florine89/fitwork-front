@@ -4,19 +4,19 @@ import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-// import logo from '../../../assets/femmebureau.jpg';
-//
+
+import { instance } from '../../../middleware/getAPI';
+
 function ArticleContainer() {
   const [articles, setArticles] = useState([]);
 
   const { id } = useParams();
 
   function getOneArticle() {
-    axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/articles`)
+    instance.get('/articles')
       .then((response) => {
         setArticles(response.data);
       });
@@ -33,13 +33,13 @@ function ArticleContainer() {
   return (
 
     <article className="card-article">
-
+      <p className="card-article-title">Comment ça fonctionne? Ci dessous un échantillon des articles disponibles !</p>
       <Carousel variant="dark" slide={false}>
         {articles.slice(0, 3).map((article) => (
           <Carousel.Item key={article.id}>
 
             <Card style={{ width: '18rem', height: '25rem' }}>
-              <Card.Img className="card-img" variant="light" src={`http://${process.env.REACT_APP_API_BASE_URL}/article/${article.id}/image`} />
+              <Card.Img className="card-img" variant="light" src={`http://${process.env.REACT_APP_BASE_URL}/article/${article.id}/image`} />
               <Card.Body>
                 <Card.Title>{article.title}</Card.Title>
                 <Card.Text className="card-description">

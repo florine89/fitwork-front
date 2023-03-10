@@ -14,7 +14,7 @@ import axios from 'axios';
 import logo from '../../../assets/inscriptionok.jpg';
 import { getCategoriesList } from '../../../selectors/categories';
 
-// const API_BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
+const API_BASE_URL = `${process.env.REACT_APP_BASE_URL}`;
 
 export default function ModifyArticle() {
   // j'importe l'id du user stocké à partir du state de Redux

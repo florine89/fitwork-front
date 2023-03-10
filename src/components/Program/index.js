@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-no-bind */
-import axios from 'axios';
-import { React, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
@@ -11,6 +10,8 @@ import Toast from 'react-bootstrap/Toast';
 
 import Icon from '../ui/Icon';
 import './style.scss';
+
+import { instance } from '../../middleware/getAPI';
 
 import Counter from './Counter';
 
@@ -44,9 +45,7 @@ function Program() {
 
   function deleteArticleProgram(idProgram) {
     console.log('delete');
-    axios.delete(`http://${process.env.REACT_APP_API_BASE_URL}/program/${idProgram}`, {
-      user_id: id,
-    })
+    instance.delete(`/program/${idProgram}`)
       .then((response) => {
         console.log(response.data);
         const newArticles = articles.filter((article) => article.program_id !== idProgram);
@@ -58,8 +57,23 @@ function Program() {
     evt.preventDefault();
   }
 
+  function toggleStatus(article) {
+  // faire appel à la bdd pour modifier le statut
+    instance
+      .patch(`/program/${article.program_id}`, {
+        user_id: id,
+      })
+      .then((response) => {
+        const updatedArticles = articles.map((art) => {
+          if (art.program_id === article.program_id) art.status = !art.status;
+          return (art);
+        });
+        setArticles(updatedArticles);
+      });
+  }
+
   useEffect(() => {
-    axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/user/${id}/program`).then((response) => {
+    instance.get(`/user/${id}/program`).then((response) => {
       setArticles(response.data);
     });
   }, [id]);

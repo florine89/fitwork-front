@@ -4,7 +4,6 @@ import './style.scss';
 import { NavLink, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import axios from 'axios';
 
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -14,8 +13,9 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import Spinner from 'react-bootstrap/Spinner';
 
+import { instance } from '../../middleware/getAPI';
+
 import { getCategoriesList } from '../../selectors/categories';
-import logo from '../../assets/femmebureau.jpg';
 
 function Articles() {
   // Loader
@@ -40,7 +40,7 @@ function Articles() {
   */
   function getArticleByCategorie() {
     toggleIsLoading(true);
-    axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/category/${id}`)
+    instance.get(`/category/${id}`)
       .then((response) => {
         setArticles(response.data); // j'importe mes data dans le state local
       })
@@ -97,8 +97,8 @@ function Articles() {
  * La fonction anonyme évite que la fonction ne s'exécute seule au rendu.
  */
   function addArticleToProgram(idArticle) {
-    axios
-      .post(`http://${process.env.REACT_APP_API_BASE_URL}/article/${idArticle}/program`, {
+    instance
+      .post(`/article/${idArticle}/program`, {
         user_id: userId, // je passe le user id du state
       })
       .then((response) => {
@@ -108,7 +108,6 @@ function Articles() {
   }
 
   // ajouter un article aux favoris
-  // TODO gérer pour les favoris l'ajout du favoris 1 seule fois sinon erreur
 
   /**
    * La fonction permet d'ajouter un article aux favoris sur le onClick.
@@ -116,8 +115,8 @@ function Articles() {
    * La fonction anonyme évite que la fonction ne s'exécute seule au rendu.
    */
   function addArticleToFavorites(idArticle) {
-    axios
-      .post(`http://${process.env.REACT_APP_API_BASE_URL}/article/${idArticle}/favorite`, {
+    instance
+      .post(`/article/${idArticle}/favorite`, {
         user_id: userId, // je passe le user id du state
       })
       .then((response) => {
@@ -170,7 +169,7 @@ function Articles() {
           {articles.map((article) => (
             <article key={article.id} className="Articles-card">
               <Card style={{ width: '18rem', height: '25rem' }}>
-                <Card.Img variant="top" src={`http://${process.env.REACT_APP_API_BASE_URL}/article/${article.id}/image`} />
+                <Card.Img variant="top" src={`http://${process.env.REACT_APP_BASE_URL}/article/${article.id}/image`} />
                 <Card.Body>
                   <Card.Title as={NavLink} to={`/article/${article.id}`} className="Articles-card-title">{article.title}</Card.Title>
                   <Card.Text className="Articles-card-description">

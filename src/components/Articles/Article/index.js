@@ -9,20 +9,19 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import axios from 'axios';
+import { instance } from '../../../middleware/getAPI';
 
 function Article() {
   // Loader
   const [isLoading, toggleIsLoading] = useState(false);
   const [article, setArticle] = useState([]);
 
-  // const [image, setImage] = useState('');
-
   const { id } = useParams();
 
   function getOneArticle() {
     toggleIsLoading(true);
-    axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/article/${id}`)
+    console.log(id);
+    instance.get(`/article/${id}`)
       .then((response) => {
         setArticle(response.data);
       })
@@ -41,8 +40,8 @@ function Article() {
   const userId = useSelector((state) => state.user.id); // je recupère mon user id avec redux
 
   function addArticleToFavorites(idArticle) {
-    axios
-      .post(`http://${process.env.REACT_APP_API_BASE_URL}/article/${idArticle}/favorite`, {
+    instance
+      .post(`/article/${idArticle}/favorite`, {
         user_id: userId, // je passe le user id du state
       })
       .then((response) => {
@@ -54,8 +53,8 @@ function Article() {
   }
 
   function addArticleToProgram(idArticle) {
-    axios
-      .post(`http://${process.env.REACT_APP_API_BASE_URL}/article/${idArticle}/program`, {
+    instance
+      .post(`/article/${idArticle}/program`, {
         user_id: userId, // je passe le user id du state
       })
       .then((response) => {
@@ -82,7 +81,7 @@ function Article() {
           <Card.Header as="h5">Type: {!article.type ? 'pas de type renseigné' : article.type}</Card.Header>
           <Card.Body>
             <Card.Title>{article.title}</Card.Title>
-            <Card.Img src={`http://${process.env.REACT_APP_API_BASE_URL}/article/${article.id}/image`} className="Article-image" />
+            <Card.Img src={`http://${process.env.REACT_APP_BASE_URL}/article/${article.id}/image`} className="Article-image" />
             <Card.Text className="Article-card">
               {article.description}
             </Card.Text>

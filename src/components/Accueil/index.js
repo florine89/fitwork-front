@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import './style.scss';
 
-import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import Button from 'react-bootstrap/Button';
@@ -46,7 +45,8 @@ function Home() {
         Une application de conseils, d'exercices
         physiques et relaxant, pour maintenir ton bien-être au travail
       </p>
-      <NavLink className="home-login" to="/inscription">Découvre tous nos conseils bien-être en t'inscrivant ici!</NavLink>
+      <p className="home-description2">Découvre tous nos conseils bien-être en consultant les articles mis à disposition par nos coachs!</p>
+
       <ArticleContainer />
 
       <Button className="home-btn" variant="primary" size="lg">
