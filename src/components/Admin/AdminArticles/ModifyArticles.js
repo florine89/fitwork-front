@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
 /* eslint-disable react/jsx-no-bind */
 import { useSelector, useDispatch } from 'react-redux';
@@ -24,11 +25,10 @@ import './ModifyArticles.scss';
 // import { getCategoriesList } from '../../../selectors/categories';
 // import { getArticlesList } from '../../../selectors/articles';
 
-export default function ModifyArticles() {
+export default function ModifyArticles({ articles, setArticles }) {
   // const [title, setTitle] = useState('');
   // const [description, setDescription] = useState('');
   // const [category, setCategory] = useState('');
-  const [articles, setArticles] = useState([]);
 
   const id = useSelector((state) => state.user.id);
   // const categories = useSelector(getCategoriesList);
@@ -91,8 +91,8 @@ export default function ModifyArticles() {
   }
   // Avec le hook de React, j'affiche au premier rendu de ma page les données
   useEffect(() => {
-    getArticles();
-  }, []);
+    if (id) getArticles();
+  }, [id]);
 
   return (
     <div className="card-modify">

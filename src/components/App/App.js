@@ -32,7 +32,7 @@ function App() {
   const dispatch = useDispatch();
 
   function connexion() {
-    console.log(token);
+    // console.log(token);
     if (token) {
       // Header par défaut pour le premier rendu de la page
       instance.defaults.headers.common.Authorization = (

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-bind */
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -12,12 +13,11 @@ import logo from '../../../assets/inscriptionok.jpg';
 
 import './addArticles.scss';
 
-function AddArticles() {
+function AddArticles({ articles, setArticles }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [selectCategory, setSelectCategory] = useState('');
   const [success, setSuccess] = useState(false);
-  const [articles, setArticles] = useState([]);
 
   // const refForm = useRef(null);
 
@@ -42,6 +42,7 @@ function AddArticles() {
     }
     if (evt.target.name === 'category') {
       setSelectCategory(evt.target.value);
+      console.log(evt.target.value);
     }
     // setChange(evt.target.value);
     console.log('changetitle', title);
@@ -59,11 +60,12 @@ function AddArticles() {
     // console.log('submit');
   }
 
-  function createUser() {
+  function createArticle() {
     console.log('title', title);
     console.log('description', description);
     // console.log('selectCategory', setSelectCategory);
-
+    console.log('id', id);
+    console.log('category', selectCategory);
     instance
       .post('/article', {
         title,
@@ -73,9 +75,15 @@ function AddArticles() {
       })
       .then((response) => {
         setSuccess(true);
-        console.log((response));
-        // const newArticles = articles.filter((article) => article.id !== idArticle);
-        // setArticles(newArticles);
+        console.log('responseData', response.data);
+        // ...articles deverse les
+        // informations marquer dans les inputs
+        // (state => récupérer de son parent (index.js))
+        // response.data correspond a l'article que l'on viens d'enreegistre en bdd
+
+        const newArticles = [...articles, response.data];
+        setArticles(newArticles);
+        console.log(articles);
         // setPost(response.data);
       });
   }
@@ -128,7 +136,7 @@ function AddArticles() {
 
             </Form.Select>
           </Form.Group>
-          <Button variant="primary" type="submit" onClick={createUser} className="form-btn">
+          <Button variant="primary" type="submit" onClick={createArticle} className="form-btn">
             Enregistrer
           </Button>
         </Form>
