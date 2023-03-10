@@ -19,7 +19,10 @@ import { getCategoriesList } from '../../selectors/categories';
 function Header() {
   const categories = useSelector(getCategoriesList);
   const isLogged = useSelector((state) => state.user.logged);
-  console.log(isLogged);
+  // console.log(isLogged);
+
+  const roleUser = useSelector((state) => state.user.role);
+  console.log('role', roleUser);
 
   return (
 
@@ -36,6 +39,9 @@ function Header() {
             {/* quand on est connecté ça affiche profil, programme, favoris, contact */}
             {isLogged && (
             <>
+
+              {roleUser === 'coach' && (
+                <Nav.Link as={NavLink} to="/administrateur">Administrateur</Nav.Link>)}
               <Nav.Link eventKey="Accueil" as={NavLink} to="/">Accueil</Nav.Link>
               <Nav.Link eventKey="Profil" as={NavLink} to="/profil">Profil</Nav.Link>
               <Nav.Link eventKey="Program" as={NavLink} to="/programme">Programme</Nav.Link>
