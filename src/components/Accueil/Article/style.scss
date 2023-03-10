@@ -11,7 +11,7 @@
         &-title{
             color: vars.$primary;
             max-width: 30rem;
-            padding-bottom: 10rem;
+            padding-bottom: 5rem;
         }
     }
     &-description{
@@ -28,3 +28,22 @@
 
 }
 
+.carousel {
+    padding: 3rem;
+    display: flex;
+    justify-content: center;
+
+    &-inner {
+        border: 10px solid;
+        border-radius: 20px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-color: vars.$danger;
+    }
+}
+
+.article-title {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+}

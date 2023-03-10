@@ -40,7 +40,7 @@ function ArticleContainer() {
             <Card style={{ width: '18rem', height: '25rem' }}>
               <Card.Img className="card-img" variant="light" src={`${process.env.REACT_APP_BASE_URL}/article/${article.id}/image`} />
               <Card.Body>
-                <Card.Title>{article.title}</Card.Title>
+                <Card.Title className="article-title">{article.title}</Card.Title>
                 <Card.Text className="card-description">
                   {article.description}
                 </Card.Text>
