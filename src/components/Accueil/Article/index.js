@@ -35,7 +35,7 @@ function ArticleContainer() {
     <article className="card-article">
       <p className="card-article-title">Comment ça fonctionne? Ci dessous un échantillon des articles disponibles !</p>
       <Carousel variant="dark" slide={false}>
-        {articles.slice(0, 3).map((article) => (
+        {articles.slice(0, 4).map((article) => (
           <Carousel.Item key={article.id}>
 
             <Card style={{ width: '18rem', height: '25rem' }}>
