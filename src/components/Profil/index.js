@@ -38,7 +38,7 @@ function Profil() {
   /// Affichage et modification du formulaire
   // j'importe l'id du user stocké à partir du state de Redux
   const id = useSelector((state) => state.user.id);
-  console.log('id profil', id);
+  // console.log('id profil', id);
 
   // Déclaration d'un state initial 'vide' pour les différents champs du formulaire
   const [firstname, setFirstname] = useState('');

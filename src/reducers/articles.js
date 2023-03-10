@@ -1,4 +1,4 @@
-import { ARTICLES_SAVE } from '../actions/articles';
+/* import { ARTICLES_SAVE } from '../actions/articles';
 
 export const initialState = {
   list: [],
@@ -20,3 +20,4 @@ const reducer = (state = initialState, action = {}) => {
 };
 
 export default reducer;
+ */

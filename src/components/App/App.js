@@ -27,12 +27,12 @@ import './App.scss';
 
 function App() {
   const token = localStorage.getItem('token');
-  console.log(token);
+  // console.log(token);
 
   const dispatch = useDispatch();
 
   function connexion() {
-    console.log(token);
+    // console.log(token);
     if (token) {
       // Header par défaut pour le premier rendu de la page
       instance.defaults.headers.common.Authorization = (

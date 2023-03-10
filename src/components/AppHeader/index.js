@@ -19,11 +19,14 @@ import { getCategoriesList } from '../../selectors/categories';
 function Header() {
   const categories = useSelector(getCategoriesList);
   const isLogged = useSelector((state) => state.user.logged);
-  console.log(isLogged);
+  // console.log(isLogged);
+
+  const roleUser = useSelector((state) => state.user.role);
+  console.log('role', roleUser);
 
   return (
 
-    <Navbar expand="lg" className="sticky-top" bg="info">
+    <Navbar expand="lg" className="sticky-top" bg="info" collapseOnSelect>
       <Container>
         <Navbar.Brand>
           <Link to="/">
@@ -32,16 +35,23 @@ function Header() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="me-auto" onSelect={(eventKey) => console.log(eventKey)}>
             {/* quand on est connecté ça affiche profil, programme, favoris, contact */}
             {isLogged && (
             <>
-              <Nav.Link as={NavLink} to="/">Accueil</Nav.Link>
-              <Nav.Link as={NavLink} to="/profil">Profil</Nav.Link>
+
+              {roleUser === 'coach' && (
+                <Nav.Link as={NavLink} to="/administrateur">Administrateur</Nav.Link>)}
+              <Nav.Link eventKey="Accueil" as={NavLink} to="/">Accueil</Nav.Link>
+              <Nav.Link eventKey="Profil" as={NavLink} to="/profil">Profil</Nav.Link>
+              <Nav.Link eventKey="Program" as={NavLink} to="/programme">Programme</Nav.Link>
+              <Nav.Link eventKey="Fav" as={NavLink} to="/favoris">Favoris</Nav.Link>
+              <Nav.Link eventKey="Admin" as={NavLink} to="/administrateur">Administrateur</Nav.Link>
 
               <NavDropdown title="Catégories" id="basic-nav-dropdown">
                 {categories.map((category) => (
                   <NavDropdown.Item
+                    eventKey="Categorie"
                     as={NavLink}
                     key={category.id}
                     to={`/categorie/${category.id}`}
@@ -50,7 +60,7 @@ function Header() {
                   </NavDropdown.Item>
                 ))}
                 <NavDropdown.Divider />
-                <NavDropdown.Item as={NavLink} to="/categories">
+                <NavDropdown.Item eventKey="Categories" as={NavLink} to="/categories">
                   Toutes les catégories
                 </NavDropdown.Item>
               </NavDropdown>
@@ -64,13 +74,13 @@ function Header() {
             {!isLogged && (
               <>
                 <NavItem>
-                  <Nav.Link as={NavLink} to="/">Accueil</Nav.Link>
+                  <Nav.Link eventKey="Accueil" as={NavLink} to="/">Accueil</Nav.Link>
                 </NavItem>
                 <Nav.Item>
-                  <Nav.Link as={NavLink} to="/contact">Contact</Nav.Link>
+                  <Nav.Link eventKey="Contact" as={NavLink} to="/contact">Contact</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link as={NavLink} to="/a-propos">A propos</Nav.Link>
+                  <Nav.Link eventKey="About" as={NavLink} to="/a-propos">A propos</Nav.Link>
                 </Nav.Item>
 
               </>
