@@ -1,24 +1,19 @@
 // import { useSelector } from 'react-redux';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
-
-import axios from 'axios';
 
 import Alert from 'react-bootstrap/Alert';
 
 /* eslint-disable react/jsx-no-bind */
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { instance } from '../../middleware/getAPI';
 import './style.scss';
 import logo from '../../assets/inscriptionok.jpg';
 
 // eslint-disable-next-line react/prop-types
 export default function Inscription() {
-  const instance = axios.create({
-    baseURL: `http://${process.env.REACT_APP_BASE_URL}`,
-  });
-
   // const [change, setChange] = useState('');
 
   const [firstname, setFirstname] = useState('');

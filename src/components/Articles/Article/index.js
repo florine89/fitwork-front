@@ -9,13 +9,9 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import axios from 'axios';
+import { instance } from '../../../middleware/getAPI';
 
 function Article() {
-  const instance = axios.create({
-    baseURL: `http://${process.env.REACT_APP_BASE_URL}`,
-  });
-
   // Loader
   const [isLoading, toggleIsLoading] = useState(false);
   const [article, setArticle] = useState([]);

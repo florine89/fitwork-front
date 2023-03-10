@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-no-bind */
-import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -12,10 +11,9 @@ import Modal from 'react-bootstrap/Modal';
 import Icon from '../ui/Icon';
 import './style.scss';
 
+import { instance } from '../../middleware/getAPI';
+
 function Favorite() {
-  const instance = axios.create({
-    baseURL: `http://${process.env.REACT_APP_BASE_URL}`,
-  });
   // j'initialise le state avec un tableau vide poru récupérer mes articles
   const [articles, setArticles] = useState([]);
 

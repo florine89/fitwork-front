@@ -4,17 +4,13 @@ import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-// import logo from '../../../assets/femmebureau.jpg';
-//
-function ArticleContainer() {
-  const instance = axios.create({
-    baseURL: `http://${process.env.REACT_APP_BASE_URL}`,
-  });
 
+import { instance } from '../../../middleware/getAPI';
+
+function ArticleContainer() {
   const [articles, setArticles] = useState([]);
 
   const { id } = useParams();

@@ -10,17 +10,13 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 
-import axios from 'axios';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import dayjs from 'dayjs';
+import { instance } from '../../middleware/getAPI';
 
 import { saveUser } from '../../actions/user';
 
 function Profil() {
-  const instance = axios.create({
-    baseURL: `http://${process.env.REACT_APP_BASE_URL}`,
-  });
-
   /// Propriété Bootstrap
   // permet d'activer la propriété validated de Bootstrap sur le formulaire
   const [validated, setValidated] = useState(false);

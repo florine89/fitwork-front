@@ -4,7 +4,6 @@ import './style.scss';
 import { NavLink, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import axios from 'axios';
 
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -14,13 +13,11 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import Spinner from 'react-bootstrap/Spinner';
 
+import { instance } from '../../middleware/getAPI';
+
 import { getCategoriesList } from '../../selectors/categories';
-import logo from '../../assets/femmebureau.jpg';
 
 function Articles() {
-  const instance = axios.create({
-    baseURL: `http://${process.env.REACT_APP_BASE_URL}`,
-  });
   // Loader
   const [isLoading, toggleIsLoading] = useState(false);
 

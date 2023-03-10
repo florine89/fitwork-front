@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import './style.scss';
 
-import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import Button from 'react-bootstrap/Button';

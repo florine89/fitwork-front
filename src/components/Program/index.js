@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-no-bind */
-import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -11,13 +10,11 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Icon from '../ui/Icon';
 import './style.scss';
 
+import { instance } from '../../middleware/getAPI';
+
 import Counter from './Counter';
 
 function Program() {
-  const instance = axios.create({
-    baseURL: `http://${process.env.REACT_APP_BASE_URL}`,
-  });
-
   const [articles, setArticles] = useState([]);
 
   const id = useSelector((state) => state.user.id);

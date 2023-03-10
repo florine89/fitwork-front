@@ -4,7 +4,7 @@ import axios from 'axios';
 import { LOGIN, LOGOUT, saveUser } from '../actions/user';
 import { CATEGORIES_FETCH, saveCategories } from '../actions/categories';
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: `http://${process.env.REACT_APP_BASE_URL}`,
 });
 
