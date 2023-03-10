@@ -98,7 +98,7 @@ function Favorite() {
         {articles.map((article) => (
           <article key={article.article_id} className="Articles-card">
             <Card style={{ width: '18rem', height: '25rem' }}>
-              <Card.Img variant="top" src={`http://${process.env.REACT_APP_BASE_URL}/article/${article.article_id}/image`} />
+              <Card.Img variant="top" src={`${process.env.REACT_APP_BASE_URL}/article/${article.article_id}/image`} />
               <Card.Body>
                 <Card.Title>{article.title}</Card.Title>
                 <Card.Text className="Articles-card-description">

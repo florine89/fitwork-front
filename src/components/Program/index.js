@@ -26,7 +26,7 @@ function Program() {
   function toggleStatus(article) {
     // faire appel à la bdd pour modifier le statut
     instance
-      .patch(`http://${process.env.REACT_APP_API_BASE_URL}/program/${article.program_id}`, {
+      .patch(`/program/${article.program_id}`, {
         user_id: id,
       })
       .then((response) => {
@@ -58,9 +58,11 @@ function Program() {
   }
 
   useEffect(() => {
-    instance.get(`/user/${id}/program`).then((response) => {
-      setArticles(response.data);
-    });
+    if (id) {
+      instance.get(`/user/${id}/program`).then((response) => {
+        setArticles(response.data);
+      });
+    }
   }, [id]);
 
   // cette const recupère le tableau des articles et filtre le nombre d'article
@@ -103,7 +105,7 @@ function Program() {
                   label={article.title}
                   onChange={() => toggleStatus(article)}
                   checked={article.status}
-                  defaultChecked={article.status}
+                  // defaultChecked={article.status}
                 />
               </ListGroup.Item>
             </div>
