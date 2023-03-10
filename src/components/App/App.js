@@ -1,6 +1,6 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { instance } from '../../middleware/getAPI';
 import Header from '../AppHeader';
@@ -55,6 +55,8 @@ function App() {
     dispatch(fetchCategories());
   }, []);
 
+  const isLogged = useSelector((state) => state.user.logged);
+
   /*   Pour faire persister la connexion, il faut un useEffect dans le composant App qui
 sera déclenché au premier chargement de l'application.
 Dans ce useEffect, si on a pas de token, on sort du useEffect (pas la peine d'envoyer
@@ -66,6 +68,7 @@ donc vous dispatcher la même action)
 Si le token n'est plus valide, on passe dans le catch => on vide le localStorage */
 
   return (
+
     <Page>
       <div className="App">
 
@@ -87,8 +90,22 @@ Si le token n'est plus valide, on passe dans le catch => on vide le localStorage
           <Route path="/categories" element={<Categories />} />
           <Route path="/categorie/:id" element={<Articles />} />
           <Route path="/article/:id" element={<Article />} />
-          <Route path="/programme" element={<Program />} />
-          <Route path="/favoris" element={<Favoris />} />
+          <Route
+            path="/programme"
+            element={(
+            isLogged
+              ? <Program />
+              : <Navigate to="/" replace />
+          )}
+          />
+          <Route
+            path="/favoris"
+            element={(
+            isLogged
+              ? <Favoris />
+              : <Navigate to="/" replace />
+          )}
+          />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
