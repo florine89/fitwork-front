@@ -10,11 +10,9 @@ import Alert from 'react-bootstrap/Alert';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 
-import axios from 'axios';
+import { instance } from '../../../middleware/getAPI';
 import logo from '../../../assets/inscriptionok.jpg';
 import { getCategoriesList } from '../../../selectors/categories';
-
-const API_BASE_URL = `${process.env.REACT_APP_BASE_URL}`;
 
 export default function ModifyArticle() {
   // j'importe l'id du user stocké à partir du state de Redux
@@ -62,8 +60,8 @@ export default function ModifyArticle() {
   const { id } = useParams();
 
   function getOneArticle() {
-    axios
-      .get(`http://${process.env.REACT_APP_API_BASE_URL}/article/${id}`)
+    instance
+      .get(`/article/${id}`)
       .then((response) => {
         console.log(response.data);
         setTitle(response.data.title);
@@ -73,8 +71,8 @@ export default function ModifyArticle() {
       });
   }
   function updateArticle() {
-    axios
-      .patch(`http://${process.env.REACT_APP_API_BASE_URL}/article/${id}`, {
+    instance
+      .patch(`/article/${id}`, {
         title,
         description,
         category_id: category,

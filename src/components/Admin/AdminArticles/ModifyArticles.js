@@ -3,11 +3,11 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
 
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Card from 'react-bootstrap/Card';
+import { instance } from '../../../middleware/getAPI';
 
 import './ModifyArticles.scss';
 // import Col from 'react-bootstrap/Col';
@@ -23,8 +23,6 @@ import './ModifyArticles.scss';
 
 // import { getCategoriesList } from '../../../selectors/categories';
 // import { getArticlesList } from '../../../selectors/articles';
-
-const API_BASE_URL = `${process.env.REACT_APP_BASE_URL}`;
 
 export default function ModifyArticles() {
   // const [title, setTitle] = useState('');
@@ -60,8 +58,8 @@ export default function ModifyArticles() {
   // const [data, setData] = useState([]);
 
   function getArticles() {
-    axios
-      .get(`http://${process.env.REACT_APP_API_BASE_URL}/user/${id}/articles`)
+    instance
+      .get(`/user/${id}/articles`)
       .then((response) => {
         setArticles(response.data);
       });
@@ -75,8 +73,8 @@ export default function ModifyArticles() {
     //! Delete de l'article (requete axios) en fonction de "article_id"
     // ad
 
-    axios
-      .delete(`http://${process.env.REACT_APP_API_BASE_URL}/article/${idArticle}`, {
+    instance
+      .delete(`/article/${idArticle}`, {
         data: { user_id: id },
       })
       .then((response) => {
@@ -106,7 +104,7 @@ export default function ModifyArticles() {
               <Card.Text className="Articles-card-description">
                 {article.description}
               </Card.Text>
-              <Card.Img className="card-modify_img" variant="top" src={`http://${process.env.REACT_APP_API_BASE_URL}/article/${article.id}/image`} />
+              <Card.Img className="card-modify_img" variant="top" src={`${process.env.REACT_APP_BASE_URL}/article/${article.id}/image`} />
               <div className="card-modify_body_modif">
 
                 <ButtonGroup size="sm" className="card-modify_btn">

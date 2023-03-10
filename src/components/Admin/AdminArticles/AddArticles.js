@@ -4,9 +4,9 @@ import Form from 'react-bootstrap/Form';
 // import Dropdown from 'react-bootstrap/Dropdown';
 import Alert from 'react-bootstrap/Alert';
 
-import axios from 'axios';
 import { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
+import { instance } from '../../../middleware/getAPI';
 import { getCategoriesList } from '../../../selectors/categories';
 import logo from '../../../assets/inscriptionok.jpg';
 
@@ -23,8 +23,6 @@ function AddArticles() {
 
   const categories = useSelector(getCategoriesList);
   const id = useSelector((state) => state.user.id);
-
-  const baseURL = `${process.env.REACT_APP_BASE_URL}`;
 
   /*
  * Cette fonction permet de vérifier lors de la modification d'un champ
@@ -66,8 +64,8 @@ function AddArticles() {
     console.log('description', description);
     // console.log('selectCategory', setSelectCategory);
 
-    axios
-      .post(`http://${process.env.REACT_APP_API_BASE_URL}/article`, {
+    instance
+      .post('/article', {
         title,
         description,
         user_id: id,
