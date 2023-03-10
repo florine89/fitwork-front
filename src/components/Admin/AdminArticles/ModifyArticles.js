@@ -91,8 +91,8 @@ export default function ModifyArticles() {
   }
   // Avec le hook de React, j'affiche au premier rendu de ma page les données
   useEffect(() => {
-    getArticles();
-  }, []);
+    if (id) getArticles();
+  }, [id]);
 
   return (
     <div className="card-modify">

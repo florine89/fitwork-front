@@ -42,6 +42,7 @@ function AddArticles() {
     }
     if (evt.target.name === 'category') {
       setSelectCategory(evt.target.value);
+      console.log(evt.target.value);
     }
     // setChange(evt.target.value);
     console.log('changetitle', title);
@@ -63,7 +64,8 @@ function AddArticles() {
     console.log('title', title);
     console.log('description', description);
     // console.log('selectCategory', setSelectCategory);
-
+    console.log('id', id);
+    console.log('category', selectCategory);
     instance
       .post('/article', {
         title,
