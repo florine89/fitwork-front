@@ -9,20 +9,22 @@ import ArticleContainer from './Article';
 
 import logo2 from '../../assets/Home.jpg';
 import logo3 from '../../assets/connecte.jpg';
+import useScrollTop from '../../hooks';
 
 function Home() {
   const isLogged = useSelector((state) => state.user.logged);
   const pseudo = useSelector((state) => state.user.firstname);
   return (
     <div className="home">
-
       <div className="home-main">
         { isLogged && (
-        <p className="home-message">
-          {`Hello ${pseudo} !`}
-          <span className="home-message-program">"Chaque petits pas mène à un grand changement"</span>
-          <img src={logo3} alt="picture-welcome" className="home-message-picture" />
-        </p>
+          <useScrollTop>
+            <p className="home-message">
+              {`Hello ${pseudo} !`}
+              <span className="home-message-program">"Chaque petits pas mène à un grand changement"</span>
+              <img src={logo3} alt="picture-welcome" className="home-message-picture" />
+            </p>
+          </useScrollTop>
         )}
         { !isLogged && (
         <div className="home-header">

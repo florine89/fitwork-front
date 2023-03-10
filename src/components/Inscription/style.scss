@@ -30,13 +30,23 @@
     padding-top: 2rem;
     margin-left: 4rem;
     margin-right: 4rem;
+    text-align: center;
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+    justify-content: center;
+    // width: 50%;
+    &-form{
+        // flex-direction: column;
+        width: 50%;
 
-    &-button {
-        max-width: 15rem;
-        width: auto;
-        margin: .5rem;
+        &_btn {
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+        }
+    }
+}
+@media (max-width: 600px) {
+    .inscription-form{
+        width: 90%;
     }
 }

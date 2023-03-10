@@ -81,11 +81,11 @@ export default function Inscription() {
   }
 
   return (
-    <>
+    <div className="inscription">
       { !success && (
-        <Form className="form inscription" onSubmit={handleSubmit}>
+        <Form className="inscription-form" onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formLastName" value={lastname} onChange={handleChange}>
-            <Form.Label>Nom :</Form.Label>
+            <Form.Label>Nom </Form.Label>
             <Form.Control
               type="text"
               placeholder="Entrez votre nom"
@@ -94,12 +94,12 @@ export default function Inscription() {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formFirstName" value={firstname} onChange={handleChange}>
-            <Form.Label>Prénom :</Form.Label>
+            <Form.Label>Prénom </Form.Label>
             <Form.Control type="text" placeholder="Entrez votre prenom" name="firstname" />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicEmail" value={email} onChange={handleChange}>
-            <Form.Label>Email :</Form.Label>
+            <Form.Label>Email </Form.Label>
             <Form.Control type="email" placeholder="Entrez votre email" name="email" />
           </Form.Group>
 
@@ -109,21 +109,22 @@ export default function Inscription() {
             onChange={handleChange}
             value={password}
           >
-            <Form.Label>Mot de passe :</Form.Label>
+            <Form.Label>Mot de passe </Form.Label>
             <Form.Control type="password" placeholder="Mot de passe" name="password" />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBirthday" value={birthday} onChange={handleChange}>
-            <Form.Label>Date de naissance :</Form.Label>
+            <Form.Label>Date de naissance </Form.Label>
             <Form.Control type="date" placeholder="Date de naissance" name="birthday" />
           </Form.Group>
-
-          <Button className="form-button inscription-button" variant="primary" type="submit" onClick={createUser} disabled={success}>
-            Enregistrer
-          </Button>
-          <Button className="form-button inscription-button" variant="primary" type="reset" disabled={success}>
-            Annuler
-          </Button>
+          <div className="inscription-form_btn">
+            <Button className="form-button inscription-button" variant="primary" type="submit" onClick={createUser} disabled={success}>
+              Enregistrer
+            </Button>
+            <Button className="form-button inscription-button" variant="primary" type="reset" disabled={success}>
+              Annuler
+            </Button>
+          </div>
         </Form>
       )}
 
@@ -141,7 +142,7 @@ export default function Inscription() {
             </Alert>
           </div>
         )}
-    </>
+    </div>
 
   );
 }
