@@ -10,6 +10,7 @@ import AddArticles from './AdminArticles/AddArticles';
 
 function Admin() {
   const [key, setKey] = useState('home');
+  const [articles, setArticles] = useState([]);
 
   return (
     <Tabs
@@ -19,10 +20,10 @@ function Admin() {
       className="mb-3 tabs"
     >
       <Tab eventKey="ajouter un article" title="ajouter un article">
-        <AddArticles />
+        <AddArticles setArticles={setArticles} articles={articles} />
       </Tab>
       <Tab eventKey="modifier un article" title="modifier un article">
-        <ModifyArticles />
+        <ModifyArticles setArticles={setArticles} articles={articles} />
 
       </Tab>
       {/* <Tab eventKey="supprimer un article" title="supprimer un article">
