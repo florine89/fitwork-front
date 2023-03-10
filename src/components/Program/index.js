@@ -25,7 +25,7 @@ function Program() {
 
   function toggleStatus(article) {
     // faire appel à la bdd pour modifier le statut
-    axios
+    instance
       .patch(`http://${process.env.REACT_APP_API_BASE_URL}/program/${article.program_id}`, {
         user_id: id,
       })
@@ -55,21 +55,6 @@ function Program() {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-  }
-
-  function toggleStatus(article) {
-  // faire appel à la bdd pour modifier le statut
-    instance
-      .patch(`/program/${article.program_id}`, {
-        user_id: id,
-      })
-      .then((response) => {
-        const updatedArticles = articles.map((art) => {
-          if (art.program_id === article.program_id) art.status = !art.status;
-          return (art);
-        });
-        setArticles(updatedArticles);
-      });
   }
 
   useEffect(() => {
