@@ -27,7 +27,7 @@ import './App.scss';
 
 function App() {
   const token = localStorage.getItem('token');
-  console.log(token);
+  // console.log(token);
 
   const dispatch = useDispatch();
 
