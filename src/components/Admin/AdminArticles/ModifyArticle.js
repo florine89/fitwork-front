@@ -5,14 +5,16 @@ import { useParams } from 'react-router-dom';
 
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
+// import InputGroup from 'react-bootstrap/InputGroup';
+import Alert from 'react-bootstrap/Alert';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 
 import axios from 'axios';
+import logo from '../../../assets/inscriptionok.jpg';
 import { getCategoriesList } from '../../../selectors/categories';
 
-const API_BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
+// const API_BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
 
 export default function ModifyArticle() {
   // j'importe l'id du user stocké à partir du state de Redux
@@ -21,6 +23,7 @@ export default function ModifyArticle() {
   const userId = useSelector((state) => state.user.id);
 
   const [validated, setValidated] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const handleSubmit = (event) => {
     // a la soumission du formulaire, évite le rafraichissement de la page par exemple
@@ -60,7 +63,7 @@ export default function ModifyArticle() {
 
   function getOneArticle() {
     axios
-      .get(`${API_BASE_URL}/article/${id}`)
+      .get(`http://${process.env.REACT_APP_API_BASE_URL}/article/${id}`)
       .then((response) => {
         console.log(response.data);
         setTitle(response.data.title);
@@ -71,7 +74,7 @@ export default function ModifyArticle() {
   }
   function updateArticle() {
     axios
-      .patch(`${API_BASE_URL}/article/${id}`, {
+      .patch(`http://${process.env.REACT_APP_API_BASE_URL}/article/${id}`, {
         title,
         description,
         category_id: category,
@@ -82,6 +85,7 @@ export default function ModifyArticle() {
         setDescription(response.data);
         setCategory(response.data);
         console.log('update article', response);
+        setSuccess(true);
       });
   }
 
@@ -91,6 +95,7 @@ export default function ModifyArticle() {
 
   return (
     <div>
+      { !success && (
       <Form className="Profil" noValidate validated={validated} onSubmit={handleSubmit}>
         <Row className="mb-3 Profil-input">
 
@@ -122,7 +127,6 @@ export default function ModifyArticle() {
               placeholder="description"
               name="description"
               defaultValue={description}
-
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
@@ -179,6 +183,18 @@ export default function ModifyArticle() {
           </Button>
         </Row>
       </Form>
+      )}
+      { success
+      && (
+        <div className="Message">
+          <img src={logo} className="Message-logo" alt="Logo inscription" />
+          <Alert variant="dark">
+            <div className="Message-alert">
+              <Alert.Heading>Super ! ton articles a été modifié !</Alert.Heading>
+            </div>
+          </Alert>
+        </div>
+      )}
     </div>
   );
 }
