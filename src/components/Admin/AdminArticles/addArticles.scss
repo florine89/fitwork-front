@@ -1,0 +1,20 @@
+@use 'src/styles/vars';
+
+
+
+.form{
+    text-align: center;
+    &_input, &-btn{
+        width: 50%;
+    }
+    &-title, &-description, &-img, &-thématique{
+        padding-bottom: 4vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    &-btn{
+        margin-top: 2vh;
+    }
+}

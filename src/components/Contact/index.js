@@ -36,9 +36,9 @@ function Contact() {
   };
 
   return (
-    <>
+    <div className="contact">
       { !success && (
-      <Form ref={form} onSubmit={sendEmail} className="Contact">
+      <Form ref={form} onSubmit={sendEmail} className="contact-form">
 
         <Form.Group
           className="mb-3"
@@ -77,7 +77,7 @@ function Contact() {
           <Form.Control as="textarea" rows={5} name="message" />
         </Form.Group>
 
-        <Button className="Contact-button" variant="primary" type="submit" value="Send">
+        <Button className="contact-button" variant="primary" type="submit" value="Send">
           Envoi
         </Button>
       </Form>
@@ -93,7 +93,7 @@ function Contact() {
             </Alert>
           </div>
         )}
-    </>
+    </div>
   );
 }
 

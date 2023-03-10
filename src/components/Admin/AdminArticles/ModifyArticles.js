@@ -6,6 +6,10 @@ import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 
 import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Card from 'react-bootstrap/Card';
+
+import './ModifyArticles.scss';
 // import Col from 'react-bootstrap/Col';
 // import Form from 'react-bootstrap/Form';
 // import InputGroup from 'react-bootstrap/InputGroup';
@@ -20,10 +24,15 @@ import Button from 'react-bootstrap/Button';
 // import { getCategoriesList } from '../../../selectors/categories';
 // import { getArticlesList } from '../../../selectors/articles';
 
-const API_BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
+// const API_BASE_URL = `${process.env.REACT_APP_API_BASE_URL}`;
 
 export default function ModifyArticles() {
-  // const id = useSelector((state) => state.user.id))
+  // const [title, setTitle] = useState('');
+  // const [description, setDescription] = useState('');
+  // const [category, setCategory] = useState('');
+  const [articles, setArticles] = useState([]);
+
+  const id = useSelector((state) => state.user.id);
   // const categories = useSelector(getCategoriesList);
   // const articles = useSelector(getArticlesList);
 
@@ -38,7 +47,6 @@ export default function ModifyArticles() {
 
   /// Affichage et modification du formulaire
   // j'importe l'id du user stocké à partir du state de Redux
-  const id = useSelector((state) => state.user.id);
   // const [validated, setValidated] = useState(false);
 
   // const handleSubmit = (event) => {
@@ -50,61 +58,77 @@ export default function ModifyArticles() {
   // };
 
   // const [data, setData] = useState([]);
-  const [articles, setArticles] = useState([]);
 
   function getArticles() {
     axios
-      .get(`${API_BASE_URL}/user/${id}/articles`)
+      .get(`http://${process.env.REACT_APP_API_BASE_URL}/user/${id}/articles`)
       .then((response) => {
         setArticles(response.data);
       });
   }
 
+  /// Fonction pour modifier les informations de profil
+
+  function removeArticle(idArticle) {
+    console.log('removeArticle');
+    console.log(id);
+    //! Delete de l'article (requete axios) en fonction de "article_id"
+
+    axios
+      .delete(`http://${process.env.REACT_APP_API_BASE_URL}/article/${idArticle}`, {
+        data: { user_id: id },
+      })
+      .then((response) => {
+        console.log(response.data);
+
+        const newArticles = articles.filter((article) => article.id !== idArticle);
+        setArticles(newArticles);
+      })
+      .catch(
+        (error) => {
+          console.log(error);
+        },
+      );
+  }
   // Avec le hook de React, j'affiche au premier rendu de ma page les données
   useEffect(() => {
     getArticles();
   }, []);
 
-  /// Fonction pour modifier les informations de profil
-
-  function removeArticle(article_id) {
-    console.log('removeArticle');
-    //! Delete de l'article (requete axios) en fonction de "article_id"
-    function updateArticle() {
-    //   axios
-    //     .patch(`${API_BASE_URL}/article/${id}`, {
-    //       title,
-    //       description,
-    //       category_id: category,
-    //       user_id: userId,
-    //     })
-    //     .then((response) => {
-    //       setTitle(response.data);
-    //       setDescription(response.data);
-    //       setCategory(response.data);
-    //       console.log('update article', response);
-    //     });
-    // }
-    }
-  }
   return (
-    <div>
+    <div className="card-modify">
       {articles.map((article) => (
         <div key={article.id}>
-          <div>Titre : {article.title}</div>
-          <div>Description : {article.description}</div>
-          <Button
+          <Card className="card-modify_body" style={{ width: '18rem', height: '25rem' }}>
+            <Card.Body>
+              <Card.Title>{article.title}</Card.Title>
+              <Card.Text className="Articles-card-description">
+                {article.description}
+              </Card.Text>
+              {/* <Card.Img variant="top" src={`http://${process.env.REACT_APP_API_BASE_URL}/article/${article.id}/image`} /> */}
+              <div className="card-modify_body_modif">
+
+                <ButtonGroup size="sm">
+                  <Button
           // onClick={() => modifyArticle(article.id)}
-            as={NavLink}
-            to={`article/${article.id}`}
-          >
-            Modifier
-          </Button>
-          <Button
-            onClick={() => removeArticle(article.id)}
-          >
-            Supprimer
-          </Button>
+                    // className="card-btn_modif"
+                    as={NavLink}
+                    to={`article/${article.id}`}
+                  >
+                    Modifier
+                  </Button>
+                  <Button
+                    className="card-modify_body_delete"
+                    type="submit"
+                    onClick={() => removeArticle(article.id)}
+                  >
+                    Supprimer
+                  </Button>
+                </ButtonGroup>
+
+              </div>
+            </Card.Body>
+          </Card>
         </div>
       ))}
     </div>

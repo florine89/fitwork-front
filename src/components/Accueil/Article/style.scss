@@ -1,26 +1,21 @@
 .card{ 
     
-    &-container{
-   // z-index: -100;
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 0.5rem;
-    overflow-x: hidden;
-    }
-
     &-article{
-        margin: 0.5rem;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
     }
+    &-description{
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    &-img{
+        max-width : 100%;
+        height : auto;
+    }
+
 }
 
-@media screen and (max-width: 850px) {
-    .card-article {
-        display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-    }
-}
