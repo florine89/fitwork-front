@@ -21,7 +21,7 @@ import ModifyArticle from '../Admin/AdminArticles/ModifyArticle';
 import About from '../About';
 import { fetchCategories } from '../../actions/categories';
 
-import { login, logout } from '../../actions/user';
+import { login, logout, saveUser } from '../../actions/user';
 
 import './App.scss';
 
@@ -32,10 +32,16 @@ function App() {
   const dispatch = useDispatch();
 
   function connexion() {
+    console.log(token);
     if (token) {
-      instance.get('/token')
+      // Header par défaut pour le premier rendu de la page
+      instance.defaults.headers.common.Authorization = (
+        `Bearer ${token}`
+      );
+      instance
+        .get('/token')
         .then((response) => {
-          dispatch(login());
+          dispatch(saveUser(response.data));
         })
         .catch((error) => {
           console.error(error);

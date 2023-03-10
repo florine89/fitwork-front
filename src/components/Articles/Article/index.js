@@ -81,7 +81,7 @@ function Article() {
           <Card.Header as="h5">Type: {!article.type ? 'pas de type renseigné' : article.type}</Card.Header>
           <Card.Body>
             <Card.Title>{article.title}</Card.Title>
-            <Card.Img src={`http://${process.env.REACT_APP_BASE_URL}/article/${article.id}/image`} className="Article-image" />
+            <Card.Img src={`${process.env.REACT_APP_BASE_URL}/article/${article.id}/image`} className="Article-image" />
             <Card.Text className="Article-card">
               {article.description}
             </Card.Text>

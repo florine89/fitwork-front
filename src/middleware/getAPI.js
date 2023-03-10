@@ -5,7 +5,7 @@ import { LOGIN, LOGOUT, saveUser } from '../actions/user';
 import { CATEGORIES_FETCH, saveCategories } from '../actions/categories';
 
 export const instance = axios.create({
-  baseURL: `http://${process.env.REACT_APP_BASE_URL}`,
+  baseURL: `${process.env.REACT_APP_BASE_URL}`,
 });
 
 const getAPI = (store) => (next) => async (action) => {
@@ -38,12 +38,12 @@ const getAPI = (store) => (next) => async (action) => {
         instance.defaults.headers.common.Authorization = (
           `Bearer ${response.data.token}`
         );
-
         localStorage.setItem('token', response.data.token);
 
         // Mémorisation du token
 
         delete response.data.token;
+
         store.dispatch(saveUser(response.data));
       }
       catch (error) {
