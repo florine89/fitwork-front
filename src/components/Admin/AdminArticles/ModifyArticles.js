@@ -73,6 +73,7 @@ export default function ModifyArticles() {
     console.log('removeArticle');
     console.log(id);
     //! Delete de l'article (requete axios) en fonction de "article_id"
+    // ad
 
     axios
       .delete(`http://${process.env.REACT_APP_API_BASE_URL}/article/${idArticle}`, {
