@@ -39,15 +39,8 @@ function Header() {
             {/* quand on est connecté ça affiche profil, programme, favoris, contact */}
             {isLogged && (
             <>
-
-              {roleUser === 'coach' && (
-                <Nav.Link as={NavLink} to="/administrateur">Administrateur</Nav.Link>)}
               <Nav.Link eventKey="Accueil" as={NavLink} to="/">Accueil</Nav.Link>
               <Nav.Link eventKey="Profil" as={NavLink} to="/profil">Profil</Nav.Link>
-              <Nav.Link eventKey="Program" as={NavLink} to="/programme">Programme</Nav.Link>
-              <Nav.Link eventKey="Fav" as={NavLink} to="/favoris">Favoris</Nav.Link>
-              <Nav.Link eventKey="Admin" as={NavLink} to="/administrateur">Administrateur</Nav.Link>
-
               <NavDropdown title="Catégories" id="basic-nav-dropdown">
                 {categories.map((category) => (
                   <NavDropdown.Item
@@ -66,7 +59,9 @@ function Header() {
               </NavDropdown>
               <Nav.Link as={NavLink} to="/programme">Programme</Nav.Link>
               <Nav.Link as={NavLink} to="/favoris">Favoris</Nav.Link>
-              <Nav.Link as={NavLink} to="/administrateur">Administrateur</Nav.Link>
+              {roleUser === 'coach' && (
+                <Nav.Link as={NavLink} to="/administrateur">Administrateur</Nav.Link>)}
+              {/* <Nav.Link as={NavLink} to="/administrateur">Administrateur</Nav.Link> */}
 
             </>
             )}
