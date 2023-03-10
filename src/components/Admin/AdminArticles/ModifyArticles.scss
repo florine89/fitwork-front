@@ -1,19 +1,22 @@
 @use 'src/styles/vars';
 
 .card-modify{
-    margin: 2em;
+    margin: 1em;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
     &_body{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+
         text-align: center;
-        margin-right: 15px;
-        &-modif{
-            margin-right: 20px;
-        }
+    }
+    &_img{
+        height:30vh
+    }
+    &_btn{
+      position: absolute;
+      bottom: 5%;
+      right: 18%;
+      
     }
 }

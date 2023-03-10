@@ -17,6 +17,8 @@ function AddArticles() {
   const [description, setDescription] = useState('');
   const [selectCategory, setSelectCategory] = useState('');
   const [success, setSuccess] = useState(false);
+  const [articles, setArticles] = useState([]);
+
   // const refForm = useRef(null);
 
   const categories = useSelector(getCategoriesList);
@@ -73,6 +75,8 @@ function AddArticles() {
       .then((response) => {
         setSuccess(true);
         console.log((response));
+        // const newArticles = articles.filter((article) => article.id !== idArticle);
+        // setArticles(newArticles);
         // setPost(response.data);
       });
   }

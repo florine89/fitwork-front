@@ -105,10 +105,10 @@ export default function ModifyArticles() {
               <Card.Text className="Articles-card-description">
                 {article.description}
               </Card.Text>
-              {/* <Card.Img variant="top" src={`http://${process.env.REACT_APP_API_BASE_URL}/article/${article.id}/image`} /> */}
+              <Card.Img className="card-modify_img" variant="top" src={`http://${process.env.REACT_APP_API_BASE_URL}/article/${article.id}/image`} />
               <div className="card-modify_body_modif">
 
-                <ButtonGroup size="sm">
+                <ButtonGroup size="sm" className="card-modify_btn">
                   <Button
           // onClick={() => modifyArticle(article.id)}
                     // className="card-btn_modif"
