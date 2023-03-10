@@ -10,9 +10,9 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 
-import axios from 'axios';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import dayjs from 'dayjs';
+import { instance } from '../../middleware/getAPI';
 
 import { saveUser } from '../../actions/user';
 
@@ -38,6 +38,7 @@ function Profil() {
   /// Affichage et modification du formulaire
   // j'importe l'id du user stocké à partir du state de Redux
   const id = useSelector((state) => state.user.id);
+  console.log('id profil', id);
 
   // Déclaration d'un state initial 'vide' pour les différents champs du formulaire
   const [firstname, setFirstname] = useState('');
@@ -53,8 +54,8 @@ function Profil() {
    * Les données sont alors affichée dans le champ du formulaire en tant que "defaultValue"
    */
   function getProfil() {
-    axios
-      .get(`http://${process.env.REACT_APP_API_BASE_URL}/user/${id}`)
+    instance
+      .get(`/user/${id}`)
       .then((response) => {
         // afficher les data au premier rendu
         setData(response.data);
@@ -71,8 +72,8 @@ function Profil() {
 
   // Avec le hook de React, j'affiche au premier rendu de ma page les données
   useEffect(() => {
-    getProfil();
-  }, []);
+    if (id) getProfil();
+  }, [id]);
 
   /// Fonction pour modifier les informations de profil
 
@@ -108,8 +109,8 @@ function Profil() {
   const dispatch = useDispatch();
 
   function updateProfil() {
-    axios
-      .patch(`http://${process.env.REACT_APP_API_BASE_URL}/user/${id}`, {
+    instance
+      .patch(`/user/${id}`, {
         firstname,
         lastname,
         email,
@@ -118,6 +119,9 @@ function Profil() {
       .then((response) => {
         dispatch(saveUser(response.data));
         console.log('update user', response.data);
+      })
+      .catch((error) => {
+        console.error(error);
       });
   }
 

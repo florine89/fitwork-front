@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-no-bind */
-import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -11,7 +10,8 @@ import Modal from 'react-bootstrap/Modal';
 
 import Icon from '../ui/Icon';
 import './style.scss';
-import logo from '../../assets/femmebureau.jpg';
+
+import { instance } from '../../middleware/getAPI';
 
 function Favorite() {
   // j'initialise le state avec un tableau vide poru récupérer mes articles
@@ -25,7 +25,7 @@ function Favorite() {
    * de l'utilisateur connecté
    */
   function getFavoriteForOneUser() {
-    axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/user/${id}/favorite`).then((response) => {
+    instance.get(`/user/${id}/favorite`).then((response) => {
       setArticles(response.data);
     });
   }
@@ -36,8 +36,6 @@ function Favorite() {
   useEffect(() => {
     getFavoriteForOneUser();
   }, [id]);
-
-  // TODO ajouter un article au programme
 
   const userId = useSelector((state) => state.user.id); // je recupère mon user id avec redux
 
@@ -58,8 +56,8 @@ function Favorite() {
  * La fonction anonyme évite que la fonction ne s'exécute seule au rendu.
  */
   function addArticleToProgram(idArticle) {
-    axios
-      .post(`http://${process.env.REACT_APP_API_BASE_URL}/article/${idArticle}/program`, {
+    instance
+      .post(`/article/${idArticle}/program`, {
         user_id: userId, // je passe le user id du state
       })
       .then((response) => {
@@ -69,17 +67,14 @@ function Favorite() {
   }
 
   // Delete un article des favoris
-  // TODO passer un paramètre dans les dépendances afin d'afficher les articles modifiés
 
   /**
    * Cette fonction permet de supprimer un article des favoris du user
    * @param {*} idArticle ici, idArticle correspond à article_id
    */
   function deleteOneArticleFromFavorite(idArticle) {
-    axios
-      .delete(`http://${process.env.REACT_APP_API_BASE_URL}/article/${idArticle}/favorite`, {
-        user_id: userId,
-      })
+    instance
+      .delete(`/article/${idArticle}/favorite`)
       .then((response) => {
         console.log((response.data));
         const newArticles = articles.filter((article) => article.article_id !== idArticle);
@@ -103,7 +98,7 @@ function Favorite() {
         {articles.map((article) => (
           <article key={article.article_id} className="Articles-card">
             <Card style={{ width: '18rem', height: '25rem' }}>
-              <Card.Img variant="top" src={`http://${process.env.REACT_APP_API_BASE_URL}/article/${article.article_id}/image`} />
+              <Card.Img variant="top" src={`${process.env.REACT_APP_BASE_URL}/article/${article.article_id}/image`} />
               <Card.Body>
                 <Card.Title>{article.title}</Card.Title>
                 <Card.Text className="Articles-card-description">

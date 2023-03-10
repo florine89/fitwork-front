@@ -1,15 +1,23 @@
+@use 'src/styles/vars';
+
 .card{ 
-    
     &-article{
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
         justify-content: center;
+        align-items: center;
+
+        &-title{
+            color: vars.$primary;
+            max-width: 30rem;
+        }
     }
     &-description{
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
+        color: vars.$primary;
     }
 
     &-img{

@@ -24,7 +24,8 @@ function AddArticles() {
   const categories = useSelector(getCategoriesList);
   const id = useSelector((state) => state.user.id);
 
-  // const baseURL = `${process.env.REACT_APP_API_BASE_URL}`;
+  const baseURL = `${process.env.REACT_APP_BASE_URL}`;
+
   /*
  * Cette fonction permet de vérifier lors de la modification d'un champ
  * - de quel champ il s'agit

@@ -1,7 +1,8 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { instance } from '../../middleware/getAPI';
 import Header from '../AppHeader';
 import Inscription from '../Inscription';
 import Profil from '../Profil';
@@ -20,19 +21,54 @@ import ModifyArticle from '../Admin/AdminArticles/ModifyArticle';
 import About from '../About';
 import { fetchCategories } from '../../actions/categories';
 
+import { login, logout, saveUser } from '../../actions/user';
+
 import './App.scss';
 
 function App() {
-  /**
-   * On affiche les categories via le state de Redux (dans le menu directement)
-   */
+  const token = localStorage.getItem('token');
+  console.log(token);
+
   const dispatch = useDispatch();
 
+  function connexion() {
+    console.log(token);
+    if (token) {
+      // Header par défaut pour le premier rendu de la page
+      instance.defaults.headers.common.Authorization = (
+        `Bearer ${token}`
+      );
+      instance
+        .get('/token')
+        .then((response) => {
+          dispatch(saveUser(response.data));
+        })
+        .catch((error) => {
+          console.error(error);
+          dispatch(logout());
+        });
+    }
+  }
+
   useEffect(() => {
+    connexion();
     dispatch(fetchCategories());
   }, []);
 
+  const isLogged = useSelector((state) => state.user.logged);
+
+  /*   Pour faire persister la connexion, il faut un useEffect dans le composant App qui
+sera déclenché au premier chargement de l'application.
+Dans ce useEffect, si on a pas de token, on sort du useEffect (pas la peine d'envoyer
+la requête pour vérif le token, on en a pas)
+Si on a un token, on envoie une requête en get au back qui va vérifier ce token :
+Si il est toujours valide (pas d'erreur dans la réponse) on repasse nourrir le store
+avec les infos nécéssaires (normalement le back vous envoie les même data qu'au login,
+donc vous dispatcher la même action)
+Si le token n'est plus valide, on passe dans le catch => on vide le localStorage */
+
   return (
+
     <Page>
       <div className="App">
 
@@ -54,8 +90,22 @@ function App() {
           <Route path="/categories" element={<Categories />} />
           <Route path="/categorie/:id" element={<Articles />} />
           <Route path="/article/:id" element={<Article />} />
-          <Route path="/programme" element={<Program />} />
-          <Route path="/favoris" element={<Favoris />} />
+          <Route
+            path="/programme"
+            element={(
+            isLogged
+              ? <Program />
+              : <Navigate to="/" replace />
+          )}
+          />
+          <Route
+            path="/favoris"
+            element={(
+            isLogged
+              ? <Favoris />
+              : <Navigate to="/" replace />
+          )}
+          />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
