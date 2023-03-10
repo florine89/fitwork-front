@@ -74,7 +74,7 @@
     font-size: 1rem;
     font-weight: lighter;
     color: vars.$primary;
-    padding-bottom: 10rem;
+    padding-bottom: 7rem;
     max-width: 30rem;
 }
 }
@@ -82,4 +82,10 @@
 .home-message-picture {
     width: 50rem;
     padding: 2rem;
+}
+
+.lign {
+    border-top: 20px solid;
+    color: vars.$light;
+    height: 100px;
 }

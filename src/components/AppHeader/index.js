@@ -64,6 +64,10 @@ function Header() {
                   Toutes les catégories
                 </NavDropdown.Item>
               </NavDropdown>
+              <Nav.Link as={NavLink} to="/programme">Programme</Nav.Link>
+              <Nav.Link as={NavLink} to="/favoris">Favoris</Nav.Link>
+              <Nav.Link as={NavLink} to="/administrateur">Administrateur</Nav.Link>
+
             </>
             )}
             {/* quand on est connecté ça affiche s'inscrire seulement */}
