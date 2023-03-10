@@ -39,6 +39,7 @@ function Header() {
             {/* quand on est connecté ça affiche profil, programme, favoris, contact */}
             {isLogged && (
             <>
+
               <Nav.Link eventKey="Accueil" as={NavLink} to="/">Accueil</Nav.Link>
               <Nav.Link eventKey="Profil" as={NavLink} to="/profil">Profil</Nav.Link>
               <NavDropdown title="Catégories" id="basic-nav-dropdown">
