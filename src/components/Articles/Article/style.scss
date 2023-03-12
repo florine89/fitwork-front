@@ -1,3 +1,5 @@
+@use 'src/styles/vars';
+
 .Article{
     margin: 2rem;
     display: flex;
@@ -6,4 +8,23 @@
     &-image{
         width: 20rem;
     }
+
+    &-center {
+        border: 10px solid;
+        border-radius: 20px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-color: vars.$danger;
+    }
+
+    &-type {
+        display: flex;
+        justify-content: center;
+    }
+
+    &-title {
+        display: flex;
+        justify-content: center;
+    }
 }
+
+

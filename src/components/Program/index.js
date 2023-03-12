@@ -24,7 +24,7 @@ function Program() {
   console.log('id du user', id);
 
   function toggleStatus(article) {
-    // faire appel à la bdd pour modifier le statut
+    // faire appel à la bdd pour modifier le statut de chaque article
     instance
       .patch(`/program/${article.program_id}`, {
         user_id: id,

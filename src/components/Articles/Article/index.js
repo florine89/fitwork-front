@@ -77,15 +77,15 @@ function Article() {
 
       {!isLoading && (
 
-        <Card className="text-center">
-          <Card.Header as="h5">Type: {!article.type ? 'pas de type renseigné' : article.type}</Card.Header>
+        <Card className="Article-center">
+          <Card.Header className="Article-type" as="h5">Type: {!article.type ? 'pas de type renseigné' : article.type}</Card.Header>
           <Card.Body>
-            <Card.Title>{article.title}</Card.Title>
+            <Card.Title className="Article-title">{article.title}</Card.Title>
             <Card.Img src={`${process.env.REACT_APP_BASE_URL}/article/${article.id}/image`} className="Article-image" />
-            <Card.Text className="Article-card">
+            <Card.Text className="Article-description">
               {article.description}
             </Card.Text>
-            <ButtonGroup aria-label="Ajouter l'article">
+            <ButtonGroup className="Article-button" aria-label="Ajouter l'article">
               <Button
                 variant="light"
                 type="submit"
