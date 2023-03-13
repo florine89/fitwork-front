@@ -33,7 +33,7 @@
 
     &-logo {
         margin-top: 3rem;
-        padding-top: 3rem;
+        padding-top: 2.5rem;
         width: 50rem;
         font-size: 10rem;
     }
@@ -47,7 +47,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 3rem;    
+        padding: 2.5rem;    
     }
 
     &-small {
@@ -84,9 +84,9 @@
     padding: 2rem;
 }
 
-.lign {
+/*.lign {
     border-top: 0.6rem solid;
     color: vars.$light;
     height: 6.25rem;
     width: 70rem;
-}
+}*/
