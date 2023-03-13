@@ -25,7 +25,6 @@ function Header() {
   console.log('role', roleUser);
 
   return (
-
     <Navbar expand="lg" className="sticky-top" bg="info" collapseOnSelect>
       <Container>
         <Navbar.Brand>
@@ -38,33 +37,33 @@ function Header() {
           <Nav className="me-auto" onSelect={(eventKey) => console.log(eventKey)}>
             {/* quand on est connecté ça affiche profil, programme, favoris, contact */}
             {isLogged && (
-            <>
+              <>
 
-              <Nav.Link eventKey="Accueil" as={NavLink} to="/">Accueil</Nav.Link>
-              <Nav.Link eventKey="Profil" as={NavLink} to="/profil">Profil</Nav.Link>
-              <NavDropdown title="Catégories" id="basic-nav-dropdown">
-                {categories.map((category) => (
-                  <NavDropdown.Item
-                    eventKey="Categorie"
-                    as={NavLink}
-                    key={category.id}
-                    to={`/categorie/${category.id}`}
-                  >
-                    {category.name}
+                <Nav.Link eventKey="Accueil" as={NavLink} to="/">Accueil</Nav.Link>
+                <Nav.Link eventKey="Profil" as={NavLink} to="/profil">Profil</Nav.Link>
+                <NavDropdown title="Catégories" id="basic-nav-dropdown">
+                  {categories.map((category) => (
+                    <NavDropdown.Item
+                      eventKey="Categorie"
+                      as={NavLink}
+                      key={category.id}
+                      to={`/categorie/${category.id}`}
+                    >
+                      {category.name}
+                    </NavDropdown.Item>
+                  ))}
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item eventKey="Categories" as={NavLink} to="/categories">
+                    Toutes les catégories
                   </NavDropdown.Item>
-                ))}
-                <NavDropdown.Divider />
-                <NavDropdown.Item eventKey="Categories" as={NavLink} to="/categories">
-                  Toutes les catégories
-                </NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link as={NavLink} to="/programme">Programme</Nav.Link>
-              <Nav.Link as={NavLink} to="/favoris">Favoris</Nav.Link>
-              {roleUser === 'coach' && (
+                </NavDropdown>
+                <Nav.Link as={NavLink} to="/programme">Programme</Nav.Link>
+                <Nav.Link as={NavLink} to="/favoris">Favoris</Nav.Link>
+                {roleUser === 'coach' && (
                 <Nav.Link as={NavLink} to="/administrateur">Administrateur</Nav.Link>)}
-              {/* <Nav.Link as={NavLink} to="/administrateur">Administrateur</Nav.Link> */}
+                {/* <Nav.Link as={NavLink} to="/administrateur">Administrateur</Nav.Link> */}
 
-            </>
+              </>
             )}
             {/* quand on est connecté ça affiche s'inscrire seulement */}
             {!isLogged && (
@@ -83,15 +82,15 @@ function Header() {
             )}
           </Nav>
           {!isLogged && (
-          <Button
-            as={NavLink}
-            className="login-button"
-            variant="outline-secondary"
-            to="/inscription"
-            size="lg"
-          >
-            S'inscrire
-          </Button>
+            <Button
+              as={NavLink}
+              className="login-button"
+              variant="outline-secondary"
+              to="/inscription"
+              size="lg"
+            >
+              S'inscrire
+            </Button>
           )}
 
           <LoginForm />
