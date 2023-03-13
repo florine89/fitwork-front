@@ -16,16 +16,13 @@ function Home() {
   const pseudo = useSelector((state) => state.user.firstname);
 
   // eslint-disable-next-line react/no-unstable-nested-components
-  function ColoredLine() {
+  /* function ColoredLine() {
     return (
       <hr
         className="lign"
-        style={{
-          width: 1000,
-        }}
       />
     );
-  }
+  } */
 
   return (
     <div className="home">
@@ -55,14 +52,11 @@ function Home() {
       <p className="home-description">
         L'application FitWork te suit au bureau !
       </p>
-      <ColoredLine />
       <p className="home-description2">
         Une application de conseils, d'exercices
         physiques et relaxant, pour maintenir ton bien-être au travail
       </p>
-      <ColoredLine />
       <p className="home-description2">Découvre tous nos conseils bien-être en consultant les articles mis à disposition par nos coachs!</p>
-      <ColoredLine />
       <ArticleContainer />
 
       <Button className="home-btn" variant="primary" size="lg">
