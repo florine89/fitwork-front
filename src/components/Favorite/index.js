@@ -8,10 +8,10 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Modal from 'react-bootstrap/Modal';
 
+import { instance } from '../../middleware/getAPI';
+
 import Icon from '../ui/Icon';
 import './style.scss';
-
-import { instance } from '../../middleware/getAPI';
 
 function Favorite() {
   // j'initialise le state avec un tableau vide poru récupérer mes articles

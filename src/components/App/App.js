@@ -56,7 +56,7 @@ function App() {
   }
 
   /**
-   * Pour faire persister la connection, au premier rendu, on a besoin de vérifier 
+   * Pour faire persister la connection, au premier rendu, on a besoin de vérifier
    * la connexion (token), si on a pas de token, on sort du useEffect
    * On a également besoin de la liste des catégories (menu)
    */

@@ -3,24 +3,29 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Card from 'react-bootstrap/Card';
 import Spinner from 'react-bootstrap/Spinner';
 
-import './style.scss';
-
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { instance } from '../../../middleware/getAPI';
 
+import './style.scss';
+
 function Article() {
   // Loader
   const [isLoading, toggleIsLoading] = useState(false);
+
+  // Initialisation du state avec un tableau vide
   const [article, setArticle] = useState([]);
 
   const { id } = useParams();
 
+  /**
+   * On récupère un article avec l'id de la requête http
+   * On passe le toggle à true pendant le chargement
+   */
   function getOneArticle() {
     toggleIsLoading(true);
-    console.log(id);
     instance.get(`/article/${id}`)
       .then((response) => {
         setArticle(response.data);

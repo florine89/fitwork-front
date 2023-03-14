@@ -1,6 +1,6 @@
-import './style.scss';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
+
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -13,18 +13,22 @@ import Field from './Field';
 
 import { login, logout } from '../../actions/user';
 
+import './style.scss';
+
 // Création du formulaire de connexion avec les props email et password
 function LoginForm({
   email,
   password,
 }) {
   const navigate = useNavigate();
-  // gestion de la connection, des différents états
 
+  // gestion de la connection, des différents états
   const isLogged = useSelector((state) => state.user.logged);
   const isLoading = useSelector((state) => state.user.loading);
 
   const dispatch = useDispatch();
+
+  // Utilisation des states pour la modale
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -36,15 +40,12 @@ function LoginForm({
     handleClose();
     const path = '/';
     navigate(path);
-    // console.log('handleSubmit');
   };
   const handleLogOut = () => {
     dispatch(logout());
     const path = '/';
     navigate(path);
   };
-
-  // Modale (utilisation des states)
 
   return (
   // Création du form et des champs du formulaire pour la connnexion de l'utilisateur

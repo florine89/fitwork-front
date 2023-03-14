@@ -63,9 +63,9 @@ function Contact() {
           <Form.Label>Thématique</Form.Label>
           <Form.Select aria-label="Exemple par défaut" name="object">
             <option>Choix de la thématique</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option value="1">Je souhaite devenir coach !</option>
+            <option value="2">J'ai un problème de connexion</option>
+            <option value="3">Je souhaite remonter un problème d'utilisation</option>
           </Form.Select>
         </Form.Group>
 

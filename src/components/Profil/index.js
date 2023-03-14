@@ -1,6 +1,4 @@
 /* eslint-disable react/jsx-no-bind */
-import './style.scss';
-
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -15,6 +13,8 @@ import dayjs from 'dayjs';
 import { instance } from '../../middleware/getAPI';
 
 import { saveUser } from '../../actions/user';
+
+import './style.scss';
 
 function Profil() {
   /// Propriété Bootstrap

@@ -19,10 +19,9 @@ import { getCategoriesList } from '../../selectors/categories';
 function Header() {
   const categories = useSelector(getCategoriesList);
   const isLogged = useSelector((state) => state.user.logged);
-  // console.log(isLogged);
 
+  // On récupère le role pour afficher la page Admin
   const roleUser = useSelector((state) => state.user.role);
-  console.log('role', roleUser);
 
   return (
     <Navbar expand="lg" className="sticky-top" bg="info" collapseOnSelect>
@@ -57,11 +56,10 @@ function Header() {
                     Toutes les catégories
                   </NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link as={NavLink} to="/programme">Programme</Nav.Link>
-                <Nav.Link as={NavLink} to="/favoris">Favoris</Nav.Link>
-                {roleUser === 'coach' && (
-                <Nav.Link as={NavLink} to="/administrateur">Administrateur</Nav.Link>)}
-                {/* <Nav.Link as={NavLink} to="/administrateur">Administrateur</Nav.Link> */}
+                <Nav.Link eventKey="Program" as={NavLink} to="/programme">Programme</Nav.Link>
+                <Nav.Link eventKey="Fav" as={NavLink} to="/favoris">Favoris</Nav.Link>
+                {roleUser === 'admin' && (
+                <Nav.Link eventKey="Admin" as={NavLink} to="/administrateur">Administrateur</Nav.Link>)}
 
               </>
             )}
