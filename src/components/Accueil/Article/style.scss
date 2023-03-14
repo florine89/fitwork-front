@@ -27,7 +27,8 @@
         &-title{
             color: vars.$primary;
             padding-left: 3rem;
-            padding-top: 5rem;
+            padding-top: 8rem;
+            padding-bottom: 2rem;
         }
 
         &-carousel {
@@ -37,10 +38,10 @@
         }
         
          &-inner {
-                border: 10px solid;
-                border-radius: 20px;
-                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-                border-color: vars.$danger;
+            border: 10px solid;
+            border-radius: 20px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            border-color: vars.$danger;
             }
         }
     }
