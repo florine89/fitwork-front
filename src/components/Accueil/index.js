@@ -54,7 +54,7 @@ function Home() {
       </p>
       <p className="home-description2">
         Une application de conseils, d'exercices
-        physiques et relaxant, pour maintenir ton bien-être au travail
+        physiques et relaxant, pour maintenir ton bien-être au travail.
       </p>
       <p className="home-description2">Découvre tous nos conseils bien-être en consultant les articles mis à disposition par nos coachs!</p>
       <ArticleContainer />

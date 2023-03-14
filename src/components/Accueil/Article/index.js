@@ -34,9 +34,9 @@ function ArticleContainer() {
 
     <article className="card-article">
       <p className="card-article-title">Comment ça fonctionne? Ci dessous un échantillon des articles disponibles !</p>
-      <Carousel variant="dark" slide={false}>
+      <Carousel className="card-article-carousel" variant="dark" slide={false}>
         {articles.slice(0, 4).map((article) => (
-          <Carousel.Item key={article.id}>
+          <Carousel.Item className="card-article-inner" key={article.id}>
             <Card style={{ width: '18rem', height: '25rem' }}>
               <Card.Img className="card-img" variant="light" src={`${process.env.REACT_APP_BASE_URL}/article/${article.id}/image`} />
               <Card.Body>
