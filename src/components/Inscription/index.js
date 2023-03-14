@@ -1,21 +1,21 @@
 // import { useSelector } from 'react-redux';
 
 import { useState } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Alert from 'react-bootstrap/Alert';
 
 /* eslint-disable react/jsx-no-bind */
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+
 import { instance } from '../../middleware/getAPI';
-import './style.scss';
+
 import logo from '../../assets/inscriptionok.jpg';
 
-// eslint-disable-next-line react/prop-types
-export default function Inscription() {
-  // const [change, setChange] = useState('');
+import './style.scss';
 
+export default function Inscription() {
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
@@ -41,29 +41,20 @@ export default function Inscription() {
       setBirthday(evt.target.value);
       console.log(evt.target.value);
     }
-    // setChange(evt.target.value);
   }
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    // console.log('submit');
   }
-  // const [post, setPost] = useState(null);
 
   const [success, setSuccess] = useState(false);
 
-  // useEffect(() => {
-  //   axios.get(`${baseURL}/user`).then((response) => {
-  //     setPost(response.data);
-  //   });
-  // }, []);
-
   function createUser() {
-    console.log('firstname', firstname);
+  /*     console.log('firstname', firstname);
     console.log('lastname', lastname);
     console.log('email', email);
     console.log('password', password);
-    console.log('birthday', birthday);
+    console.log('birthday', birthday); */
 
     instance
       .post('/user', {
@@ -76,7 +67,9 @@ export default function Inscription() {
       .then((response) => {
         setSuccess(true);
         console.log((response.data));
-        // setPost(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
       });
   }
 

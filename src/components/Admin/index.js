@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-no-bind */
-import './style.scss';
-
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
 import ModifyArticles from './AdminArticles/ModifyArticles';
+
 import AddArticles from './AdminArticles/AddArticles';
+import './style.scss';
 
 function Admin() {
   const [key, setKey] = useState('home');
@@ -26,10 +26,6 @@ function Admin() {
         <ModifyArticles setArticles={setArticles} articles={articles} />
 
       </Tab>
-      {/* <Tab eventKey="supprimer un article" title="supprimer un article">
-        <ModifyArticles />
-
-      </Tab> */}
     </Tabs>
   );
 }

@@ -2,38 +2,41 @@
 /* eslint-disable react/jsx-no-bind */
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-// import Dropdown from 'react-bootstrap/Dropdown';
 import Alert from 'react-bootstrap/Alert';
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
+
 import { instance } from '../../../middleware/getAPI';
 import { getCategoriesList } from '../../../selectors/categories';
+
 import logo from '../../../assets/inscriptionok.jpg';
 
 import './addArticles.scss';
 
 function AddArticles({ articles, setArticles }) {
+  // On intialise les state pour les différents champs du formulaire
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [selectCategory, setSelectCategory] = useState('');
+
+  // Le state passera à true pour afficher le message à la soumission du formulaire
   const [success, setSuccess] = useState(false);
 
-  // const refForm = useRef(null);
-
+  // On importe les categories du state de Redux
   const categories = useSelector(getCategoriesList);
+
+  // On importe l'id du user connecté dans le state de Redux
   const id = useSelector((state) => state.user.id);
 
-  /*
+  /**
  * Cette fonction permet de vérifier lors de la modification d'un champ
- * - de quel champ il s'agit
- * - compare le nom du champ avec celui attendu
- * - on nourri le state avec la nouvelle valeur
- * @param {*} event , il s'agit de l'evenement sur lequel j'effectue mon Change
+ * de quel champ il s'agit
+ * compare le nom du champ avec celui attendu
+ * on nourri le state avec la nouvelle valeur
+ * @param {*} evt il s'agit de l'evenement sur lequel j'effectue mon Change
  */
-
   function handleChange(evt) {
-    // console.log(evt.target.name);
     if (evt.target.name === 'title') {
       setTitle(evt.target.value);
     }
@@ -42,30 +45,20 @@ function AddArticles({ articles, setArticles }) {
     }
     if (evt.target.name === 'category') {
       setSelectCategory(evt.target.value);
-      console.log(evt.target.value);
     }
-    // setChange(evt.target.value);
-    console.log('changetitle', title);
-    console.log('changedescription', description);
-    console.log('changeCat', selectCategory);
-    // console.log('changeselectCategory', setSelectCategory);
   }
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    // video 22:00
-    // if (!refForm) {
-    //   return;
-    // }
-    // console.log('submit');
   }
 
+  /**
+   * Requête post pour la création d'un article
+   * On passe via l'instance d'axios en POST
+   * On récupère dans le body les informations nécessaire à la création d'un article
+   * A la soumission du formulaire, on change le state de success pour afficher le message de succès
+   */
   function createArticle() {
-    console.log('title', title);
-    console.log('description', description);
-    // console.log('selectCategory', setSelectCategory);
-    console.log('id', id);
-    console.log('category', selectCategory);
     instance
       .post('/article', {
         title,
@@ -74,26 +67,23 @@ function AddArticles({ articles, setArticles }) {
         category_id: selectCategory,
       })
       .then((response) => {
-        setSuccess(true);
-        console.log('responseData', response.data);
-        // ...articles deverse les
-        // informations marquer dans les inputs
-        // (state => récupérer de son parent (index.js))
-        // response.data correspond a l'article que l'on viens d'enreegistre en bdd
+        setSuccess(true)
+          .catch((error) => {
+            console.error(error);
+          });
 
+        // ...articles deverse les informations marquées dans les inputs
+        // (state => récupère de son parent la liste (index.js))
+        // response.data correspond à l'article que l'on vient d'enregistrer en bdd
+        // On irrigue le state avec le nouvel article pour mettre à jour le state
         const newArticles = [...articles, response.data];
         setArticles(newArticles);
-        console.log(articles);
-        // setPost(response.data);
       });
   }
   return (
     <div className="containers">
       { !success && (
         <Form
-          // ref={refForm}
-          // mettre le chemin ou sera envoyer l'image(video 20:00)
-          // action="/upload"
           className="form"
           method="POST"
           onSubmit={handleSubmit}
@@ -125,14 +115,12 @@ function AddArticles({ articles, setArticles }) {
               <option>Choix de la thématique</option>
               {categories.map((category) => (
                 <option
-                    // as={NavLink}
                   key={category.id}
                   value={category.id}
                 >
                   {category.name}
                 </option>
               ))}
-              {/* <option value="1">1</option> */}
 
             </Form.Select>
           </Form.Group>
@@ -157,11 +145,3 @@ function AddArticles({ articles, setArticles }) {
 }
 
 export default AddArticles;
-
-// "title": "title article 222",
-// "description": "on ajoute un article a la catégorie 2 222",
-// "time": null,
-// "image": null,
-// "type": null,
-// "category_id": 2,
-// "user_id": 1

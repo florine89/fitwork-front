@@ -31,16 +31,14 @@ const getAPI = (store) => (next) => async (action) => {
           email,
           password,
         });
-        // console.log(response.data.token);
-        // console.log(response.data.id);
 
-        // ajout de l'authorisation avec la doc axios
+        // ajout de l'authorisation dans les headers avec la doc axios
         instance.defaults.headers.common.Authorization = (
           `Bearer ${response.data.token}`
         );
-        localStorage.setItem('token', response.data.token);
 
-        // Mémorisation du token
+        // Mémorisation du token dans le local storage
+        localStorage.setItem('token', response.data.token);
 
         delete response.data.token;
 
@@ -53,6 +51,7 @@ const getAPI = (store) => (next) => async (action) => {
       break;
     }
     case LOGOUT:
+      // on vide le local storage à la déconnection
       localStorage.removeItem('token');
 
       delete instance.defaults.headers.common.Authorization;

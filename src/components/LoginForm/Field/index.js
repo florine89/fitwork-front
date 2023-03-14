@@ -1,28 +1,28 @@
-import { useDispatch, useSelector } from 'react-redux';
-
 // eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 import Form from 'react-bootstrap/Form';
 
 import { changeInputValue } from '../../../actions/user';
 
-// création des champs
 function Field({
   type,
   name,
   placeholder,
-
 }) {
+  // On récupère du composant parent les élements renseignés dans les inputs
+  // La value du champ permet d'alimenter le state en fonction du name de l'input
   const value = useSelector((state) => state.user[name]);
 
   const dispatch = useDispatch();
 
   const handleChange = (evt) => {
     dispatch(changeInputValue(name, evt.target.value));
-    // console.log(value);
   };
 
+  // permet de donner une valeur unique à chaque input
   const inputId = `field-${name}`;
 
   return (

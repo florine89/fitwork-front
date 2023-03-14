@@ -1,61 +1,19 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable camelcase */
 /* eslint-disable react/jsx-no-bind */
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Card from 'react-bootstrap/Card';
+
 import { instance } from '../../../middleware/getAPI';
 
 import './ModifyArticles.scss';
-// import Col from 'react-bootstrap/Col';
-// import Form from 'react-bootstrap/Form';
-// import InputGroup from 'react-bootstrap/InputGroup';
-// import Row from 'react-bootstrap/Row';
-
-// import { saveUser } from '../../../actions/user';
-// import ModifyArticle from './ModifyArticle';
-
-// import Button from 'react-bootstrap/Button';
-// import Form from 'react-bootstrap/Form';
-
-// import { getCategoriesList } from '../../../selectors/categories';
-// import { getArticlesList } from '../../../selectors/articles';
 
 export default function ModifyArticles({ articles, setArticles }) {
-  // const [title, setTitle] = useState('');
-  // const [description, setDescription] = useState('');
-  // const [category, setCategory] = useState('');
-
   const id = useSelector((state) => state.user.id);
-  // const categories = useSelector(getCategoriesList);
-  // const articles = useSelector(getArticlesList);
-
-  // /**
-  //  * useDispatch permet d'envoyer les modifcations dans le store
-  //  * via l'action saveUser
-  //  * Les données récupérées lors de la modification d'un champ
-  //  * sont enregistrées en BDD
-  //  */
-
-  // const dispatch = useDispatch();
-
-  /// Affichage et modification du formulaire
-  // j'importe l'id du user stocké à partir du state de Redux
-  // const [validated, setValidated] = useState(false);
-
-  // const handleSubmit = (event) => {
-  //   // a la soumission du formulaire, évite le rafraichissement de la page par exemple
-  //   event.preventDefault();
-
-  //   // change le state et passe visuellement le formulaire à True (Check ok)
-  //   setValidated(true);
-  // };
-
-  // const [data, setData] = useState([]);
 
   function getArticles() {
     instance
@@ -68,11 +26,6 @@ export default function ModifyArticles({ articles, setArticles }) {
   /// Fonction pour modifier les informations de profil
 
   function removeArticle(idArticle) {
-    console.log('removeArticle');
-    console.log(id);
-    //! Delete de l'article (requete axios) en fonction de "article_id"
-    // ad
-
     instance
       .delete(`/article/${idArticle}`, {
         data: { user_id: id },
@@ -109,8 +62,6 @@ export default function ModifyArticles({ articles, setArticles }) {
 
                 <ButtonGroup size="sm" className="card-modify_btn">
                   <Button
-          // onClick={() => modifyArticle(article.id)}
-                    // className="card-btn_modif"
                     as={NavLink}
                     to={`article/${article.id}`}
                   >

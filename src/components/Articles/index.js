@@ -104,6 +104,9 @@ function Articles() {
       .then((response) => {
         setShowProg(true);
         console.log((response.data));
+      })
+      .catch((error) => {
+        console.error(error);
       });
   }
 

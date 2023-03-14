@@ -17,12 +17,16 @@ import Counter from './Counter';
 
 function Program() {
   // toast
-  const [showA, setShowA] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+
   const [articles, setArticles] = useState([]);
 
   const id = useSelector((state) => state.user.id);
-  console.log('id du user', id);
 
+  /**
+   * Cette fonction permet de changer le statuts de l'article en "done" (true)
+   * @param {*} article il s'agit de l'article sur lequel l'utilisateur clique
+   */
   function toggleStatus(article) {
     // faire appel à la bdd pour modifier le statut de chaque article
     instance
@@ -34,23 +38,34 @@ function Program() {
           if (art.program_id === article.program_id) art.status = !art.status;
           return (art);
         });
-        // mis à jour du state avec les articles modifier
+        // mis à jour du state avec les articles modifiés
         setArticles(updatedArticles);
+      })
+      .catch((error) => {
+        console.error(error);
       });
   }
 
+  /**
+   * On affiche le toast au click de l'utilisateur et on exécute
+   * la fonction toggleStatus pour réinitialiser le programme
+   */
   const toggleShowToast = () => {
-    setShowA(!showA);
+    setShowToast(!showToast);
     articles.map((article) => toggleStatus(article));
   };
 
   function deleteArticleProgram(idProgram) {
-    console.log('delete');
     instance.delete(`/program/${idProgram}`)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
+        // Afin d'obtenir un miroir de notre BDD sur le navigateur, on filtre le tableau article
+        // on récupère les articles pour lesquels l'id est différent pour mettre à jour le state
         const newArticles = articles.filter((article) => article.program_id !== idProgram);
         setArticles(newArticles);
+      })
+      .catch((error) => {
+        console.error(error);
       });
   }
 
@@ -58,22 +73,21 @@ function Program() {
     evt.preventDefault();
   }
 
+  /**
+   * Dans le useEffect, le if (id) permet d'exécuter la requête uniquement si un id existe,
+   * soit uniquement si le user est connecté
+   */
   useEffect(() => {
     if (id) {
-      instance.get(`/user/${id}/program`).then((response) => {
-        setArticles(response.data);
-      });
+      instance.get(`/user/${id}/program`)
+        .then((response) => {
+          setArticles(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
   }, [id]);
-
-  // cette const recupère le tableau des articles et filtre le nombre d'article
-  const undoneArticles = articles.filter((article) => article.status === false);
-  console.log('hello', undoneArticles);
-  // const changeStatus = articles.filter(({ article }) => !article);
-
-  // on récupère les tâches effectuéesicle
-  // const doneArticles = articles.filter(({ done }) => done);
-  console.log(articles);
 
   return (
     <div className="program">
@@ -106,7 +120,6 @@ function Program() {
                   label={article.title}
                   onChange={() => toggleStatus(article)}
                   checked={article.status}
-                  // defaultChecked={article.status}
                 />
               </ListGroup.Item>
             </div>
@@ -119,7 +132,7 @@ function Program() {
         >J'ai terminé
         </Button>
       </Form>
-      <Toast show={showA} onClose={() => setShowA(!showA)} className="message-toast">
+      <Toast show={showToast} onClose={() => setShowToast(!showToast)} className="message-toast">
         <Toast.Header>
           <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
           <strong className="me-auto">Bravo !</strong>
