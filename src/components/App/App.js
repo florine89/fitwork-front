@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { instance } from '../../middleware/getAPI';
+
 import Header from '../AppHeader';
 import Inscription from '../Inscription';
 import Profil from '../Profil';
@@ -18,21 +19,25 @@ import Categories from '../Categories';
 import Page from '../../page';
 import Favoris from '../Favorite';
 import ModifyArticle from '../Admin/AdminArticles/ModifyArticle';
-import About from '../About';
+
 import { fetchCategories } from '../../actions/categories';
 
-import { login, logout, saveUser } from '../../actions/user';
+import { logout, saveUser } from '../../actions/user';
 
 import './App.scss';
 
 function App() {
+  // On stock le token dans le local storage
   const token = localStorage.getItem('token');
-  // console.log(token);
 
   const dispatch = useDispatch();
 
-  function connexion() {
-    // console.log(token);
+  /**
+   * Si un token existe dans le local storage, on le teste en faisant un appel l'API
+   * --> s'il est valide, on passe la réponse dans le SAVE USER (state Redux), on reconnecte le user
+   * Si le token est différent, on passe dans le catch, et on vide le local storage (logout)
+   */
+  function checkConnexion() {
     if (token) {
       // Header par défaut pour le premier rendu de la page
       instance.defaults.headers.common.Authorization = (
@@ -50,22 +55,18 @@ function App() {
     }
   }
 
+  /**
+   * Pour faire persister la connection, au premier rendu, on a besoin de vérifier 
+   * la connexion (token), si on a pas de token, on sort du useEffect
+   * On a également besoin de la liste des catégories (menu)
+   */
   useEffect(() => {
-    connexion();
+    checkConnexion();
     dispatch(fetchCategories());
   }, []);
 
+  // Permet de faire les redirection dans le front
   const isLogged = useSelector((state) => state.user.logged);
-
-  /*   Pour faire persister la connexion, il faut un useEffect dans le composant App qui
-sera déclenché au premier chargement de l'application.
-Dans ce useEffect, si on a pas de token, on sort du useEffect (pas la peine d'envoyer
-la requête pour vérif le token, on en a pas)
-Si on a un token, on envoie une requête en get au back qui va vérifier ce token :
-Si il est toujours valide (pas d'erreur dans la réponse) on repasse nourrir le store
-avec les infos nécéssaires (normalement le back vous envoie les même data qu'au login,
-donc vous dispatcher la même action)
-Si le token n'est plus valide, on passe dans le catch => on vide le localStorage */
 
   return (
 
@@ -84,7 +85,6 @@ Si le token n'est plus valide, on passe dans le catch => on vide le localStorage
             element=<Profil />
           />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/a-propos" element={<About />} />
           <Route path="/administrateur" element={<Admin />} />
           <Route path="/administrateur/article/:id" element={<ModifyArticle />} />
           <Route path="/categories" element={<Categories />} />

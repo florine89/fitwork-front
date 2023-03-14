@@ -1,64 +1,62 @@
 /* eslint-disable react/jsx-no-bind */
 import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-// import InputGroup from 'react-bootstrap/InputGroup';
 import Alert from 'react-bootstrap/Alert';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 
 import { instance } from '../../../middleware/getAPI';
-import logo from '../../../assets/inscriptionok.jpg';
 import { getCategoriesList } from '../../../selectors/categories';
 
+import logo from '../../../assets/inscriptionok.jpg';
+
 export default function ModifyArticle() {
-  // j'importe l'id du user stocké à partir du state de Redux
-//   const id = useSelector((state) => state.user.id);
+  // On importe les categories du state de Redux
   const categories = useSelector(getCategoriesList);
+
+  // On importe l'id du user connecté à partir du state de Redux
   const userId = useSelector((state) => state.user.id);
 
+  // On initialise les states, à la soumission du formulaire, on les passe à true
   const [validated, setValidated] = useState(false);
   const [success, setSuccess] = useState(false);
 
   const handleSubmit = (event) => {
-    // a la soumission du formulaire, évite le rafraichissement de la page par exemple
+    // a la soumission du formulaire, évite le comportement par défaut
     event.preventDefault();
 
-    // change le state et passe visuellement le formulaire à True (Check ok)
+    // change le state et passe visuellement le formulaire à true (Check ok)
     setValidated(true);
   };
 
   // Déclaration d'un state initial 'vide' pour les différents champs du formulaire
-
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
-  //   const [image, setImage] = useState('');
 
   function handleChange(event) {
     if (event.target.name === 'title') {
       setTitle(event.target.value);
-      console.log('name', event.target.name);
     }
     if (event.target.name === 'description') {
       setDescription(event.target.value);
-      console.log('desccription', event.target.value);
     }
-    // if (event.target.name === 'image') {
-    //   setImage(event.target.value);
-    //   setTitle(event.target.value);
 
-    // }
     if (event.target.name === 'category') {
       setCategory(event.target.value);
-      console.log('category', event.target.value);
     }
   }
+
+  // On récupère dans la requête http l'id de l'article concerné
   const { id } = useParams();
 
+  /**
+   * Avec l'instance d'axios, on récupère un article à l'aide de son id
+   */
   function getOneArticle() {
     instance
       .get(`/article/${id}`)
@@ -66,10 +64,15 @@ export default function ModifyArticle() {
         console.log(response.data);
         setTitle(response.data.title);
         setDescription(response.data.description);
-        // setImage(response.data.image);
         setCategory(response.data.category);
       });
   }
+
+  /**
+   * Ici, on modifie un article
+   * On récupère l'id dans la requête http et on lui passe les différentes modifications
+   * On met à jour les states
+   */
   function updateArticle() {
     instance
       .patch(`/article/${id}`, {
@@ -82,11 +85,17 @@ export default function ModifyArticle() {
         setTitle(response.data);
         setDescription(response.data);
         setCategory(response.data);
-        console.log('update article', response);
+        // console.log('update article', response);
         setSuccess(true);
+      })
+      .catch((error) => {
+        console.error(error);
       });
   }
 
+  /**
+   * Au premier rendu de la page, on affiche l'article concerné
+   */
   useEffect(() => {
     getOneArticle();
   }, []);
@@ -163,7 +172,6 @@ export default function ModifyArticle() {
               <option>Choix de la thématique</option>
               {categories.map((cat) => (
                 <option
-                    // as={NavLink}
                   key={cat.id}
                   value={cat.id}
                 >
@@ -173,11 +181,11 @@ export default function ModifyArticle() {
             </Form.Select>
           </Form.Group>
           <Button
-            // key={article.id}
             className="Profil-button"
             type="submit"
             onClick={updateArticle}
-          >Modifier mes informations
+          >
+            Modifier mes informations
           </Button>
         </Row>
       </Form>

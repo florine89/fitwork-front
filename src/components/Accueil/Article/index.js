@@ -1,35 +1,44 @@
 import './style.scss';
 
 import Carousel from 'react-bootstrap/Carousel';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useState, useEffect } from 'react';
 
-import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { instance } from '../../../middleware/getAPI';
 
 function ArticleContainer() {
+  // Initialisation du state local avec un tableau vide
   const [articles, setArticles] = useState([]);
 
+  // on récupère l'id du user de la requête
   const { id } = useParams();
 
-  function getOneArticle() {
+  /**
+  * Permet de récupérer tous les articles
+  */
+  function getAllArticles() {
     instance.get('/articles')
       .then((response) => {
         setArticles(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
       });
   }
 
+  /**
+   * Au premier rendu de la page, on exécute la fonction
+   * A chaque modification de l'id, le composant est mis à jour
+   */
   useEffect(() => {
-    getOneArticle();
+    getAllArticles();
   }, [id]);
 
-  const userId = useSelector((state) => state.user.id);
-
-  // on fait un .slice.map pour afficher les 3 premiers articles
+  // Dans le composant, on fait un .slice.map pour afficher les 3 premiers articles
   // puis on dynamise avec article.title et article.description
+
   return (
 
     <article className="card-article">
@@ -47,10 +56,8 @@ function ArticleContainer() {
               </Card.Body>
             </Card>
           </Carousel.Item>
-
         ))}
       </Carousel>
-
     </article>
   );
 }
