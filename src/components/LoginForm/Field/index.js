@@ -11,10 +11,9 @@ function Field({
   type,
   name,
   placeholder,
-
 }) {
   // On récupère du composant parent les élements renseignés dans les inputs
-  // La value du champ permet de récupérer le name du user
+  // La value du champ permet d'alimenter le state en fonction du name de l'input
   const value = useSelector((state) => state.user[name]);
 
   const dispatch = useDispatch();
