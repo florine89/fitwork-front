@@ -30,7 +30,7 @@ Projet d'un mois qui clôture la fin de notre formation. Le but étant de mettre
 # Installation 
 1. Clone le repo
 ```
-git clone https://git@github.com:florine89/fitwork-front.git
+git clone git@github.com:florine89/fitwork-front.git
 ```
 2. Exécuter la commande yarn et yarn start dans votre terminal
 3. Suivre le lien dans le terminal 
