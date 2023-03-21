@@ -17,7 +17,7 @@
     }
 
     &-photo{
-        height: 10rem;
+        height: 15rem;
     }
     &-card{
         display: flex;
@@ -47,4 +47,9 @@
                 position: absolute;
     }
 }
+}
+
+.card:hover {
+    transform: scale(1.15);
+    transition: all 0.4s;
 }

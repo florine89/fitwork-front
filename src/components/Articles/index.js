@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import './style.scss';
 
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
