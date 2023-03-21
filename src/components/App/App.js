@@ -19,6 +19,7 @@ import Categories from '../Categories';
 import Page from '../../page';
 import Favoris from '../Favorite';
 import ModifyArticle from '../Admin/AdminArticles/ModifyArticle';
+import About from '../About';
 
 import { fetchCategories } from '../../actions/categories';
 
@@ -90,6 +91,8 @@ function App() {
           <Route path="/categories" element={<Categories />} />
           <Route path="/categorie/:id" element={<Articles />} />
           <Route path="/article/:id" element={<Article />} />
+          <Route path="/about" element={<About />} />
+
           <Route
             path="/programme"
             element={(
