@@ -41,10 +41,10 @@ git clone git@github.com:florine89/fitwork-front.git
 
 
 - [Florine FERREIRA](https://github.com/florine88) : Product Owner & dev Front
-- [Léa Bani](https://github.com/LeaBani) : Scrum master & dev Front
-- [Adnane Lahcene](https://github.com/LAHCENEAdnane) : Lead Front
-- [Wesley Foussard](https://github.com/wesley-foussard) : Lead Back
-- [Alexandre Barre](https://github.com/BarreAlexandre) : Git Master & dev Back
+- [Léa BANI](https://github.com/LeaBani) : Scrum master & dev Front
+- [Adnane LAHCENE](https://github.com/LAHCENEAdnane) : Lead Front
+- [Wesley FOUSSARD](https://github.com/wesley-foussard) : Lead Back
+- [Alexandre BARRE](https://github.com/BarreAlexandre) : Git Master & dev Back
 
 # Screenshots
 <img src="screenshot3.png" alt="photo-projet" >
