@@ -1,2 +1,0 @@
-/api/* http://barrealexandre-server.eddi.cloud:8080/api/:splat 200
-/* /index.html 200
