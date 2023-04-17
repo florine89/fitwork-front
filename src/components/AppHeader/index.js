@@ -58,8 +58,8 @@ function Header() {
                 </NavDropdown>
                 <Nav.Link eventKey="Program" as={NavLink} to="/programme">Programme</Nav.Link>
                 <Nav.Link eventKey="Fav" as={NavLink} to="/favoris">Favoris</Nav.Link>
-                {roleUser === 'admin' && (
-                <Nav.Link eventKey="Admin" as={NavLink} to="/administrateur">Administrateur</Nav.Link>)}
+                {roleUser === 'coach' && (
+                <Nav.Link eventKey="coach" as={NavLink} to="/administrateur">Administrateur</Nav.Link>)}
 
               </>
             )}
