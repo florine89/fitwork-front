@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Card from 'react-bootstrap/Card';
@@ -89,6 +90,9 @@ function Article() {
             <Card.Img src={`${process.env.REACT_APP_BASE_URL}/article/${article.id}/image`} className="Article-image" />
             <Card.Text className="Article-description">
               {article.description}
+            </Card.Text>
+            <Card.Text className="Article-description">
+              Durée de l'activité : {!article.time ? 'à ta convenance !' : (!article.time.minutes ? `${article.time.seconds} seconde(s)` : `${article.time.minutes} minutes(s)`) }
             </Card.Text>
             <ButtonGroup className="Article-button" aria-label="Ajouter l'article">
               <Button
